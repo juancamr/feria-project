@@ -1,4 +1,4 @@
-package main.java.modelo;
+package com.feria.modelo;
 
 import java.util.Date;
 
