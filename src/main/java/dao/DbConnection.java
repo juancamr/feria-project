@@ -1,4 +1,4 @@
-package com.feria.dao;
+package main.java.dao;
 import io.github.cdimascio.dotenv.Dotenv;
 
 import java.sql.*;

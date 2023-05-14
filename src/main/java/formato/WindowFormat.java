@@ -1,6 +1,6 @@
-package com.feria.formato;
+package main.java.formato;
 
-import com.feria.vista.Window;
+import main.java.vista.Window;
 
 public class WindowFormat {
     public static void Presentacion(Window window) {

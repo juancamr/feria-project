@@ -1,7 +1,7 @@
-package com.feria.principal;
+package main.java.principal;
 
-import com.feria.controlador.WindowControlador;
-import com.feria.vista.Window;
+import main.java.controlador.WindowControlador;
+import main.java.vista.Window;
 
 //import com.feria.dao.DbConnection;
 

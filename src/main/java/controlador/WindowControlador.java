@@ -1,9 +1,9 @@
-package com.feria.controlador;
+package main.java.controlador;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import com.feria.formato.WindowFormat;
-import com.feria.vista.Window;
+import main.java.formato.WindowFormat;
+import main.java.vista.Window;
 
 public class WindowControlador implements ActionListener {
     

@@ -1,4 +1,4 @@
-package com.feria.modelo;
+package main.java.modelo;
 
 public class Local {
     private int idLocal;
