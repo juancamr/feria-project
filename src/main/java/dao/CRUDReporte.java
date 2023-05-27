@@ -5,6 +5,8 @@ import main.java.modelo.Reporte;
 public class CRUDReporte extends DbConnection {
 
     public Reporte getReporte(int idReporte) {
+        CRUDGasto crudGasto = new CRUDGasto();
+        CRUDIngreso crudIngreso = new CRUDIngreso();
         String sql = "SELECT nombre_reporte, column_3, stand_id FROM reporte WHERE id=" + idReporte;
         Reporte reporte = new Reporte();
         try {
@@ -19,6 +21,8 @@ public class CRUDReporte extends DbConnection {
         } catch (Exception e) {
             System.out.println(e);
         }
+        reporte.setListaGastos(crudGasto.getGastos(idReporte));
+        reporte.setListaIngresos(crudIngreso.getIngresos(idReporte));
         return reporte;
     }
 }

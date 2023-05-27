@@ -4,7 +4,6 @@ package main.java.modelo;
 public class Gasto {
     private int id;
     private double cantGast;
-    private Reporte reporte;
     
     public Gasto() {}
 
@@ -22,14 +21,6 @@ public class Gasto {
 
     public void setCantGast(int cantGast) {
         this.cantGast = cantGast;
-    }
-
-    public Reporte getReporte() {
-        return reporte;
-    }
-
-    public void setReporte(Reporte reporte) {
-        this.reporte = reporte;
     }
     
 }

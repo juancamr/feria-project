@@ -1,11 +1,14 @@
 
 package main.java.modelo;
+import java.util.ArrayList;
 
 public class Reporte {
     private int id;
     private String nombreReporte;
     private int column_3;
     private int standId;
+    private ArrayList<Gasto> listaGastos;
+    private ArrayList<Ingreso> listaIngresos;
     
     public Reporte() {}
 
@@ -39,6 +42,22 @@ public class Reporte {
 
     public void setStandId(int standId) {
         this.standId = standId;
+    }
+
+    public ArrayList<Gasto> getListaGastos() {
+        return listaGastos;
+    }
+
+    public void setListaGastos(ArrayList<Gasto> listaGastos) {
+        this.listaGastos = listaGastos;
+    }
+
+    public ArrayList<Ingreso> getListaIngresos() {
+        return listaIngresos;
+    }
+
+    public void setListaIngresos(ArrayList<Ingreso> listaIngresos) {
+        this.listaIngresos = listaIngresos;
     }
     
     

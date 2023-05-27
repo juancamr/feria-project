@@ -1,4 +1,5 @@
 package main.java.dao;
+import java.sql.SQLException;
 import main.java.modelo.Gasto;
 import java.util.ArrayList;
 import main.java.utils.Calculo;
@@ -6,8 +7,7 @@ import main.java.utils.Calculo;
 public class CRUDGasto extends DbConnection {
 
     public ArrayList<Gasto> getGastos(int reporteId) {
-        CRUDReporte crudReporte = new CRUDReporte();
-        ArrayList<Gasto> gastoList = new ArrayList<Gasto>();
+        ArrayList<Gasto> gastoList = new ArrayList<>();
         String sql = "SELECT id, cant_gast, reporte_id FROM gasto WHERE reporte_id=" + reporteId;
         try {
             rs = st.executeQuery(sql);
@@ -15,11 +15,10 @@ public class CRUDGasto extends DbConnection {
                 Gasto gasto = new Gasto();
                 gasto.setId(rs.getInt(1));
                 gasto.setCantGast(rs.getInt(2));
-                gasto.setReporte(crudReporte.getReporte(rs.getInt(3)));
                 gastoList.add(gasto);
                 rs.close();
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return gastoList;
