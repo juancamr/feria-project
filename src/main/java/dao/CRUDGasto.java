@@ -1,6 +1,7 @@
 package main.java.dao;
 import main.java.modelo.Gasto;
 import java.util.ArrayList;
+import main.java.utils.Calculo;
 
 public class CRUDGasto extends DbConnection {
 
@@ -25,6 +26,11 @@ public class CRUDGasto extends DbConnection {
     }
     
     public double calcularGastos(ArrayList<Gasto> gastoList) {
-        
+        Calculo utils = new Calculo();
+        double[] listaCantidadGastos = new double[gastoList.size()];
+        for (int i = 0; i < gastoList.size(); i++) {
+            listaCantidadGastos[i] = gastoList.get(i).getCantGast();
+        }
+        return utils.calcularSuma(listaCantidadGastos);
     }
 }
