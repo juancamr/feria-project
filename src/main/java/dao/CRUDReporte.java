@@ -1,5 +1,6 @@
 package main.java.dao;
 
+import java.util.Date;
 import main.java.modelo.Reporte;
 
 public class CRUDReporte extends DbConnection {
@@ -24,5 +25,9 @@ public class CRUDReporte extends DbConnection {
         reporte.setListaGastos(crudGasto.getGastos(idReporte));
         reporte.setListaIngresos(crudIngreso.getIngresos(idReporte));
         return reporte;
+    }
+    
+    public int getReporteId(Date fechaActual) {
+        return 0;
     }
 }
