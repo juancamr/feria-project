@@ -3,7 +3,7 @@ package main.java.modelo;
 
 public class Gasto {
     private int id;
-    private int cantGast;
+    private double cantGast;
     private Reporte reporte;
     
     public Gasto() {}
@@ -16,7 +16,7 @@ public class Gasto {
         this.id = id;
     }
 
-    public int getCantGast() {
+    public double getCantGast() {
         return cantGast;
     }
 

@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package main.java.utils;
 
-/**
- *
- * @author jcmro
- */
 public class Calculo {
-    
+    public static double calcularSuma(double[] numeros) {
+        double suma = 0;
+        for(double numero : numeros) {
+            suma += numero;
+        }
+        return suma;
+    }
 }
