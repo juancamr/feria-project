@@ -16,6 +16,7 @@ public class WindowControlador implements ActionListener {
     public static void mostrarVentana() {
         WindowFormat.Presentacion(window);
     }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
