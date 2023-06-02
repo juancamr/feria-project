@@ -2,42 +2,62 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package loginmysql;
+package main.java.loginmysql;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Date;
-import java.time.LocalDate;
-import javax.swing.JOptionPane;
+import main.java.dao.CRUDFeria;
 
 /**
  *
  * @author marco
  */
-public class RegistrarFeria extends javax.swing.JFrame {
+public class Feria extends javax.swing.JFrame {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Feria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Feria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Feria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Feria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Feria().setVisible(true);
+            }
+        });
+    }
 
     /**
      * Creates new form RegistrarFeria
      */
-    public RegistrarFeria() {
-        Conectar();
+    public Feria() {
+
         initComponents();
-          
+
     }
 
- public Connection Conectar() {
-        Connection con = null;
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/usuarios","root","");
-        } catch (SQLException e) {
-            System.err.print(e.toString());
-            JOptionPane.showMessageDialog(this, "Ocurrio un error.\nProblema con la Base de Datos");
-        }
-        return con;
-  }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -197,71 +217,17 @@ public class RegistrarFeria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubirActionPerformed
-        Connection cone = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-   
-
-        
-
-            try{
-                cone = Conectar();
-                pst = cone.prepareStatement("Insert into ferias (nom_fer, afor_fer, cost_fer, fech_fer, seg_fer,presu_fer) values (?,?,?,?,?,?)");
-                pst.setString(1,txtNom.getText());
-                 pst.setInt(2, Integer.parseInt(txtAfor.getText()));
-                 pst.setDouble(3,Double.parseDouble(txtFor.getText()));
-                 pst.setDate(4,Date.valueOf(txtFech.getText()));
-                pst.setString(5,txtSeg.getText());
-                pst.setDouble(6,Double.parseDouble(txtPresu.getText()));
-              
-             int res= pst.executeUpdate();
-   if(res>0){
-       JOptionPane.showMessageDialog(this, "Datos guardados correctamente");
-   }
-            }
-            catch(SQLException e){
-                System.err.print(e.toString());
-                JOptionPane.showMessageDialog(this, "Ocurrio un error inesperado");
-
-            }
-        
-
+        CRUDFeria cRUDFeria = new CRUDFeria();
+        cRUDFeria.guardarFeria( txtNom.getText(), 
+                Integer.parseInt(txtAfor.getText()), 
+                Double.parseDouble(txtFor.getText()), 
+                        Date.valueOf(txtFech.getText()), 
+                        txtSeg.getText(), 
+                        Double.parseDouble(txtPresu.getText()));
+                
+    
     }//GEN-LAST:event_btnSubirActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrarFeria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrarFeria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrarFeria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrarFeria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrarFeria().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubir;
