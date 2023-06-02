@@ -72,7 +72,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         BarraLateral.add(jbtnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
 
         jbtnDocumentacion.setText("Documentacion");
-        BarraLateral.add(jbtnDocumentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, -1));
+        BarraLateral.add(jbtnDocumentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
 
         jbtnAjustes.setText("Ajustes");
         BarraLateral.add(jbtnAjustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, -1, -1));
@@ -89,7 +89,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(BarraLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 660, Short.MAX_VALUE))
+                .addGap(0, 642, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

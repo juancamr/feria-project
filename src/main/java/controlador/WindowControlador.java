@@ -25,7 +25,7 @@ public class WindowControlador implements ActionListener {
         if (e.getSource() == vista.jbtnRegistrarLocal) {
             System.out.println("registrar local window");
             vista.dispose();
-            new RegistrarLocal().setVisible(true);
+            new RegistrarLocalControlador(new RegistrarLocal());
         }
     }
 
