@@ -1,13 +1,15 @@
-package main.java.dao;
+package main.java.services;
 
+import java.sql.SQLException;
+import main.java.config.DbConnection;
 import java.util.Date;
 import main.java.modelo.Reporte;
 
-public class CRUDReporte extends DbConnection {
+public class CRUDReporte extends CRUDBase {
+    
+    public static CRUDReporte crudReporte;
 
-    public Reporte getReporte(int idReporte) {
-        CRUDGasto crudGasto = new CRUDGasto();
-        CRUDIngreso crudIngreso = new CRUDIngreso();
+    public Reporte getReporte(int idReporte) throws ClassNotFoundException {
         String sql = "SELECT nombre_reporte, column_3, stand_id FROM reporte WHERE id=" + idReporte;
         Reporte reporte = new Reporte();
         try {
@@ -19,15 +21,19 @@ public class CRUDReporte extends DbConnection {
                 reporte.setStandId(rs.getInt(3));
             }
             rs.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
-        reporte.setListaGastos(crudGasto.getGastos(idReporte));
-        reporte.setListaIngresos(crudIngreso.getIngresos(idReporte));
+        reporte.setListaGastos(CRUDGasto.getInstance().getGastos(idReporte));
+        reporte.setListaIngresos(CRUDIngreso.getInstance().getIngresos(idReporte));
         return reporte;
     }
     
     public int getReporteId(Date fechaActual) {
         return 0;
+    }
+    
+    public static CRUDReporte getInstance() throws ClassNotFoundException {
+        return (crudReporte == null)? new CRUDReporte() : crudReporte;
     }
 }

@@ -4,6 +4,7 @@
  */
 package main.java.loginmysql;
 
+import main.java.vista.Logeo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

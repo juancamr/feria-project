@@ -5,7 +5,9 @@
 package main.java.loginmysql;
 
 import java.sql.Date;
-import main.java.dao.CRUDFeria;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import main.java.services.CRUDFeria;
 
 /**
  *
@@ -217,13 +219,17 @@ public class Feria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubirActionPerformed
-        CRUDFeria cRUDFeria = new CRUDFeria();
-        cRUDFeria.guardarFeria( txtNom.getText(), 
-                Integer.parseInt(txtAfor.getText()), 
-                Double.parseDouble(txtFor.getText()), 
-                        Date.valueOf(txtFech.getText()), 
-                        txtSeg.getText(), 
-                        Double.parseDouble(txtPresu.getText()));
+        
+        try {
+            CRUDFeria.getInstance().guardarFeria( txtNom.getText(),
+                    Integer.parseInt(txtAfor.getText()),
+                    Double.parseDouble(txtFor.getText()),
+                    Date.valueOf(txtFech.getText()),
+                    txtSeg.getText(),
+                    Double.parseDouble(txtPresu.getText()));
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Feria.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 
     
     }//GEN-LAST:event_btnSubirActionPerformed

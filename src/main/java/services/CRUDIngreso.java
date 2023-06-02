@@ -1,11 +1,12 @@
-package main.java.dao;
+package main.java.services;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import main.java.modelo.Ingreso;
 import main.java.utils.Calculo;
 
-public class CRUDIngreso extends DbConnection {
+public class CRUDIngreso extends CRUDBase {
+    public static CRUDIngreso crudIngreso;
 
     public ArrayList<Ingreso> getIngresos(int reporteId) {
         ArrayList<Ingreso> ingresoList = new ArrayList<>();
@@ -32,6 +33,10 @@ public class CRUDIngreso extends DbConnection {
             listaCantidadIngresos[i] = ingresoList.get(i).getCantidadIn();
         }
         return utils.calcularSuma(listaCantidadIngresos);
+    }
+    
+    public static CRUDIngreso getInstance() throws ClassNotFoundException {
+        return (crudIngreso == null)? new CRUDIngreso() : crudIngreso;
     }
 
 }

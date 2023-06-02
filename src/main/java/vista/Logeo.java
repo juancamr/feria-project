@@ -2,11 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package main.java.loginmysql;
+package main.java.vista;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import main.java.loginmysql.Home;
+import main.java.loginmysql.RegistroUsu;
 public class Logeo extends javax.swing.JFrame {
 
     /**
@@ -82,7 +84,6 @@ public class Logeo extends javax.swing.JFrame {
 
         btnIngre.setBackground(new java.awt.Color(153, 153, 153));
         btnIngre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnIngre.setForeground(new java.awt.Color(0, 0, 0));
         btnIngre.setText("Ingresar");
         btnIngre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +93,6 @@ public class Logeo extends javax.swing.JFrame {
 
         btnNew.setBackground(new java.awt.Color(153, 153, 153));
         btnNew.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnNew.setForeground(new java.awt.Color(0, 0, 0));
         btnNew.setText("Crear nuevo usuario");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

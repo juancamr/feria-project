@@ -22,5 +22,5 @@ public class Gasto {
     public void setCantGast(int cantGast) {
         this.cantGast = cantGast;
     }
-    
+
 }

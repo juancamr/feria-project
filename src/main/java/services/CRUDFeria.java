@@ -1,10 +1,11 @@
-package main.java.dao;
+package main.java.services;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CRUDFeria extends DbConnection {
+public class CRUDFeria extends CRUDBase {
+    public static CRUDFeria crudFeria;
 
     public void guardarFeria(String nombre, Integer aforo, Double costo, Date fecha, String seguridad, Double presupuesto) {
      
@@ -25,5 +26,10 @@ public class CRUDFeria extends DbConnection {
         } catch (SQLException e) {
             System.err.print(e.toString());
         }
+    }
+    
+    
+    public static CRUDFeria getInstance() throws ClassNotFoundException {
+        return (crudFeria == null)? new CRUDFeria() : crudFeria;
     }
 }
