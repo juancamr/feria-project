@@ -527,17 +527,17 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BarraLateral;
-    private javax.swing.JLabel Button_Ajustes;
-    private javax.swing.JLabel Button_Busqueda;
+    public javax.swing.JLabel Button_Ajustes;
+    public javax.swing.JLabel Button_Busqueda;
     private javax.swing.JLabel Button_Close;
-    private javax.swing.JLabel Button_Documentos;
+    public javax.swing.JLabel Button_Documentos;
     private javax.swing.JLabel Button_Exit;
-    private javax.swing.JLabel Button_Home;
-    private javax.swing.JLabel Button_Mi_Info;
+    public javax.swing.JLabel Button_Home;
+    public javax.swing.JLabel Button_Mi_Info;
     private javax.swing.JLabel Button_Min;
-    private javax.swing.JLabel Button_Proveedor;
-    private javax.swing.JLabel Button_Vender;
-    private javax.swing.JLabel Button_info;
+    public javax.swing.JLabel Button_Proveedor;
+    public javax.swing.JLabel Button_Vender;
+    public javax.swing.JLabel Button_info;
     private javax.swing.JPanel PanelContenedor;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JPanel Panel_Close;
