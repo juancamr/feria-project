@@ -342,7 +342,7 @@ public class Home extends javax.swing.JFrame {
 
     private void Button_VenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_VenderMouseClicked
         this.dispose();
-                    new RegistrarFeria().setVisible(true);
+                    new Feria().setVisible(true);
     }//GEN-LAST:event_Button_VenderMouseClicked
 
     private void Button_ProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_ProveedorMouseClicked
@@ -514,6 +514,7 @@ public class Home extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
