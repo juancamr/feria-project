@@ -1,10 +1,11 @@
-package main.java.dao;
+package main.java.services;
 import java.sql.SQLException;
 import main.java.modelo.Gasto;
 import java.util.ArrayList;
 import main.java.utils.Calculo;
 
-public class CRUDGasto extends DbConnection {
+public class CRUDGasto extends CRUDBase {
+    public static CRUDGasto crudGasto;
 
     public ArrayList<Gasto> getGastos(int reporteId) {
         ArrayList<Gasto> gastoList = new ArrayList<>();
@@ -31,5 +32,9 @@ public class CRUDGasto extends DbConnection {
             listaCantidadGastos[i] = gastoList.get(i).getCantGast();
         }
         return utils.calcularSuma(listaCantidadGastos);
+    }
+    
+    public static CRUDGasto getInstance() throws ClassNotFoundException {
+        return (crudGasto == null)? new CRUDGasto() : crudGasto;
     }
 }
