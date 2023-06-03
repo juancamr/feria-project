@@ -24,4 +24,21 @@ public class DebugObject {
         response += "----------------------------------";
         System.out.println(response);
     }
+    
+    public static <T> boolean isFilledObject(T objeto) {
+        Field[] fields = objeto.getClass().getDeclaredFields();
+        for (Field field: fields) {
+            field.setAccessible(true);
+            Object valorAtributo;
+            try {
+                valorAtributo = field.get(objeto);
+            } catch (IllegalAccessException e) {
+                valorAtributo = null;
+                System.out.println(e);
+            }
+            if (valorAtributo == null)
+                return false;
+        }
+        return true;
+    }
 }

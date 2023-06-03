@@ -4,19 +4,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import formato.WindowFormat;
 import vista.RegistrarLocal;
-import vista.VentanaPrincipal;
+import vista.WindowMain;
 
 public class WindowControlador implements ActionListener {
 
-    public static VentanaPrincipal vista;
+    public static WindowMain vista;
 
-    public WindowControlador(VentanaPrincipal vista) {
+    public WindowControlador(WindowMain vista) {
         this.vista = vista;
         vista.jbtnRegistrarLocal.addActionListener(this);
-
-    }
-
-    public static void mostrarVentana() {
         WindowFormat.Presentacion(vista);
     }
 

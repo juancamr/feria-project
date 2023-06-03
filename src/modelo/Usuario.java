@@ -5,11 +5,11 @@ import java.util.Date;
 public class Usuario {
     private int idUsuario;
     private String nombres;
-    private String apellidos;
     private String dni;
     private String telefono;
     private String userName;
     private String password;
+    private String correo;
     private String tipoUsuario;
     private Date fechaRegistro;
 
@@ -29,14 +29,6 @@ public class Usuario {
 
     public void setNombres(String nombres) {
         this.nombres = nombres;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
     }
 
     public String getDni() {
@@ -85,5 +77,13 @@ public class Usuario {
 
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 }

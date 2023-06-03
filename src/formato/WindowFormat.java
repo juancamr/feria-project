@@ -1,9 +1,9 @@
 package formato;
 
-import vista.VentanaPrincipal;
+import vista.WindowMain;
 
 public class WindowFormat {
-    public static void Presentacion(VentanaPrincipal window) {
+    public static void Presentacion(WindowMain window) {
         window.setSize(1100, 900);
         window.setTitle("Feria");
         window.setLocationRelativeTo(window);
