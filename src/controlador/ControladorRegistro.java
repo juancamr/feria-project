@@ -3,12 +3,13 @@ package controlador;
 import formato.FormatoRegistro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 import vista.WindowLogin;
 import vista.WindowRegister;
 import modelo.Usuario;
 import utils.DebugObject;
 import java.util.Date;
+import services.CRUDUsuario;
+import utils.Dialog;
 import vista.WindowMain;
 
 public class ControladorRegistro implements ActionListener {
@@ -30,14 +31,16 @@ public class ControladorRegistro implements ActionListener {
         }
         if (e.getSource() == vista.jbtnRegistrar) {
             Usuario user = makeUsuario();
-            DebugObject.printObject(user);
             if (DebugObject.isFilledObject(user)) {
-                //metodo para registrar
-                vista.dispose();
-                new ControladorMain(new WindowMain());
+                if (CRUDUsuario.getInstance().add(user)) {
+                    new ControladorMain(new WindowMain());
+                    vista.dispose();
+                } else {
+                    Dialog.message("Algo salio mal, por favor intentelo de nuevo.");
+                }
             } else {
+                Dialog.message("Por favor, llene todos los campos");
                 System.out.println("error");
-                JOptionPane.showMessageDialog(null, "Por favor, llene todos los campos");
             }
         }
     }
