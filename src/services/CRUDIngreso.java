@@ -54,12 +54,6 @@ public class CRUDIngreso extends BaseCRUD<Ingreso> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public static CRUDIngreso getInstance() {
-        if (crudIngreso == null)
-            crudIngreso = new CRUDIngreso();
-        return crudIngreso;
-    }
-
     public double calcularIngresos(ArrayList<Ingreso> ingresoList) {
         Calculo utils = new Calculo();
         double[] listaCantidadIngresos = new double[ingresoList.size()];
@@ -67,6 +61,12 @@ public class CRUDIngreso extends BaseCRUD<Ingreso> {
             listaCantidadIngresos[i] = ingresoList.get(i).getCantidadIn();
         }
         return utils.calcularSuma(listaCantidadIngresos);
+    }
+
+    public static CRUDIngreso getInstance() {
+        if (crudIngreso == null)
+            crudIngreso = new CRUDIngreso();
+        return crudIngreso;
     }
 
 }

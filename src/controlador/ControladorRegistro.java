@@ -14,14 +14,14 @@ import vista.WindowMain;
 public class ControladorRegistro implements ActionListener {
 
     WindowRegister vista;
-    
+
     public ControladorRegistro(WindowRegister v) {
         vista = v;
         vista.jbtnVolver.addActionListener(this);
         vista.jbtnRegistrar.addActionListener(this);
         FormatoRegistro.presentacion(vista);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.jbtnVolver) {
@@ -29,16 +29,7 @@ public class ControladorRegistro implements ActionListener {
             new ControladorLogeo(new WindowLogin());
         }
         if (e.getSource() == vista.jbtnRegistrar) {
-            Usuario user = new Usuario();
-            user.setIdUsuario(1);
-            user.setNombres(vista.jtxtNombre.getText());
-            user.setDni(vista.jtxtDni.getText());
-            user.setTelefono(vista.jtxtTelefono.getText());
-            user.setPassword(new String(vista.jpwdPassword.getPassword()));
-            user.setUserName(vista.jtxtUsuario.getText());
-            user.setCorreo(vista.jtxtCorreo.getText());
-            user.setTipoUsuario("hola mundo");
-            user.setFechaRegistro(new Date());
+            Usuario user = makeUsuario();
             DebugObject.printObject(user);
             if (DebugObject.isFilledObject(user)) {
                 //metodo para registrar
@@ -50,5 +41,19 @@ public class ControladorRegistro implements ActionListener {
             }
         }
     }
-    
+
+    private Usuario makeUsuario() {
+        Usuario user = new Usuario();
+        user.setIdUsuario(1);
+        user.setNombres(vista.jtxtNombre.getText());
+        user.setDni(vista.jtxtDni.getText());
+        user.setTelefono(vista.jtxtTelefono.getText());
+        user.setPassword(new String(vista.jpwdPassword.getPassword()));
+        user.setUserName(vista.jtxtUsuario.getText());
+        user.setCorreo(vista.jtxtCorreo.getText());
+        user.setTipoUsuario("hola mundo");
+        user.setFechaRegistro(new Date());
+        return user;
+    }
+
 }
