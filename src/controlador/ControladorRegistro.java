@@ -8,6 +8,8 @@ import vista.WindowLogin;
 import vista.WindowRegister;
 import modelo.Usuario;
 import utils.DebugObject;
+import java.util.Date;
+import vista.WindowMain;
 
 public class ControladorRegistro implements ActionListener {
 
@@ -28,15 +30,22 @@ public class ControladorRegistro implements ActionListener {
         }
         if (e.getSource() == vista.jbtnRegistrar) {
             Usuario user = new Usuario();
+            user.setIdUsuario(1);
             user.setNombres(vista.jtxtNombre.getText());
             user.setDni(vista.jtxtDni.getText());
             user.setTelefono(vista.jtxtTelefono.getText());
             user.setPassword(new String(vista.jpwdPassword.getPassword()));
             user.setUserName(vista.jtxtUsuario.getText());
             user.setCorreo(vista.jtxtCorreo.getText());
+            user.setTipoUsuario("hola mundo");
+            user.setFechaRegistro(new Date());
+            DebugObject.printObject(user);
             if (DebugObject.isFilledObject(user)) {
-                
+                //metodo para registrar
+                vista.dispose();
+                new ControladorMain(new WindowMain());
             } else {
+                System.out.println("error");
                 JOptionPane.showMessageDialog(null, "Por favor, llene todos los campos");
             }
         }

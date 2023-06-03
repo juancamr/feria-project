@@ -6,11 +6,11 @@ import formato.WindowFormat;
 import vista.RegistrarLocal;
 import vista.WindowMain;
 
-public class WindowControlador implements ActionListener {
+public class ControladorMain implements ActionListener {
 
     public static WindowMain vista;
 
-    public WindowControlador(WindowMain vista) {
+    public ControladorMain(WindowMain vista) {
         this.vista = vista;
         vista.jbtnRegistrarLocal.addActionListener(this);
         WindowFormat.Presentacion(vista);

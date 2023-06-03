@@ -1,16 +1,16 @@
-
 package utils;
+
 import java.lang.reflect.Field;
 
 public class DebugObject {
-    
+
     public static <T> void printObject(T objeto) {
         Field[] fields = objeto.getClass().getDeclaredFields();
         String response = "\n\n"
                 + "-------------------------\n"
                 + "Debug Object by JC\n"
                 + "Atributos:\n";
-        for (Field field: fields) {
+        for (Field field : fields) {
             field.setAccessible(true);
             Object valorAtributo;
             try {
@@ -24,10 +24,10 @@ public class DebugObject {
         response += "----------------------------------";
         System.out.println(response);
     }
-    
+
     public static <T> boolean isFilledObject(T objeto) {
         Field[] fields = objeto.getClass().getDeclaredFields();
-        for (Field field: fields) {
+        for (Field field : fields) {
             field.setAccessible(true);
             Object valorAtributo;
             try {
@@ -36,8 +36,9 @@ public class DebugObject {
                 valorAtributo = null;
                 System.out.println(e);
             }
-            if (valorAtributo == null)
+            if (valorAtributo == "") {
                 return false;
+            }
         }
         return true;
     }
