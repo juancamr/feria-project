@@ -1,5 +1,5 @@
 
-package services;
+package interfaces;
 
 public interface DbCredentials {
     

@@ -1,20 +1,20 @@
-package services;
+package dao;
 
+import interfaces.Querys;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Usuario;
 import utils.Hash;
 import utils.MySql;
 
-public class CRUDUsuario extends BaseCRUD<Usuario> {
+public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
 
     private static CRUDUsuario crudUsuario;
 
     @Override
     public boolean add(Usuario user) {
-        String sql = "";
         try {
-            makePs(user, sql);
+            makePs(user, ADD_USER);
             return true;
         } catch (SQLException e) {
             System.out.println(e);
@@ -24,11 +24,10 @@ public class CRUDUsuario extends BaseCRUD<Usuario> {
 
     public boolean isUserExist(Usuario user) {
         String passwordEntered = Hash.encryptPassword(user.getPassword());
-        String emailSql = "SELECT id, email, passwd FROM usuario WHERE user_name=" + user.getUserName();
         try {
-            rs = st.executeQuery(emailSql);
+            rs = st.executeQuery(IS_USER_EXIST + user.getUserName() + "\"");
             if (rs.next()) {
-                return passwordEntered.equals(rs.getString(3));
+                return passwordEntered.equals(rs.getString(2));
             }
         } catch (SQLException e) {
             System.out.println(e);

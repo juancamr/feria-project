@@ -3,12 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.sql.*;
-import javax.swing.JOptionPane;
-import piero.Home;
-import piero.RegistroUsu;
 public class WindowLogin extends javax.swing.JFrame {
 
     /**

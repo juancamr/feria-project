@@ -1,13 +1,13 @@
 package controlador;
 
-import formato.FormatoLogeo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import vista.WindowLogin;
 import modelo.Usuario;
-import services.CRUDUsuario;
+import dao.CRUDUsuario;
 import utils.Dialog;
 import utils.Go;
+import utils.FormatFrame;
 
 public class ControladorLogeo implements ActionListener {
 
@@ -17,7 +17,8 @@ public class ControladorLogeo implements ActionListener {
         vista = v;
         vista.jbtnIngresar.addActionListener(this);
         vista.jbtnRegistrarse.addActionListener(this);
-        FormatoLogeo.presentacion(vista);
+        int[] dimensions = {650, 500};
+        FormatFrame.window(vista, dimensions, "Bienvenido");
     }
 
     @Override

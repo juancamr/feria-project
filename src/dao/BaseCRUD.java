@@ -1,6 +1,5 @@
-package services;
+package dao;
 
-import config.DbConnection;
 import java.sql.*;
 import java.util.ArrayList;
 

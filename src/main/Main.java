@@ -1,7 +1,7 @@
 package main;
 
 import java.sql.SQLException;
-import config.DbConnection;
+import dao.DbConnection;
 import vista.WindowLogin;
 import controlador.ControladorLogeo;
 

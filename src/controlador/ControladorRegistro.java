@@ -1,14 +1,14 @@
 package controlador;
 
-import formato.FormatoRegistro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import vista.WindowRegister;
 import modelo.Usuario;
 import utils.DebugObject;
 import java.util.Date;
-import services.CRUDUsuario;
+import dao.CRUDUsuario;
 import utils.Dialog;
+import utils.FormatFrame;
 import utils.Go;
 
 public class ControladorRegistro implements ActionListener {
@@ -19,7 +19,8 @@ public class ControladorRegistro implements ActionListener {
         vista = v;
         vista.jbtnVolver.addActionListener(this);
         vista.jbtnRegistrar.addActionListener(this);
-        FormatoRegistro.presentacion(vista);
+        int[] dimensions = {650, 530};
+        FormatFrame.window(vista, dimensions, "Bienvenido");
     }
 
     @Override
