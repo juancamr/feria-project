@@ -24,7 +24,7 @@ public class CRUDUsuario extends BaseCRUD<Usuario> {
 
     public boolean isUserExist(Usuario user) {
         String passwordEntered = Hash.encryptPassword(user.getPassword());
-        String emailSql = "SELECT id, email, passwd FROM usuario WHERE email=" + user.getCorreo();
+        String emailSql = "SELECT id, email, passwd FROM usuario WHERE user_name=" + user.getUserName();
         try {
             rs = st.executeQuery(emailSql);
             if (rs.next()) {

@@ -3,14 +3,13 @@ package controlador;
 import formato.FormatoRegistro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import vista.WindowLogin;
 import vista.WindowRegister;
 import modelo.Usuario;
 import utils.DebugObject;
 import java.util.Date;
 import services.CRUDUsuario;
 import utils.Dialog;
-import vista.WindowMain;
+import utils.Go;
 
 public class ControladorRegistro implements ActionListener {
 
@@ -27,14 +26,14 @@ public class ControladorRegistro implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.jbtnVolver) {
             vista.dispose();
-            new ControladorLogeo(new WindowLogin());
+            Go.toLogin();
         }
         if (e.getSource() == vista.jbtnRegistrar) {
             Usuario user = makeUsuario();
             if (DebugObject.isFilledObject(user)) {
                 if (CRUDUsuario.getInstance().add(user)) {
-                    new ControladorMain(new WindowMain());
                     vista.dispose();
+                    Go.toHome();
                 } else {
                     Dialog.message("Algo salio mal, por favor intentelo de nuevo.");
                 }
