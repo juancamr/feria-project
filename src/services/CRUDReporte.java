@@ -1,15 +1,21 @@
 package services;
 
 import java.sql.SQLException;
-import config.DbConnection;
-import java.util.Date;
+import java.util.ArrayList;
 import modelo.Reporte;
 
-public class CRUDReporte extends BaseCRUD {
+public class CRUDReporte extends BaseCRUD<Reporte> {
     
     public static CRUDReporte crudReporte;
 
-    public Reporte getReporte(int idReporte) throws ClassNotFoundException {
+    @Override
+    public boolean add(Reporte object) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Reporte get(int idReporte) {
+        
         String sql = "SELECT nombre_reporte, column_3, stand_id FROM reporte WHERE id=" + idReporte;
         Reporte reporte = new Reporte();
         try {
@@ -24,16 +30,32 @@ public class CRUDReporte extends BaseCRUD {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        reporte.setListaGastos(CRUDGasto.getInstance().getGastos(idReporte));
-        reporte.setListaIngresos(CRUDIngreso.getInstance().getIngresos(idReporte));
+        reporte.setListaGastos(CRUDGasto.getInstance().getMany(idReporte));
+        reporte.setListaIngresos(CRUDIngreso.getInstance().getMany(idReporte));
         return reporte;
     }
-    
-    public int getReporteId(Date fechaActual) {
-        return 0;
+
+    @Override
+    public ArrayList<Reporte> getMany(int filterId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    public static CRUDReporte getInstance() throws ClassNotFoundException {
+
+    @Override
+    public ArrayList<Reporte> getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean edit(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean delete(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public static CRUDReporte getInstance() {
         if (crudReporte == null)
             crudReporte = new CRUDReporte();
         return crudReporte;

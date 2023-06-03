@@ -5,11 +5,23 @@ import java.util.ArrayList;
 import modelo.Ingreso;
 import utils.Calculo;
 
-public class CRUDIngreso extends BaseCRUD {
+public class CRUDIngreso extends BaseCRUD<Ingreso> {
 
     public static CRUDIngreso crudIngreso;
 
-    public ArrayList<Ingreso> getIngresos(int reporteId) {
+    @Override
+    public boolean add(Ingreso object) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Ingreso get(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Ingreso> getMany(int reporteId) {
+        
         ArrayList<Ingreso> ingresoList = new ArrayList<>();
         String sql = "SELECT id, cantidad_in, reporte_id FROM ingreso WHERE reporte_id=" + reporteId;
         try {
@@ -27,6 +39,27 @@ public class CRUDIngreso extends BaseCRUD {
         return ingresoList;
     }
 
+    @Override
+    public ArrayList<Ingreso> getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean edit(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean delete(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public static CRUDIngreso getInstance() {
+        if (crudIngreso == null)
+            crudIngreso = new CRUDIngreso();
+        return crudIngreso;
+    }
+
     public double calcularIngresos(ArrayList<Ingreso> ingresoList) {
         Calculo utils = new Calculo();
         double[] listaCantidadIngresos = new double[ingresoList.size()];
@@ -34,12 +67,6 @@ public class CRUDIngreso extends BaseCRUD {
             listaCantidadIngresos[i] = ingresoList.get(i).getCantidadIn();
         }
         return utils.calcularSuma(listaCantidadIngresos);
-    }
-
-    public static CRUDIngreso getInstance() throws ClassNotFoundException {
-        if (crudIngreso == null)
-            crudIngreso = new CRUDIngreso();
-        return crudIngreso;
     }
 
 }

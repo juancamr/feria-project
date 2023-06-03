@@ -4,10 +4,22 @@ import modelo.Gasto;
 import java.util.ArrayList;
 import utils.Calculo;
 
-public class CRUDGasto extends BaseCRUD {
+public class CRUDGasto extends BaseCRUD<Gasto> {
     public static CRUDGasto crudGasto;
 
-    public ArrayList<Gasto> getGastos(int reporteId) {
+    @Override
+    public boolean add(Gasto gasto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Gasto get(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Gasto> getMany(int reporteId) {
+        
         ArrayList<Gasto> gastoList = new ArrayList<>();
         String sql = "SELECT id, cant_gast, reporte_id FROM gasto WHERE reporte_id=" + reporteId;
         try {
@@ -24,6 +36,21 @@ public class CRUDGasto extends BaseCRUD {
         }
         return gastoList;
     }
+
+    @Override
+    public ArrayList<Gasto> getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean edit(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean delete(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public double calcularGastos(ArrayList<Gasto> gastoList) {
         Calculo utils = new Calculo();
@@ -33,8 +60,8 @@ public class CRUDGasto extends BaseCRUD {
         }
         return utils.calcularSuma(listaCantidadGastos);
     }
-    
-    public static CRUDGasto getInstance() throws ClassNotFoundException {
+
+    public static CRUDGasto getInstance() {
         if (crudGasto == null)
             crudGasto = new CRUDGasto();
         return crudGasto;

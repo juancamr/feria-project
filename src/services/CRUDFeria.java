@@ -1,37 +1,62 @@
 package services;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import modelo.Feria;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
-public class CRUDFeria extends BaseCRUD {
+public class CRUDFeria extends BaseCRUD<Feria> {
     public static CRUDFeria crudFeria;
-
-    public void guardarFeria(String nombre, Integer aforo, Double costo, Date fecha, String seguridad, Double presupuesto) {
-     
-        try {
-            String sql = "Insert into ferias (nom_fer, afor_fer, cost_fer, fech_fer, seg_fer,presu_fer) values (?,?,?,?,?,?)";
-            PreparedStatement pst = connection.prepareStatement(sql);
-            pst.setString(1, nombre);
-            pst.setInt(2, aforo);
-            pst.setDouble(3, costo);
-            pst.setDate(4, fecha);
-            pst.setString(5, seguridad);
-            pst.setDouble(6, presupuesto);
-
-            int res = pst.executeUpdate();
-            if (res > 0) {
-                System.err.println("Datos guardados correctamente");
-            }
-        } catch (SQLException e) {
-            System.err.print(e.toString());
-        }
-    }
     
-    
-    public static CRUDFeria getInstance() throws ClassNotFoundException {
+    public static CRUDFeria getInstance() {
         if (crudFeria == null)
             crudFeria = new CRUDFeria();
         return crudFeria;
+    }
+
+    @Override
+    public boolean add(Feria feria) {
+        try {
+            String sql = "Insert into ferias (nom_fer, afor_fer, cost_fer, fech_fer, seg_fer,presu_fer) values (?,?,?,?,?,?)";
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, feria.getNombre());
+            ps.setInt(2, feria.getAforo());
+            ps.setDouble(3, feria.getCosto());
+            ps.setString(4, new SimpleDateFormat("yyyy-MM-dd").format(feria.getFecha()));
+            ps.setString(5, feria.getSeguridad());
+            ps.setDouble(6, feria.getPresupuesto());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.print(e.toString());
+            return false;
+        }
+    }
+
+    @Override
+    public Feria get(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Feria> getMany(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ArrayList<Feria> getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean edit(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean delete(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
