@@ -2,8 +2,8 @@ package controlador;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import formato.WindowFormat;
-import vista.RegistrarLocal;
+import utils.FormatFrame;
+import utils.Go;
 import vista.WindowMain;
 
 public class ControladorMain implements ActionListener {
@@ -12,16 +12,16 @@ public class ControladorMain implements ActionListener {
 
     public ControladorMain(WindowMain vista) {
         this.vista = vista;
-        vista.jbtnRegistrarLocal.addActionListener(this);
-        WindowFormat.Presentacion(vista);
+        vista.jbtnCerrarSesion.addActionListener(this);
+        int[] dimensions = {1100, 900};
+        FormatFrame.window(vista, dimensions, "Feria");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vista.jbtnRegistrarLocal) {
-            System.out.println("registrar local window");
+        if (e.getSource() == vista.jbtnCerrarSesion) {
             vista.dispose();
-            new RegistrarLocalControlador(new RegistrarLocal());
+            Go.toLogin();
         }
     }
 

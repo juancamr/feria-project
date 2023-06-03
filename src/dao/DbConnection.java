@@ -1,7 +1,7 @@
-package config;
+package dao;
 
 import java.sql.*;
-import services.DbCredentials;
+import interfaces.DbCredentials;
 
 public class DbConnection implements DbCredentials {
         
@@ -15,7 +15,6 @@ public class DbConnection implements DbCredentials {
             String url = String.format("jdbc:mysql://localhost:%s/%s", PORT, DBNAME);
             connection = DriverManager.getConnection(url, USER, PASSWD);
             st = connection.createStatement();
-            System.out.println("Creando conexion");
         } catch (SQLException e) {
             System.out.println("Error, " + e.toString());
         }
@@ -32,8 +31,8 @@ public class DbConnection implements DbCredentials {
     }
     
     public String getStatus() throws SQLException {
-        return (connection == null || connection.isClosed())? "No se pudo conectar" :
-                "Conectado!";
+        return !(connection == null || connection.isClosed())? "Connected to database server!" :
+                "Error, we can't connect to database!";
     }
 
     public Connection getConnection() {

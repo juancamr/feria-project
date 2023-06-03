@@ -1,20 +1,12 @@
-package services;
+package dao;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Feria;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 public class CRUDFeria extends BaseCRUD<Feria> {
     public static CRUDFeria crudFeria;
-    
-    public static CRUDFeria getInstance() {
-        if (crudFeria == null)
-            crudFeria = new CRUDFeria();
-        return crudFeria;
-    }
 
     @Override
     public boolean add(Feria feria) {
@@ -58,5 +50,11 @@ public class CRUDFeria extends BaseCRUD<Feria> {
     @Override
     public boolean delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public static CRUDFeria getInstance() {
+        if (crudFeria == null)
+            crudFeria = new CRUDFeria();
+        return crudFeria;
     }
 }

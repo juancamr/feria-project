@@ -13,8 +13,6 @@ public class WindowMain extends javax.swing.JFrame {
 
         BarraLateral = new javax.swing.JPanel();
         Button_Mi_Info = new javax.swing.JLabel();
-        Panel_Exit = new javax.swing.JPanel();
-        jbtnSalir = new javax.swing.JLabel();
         jbtnRegistrarLocal = new javax.swing.JButton();
         jbtnRegistrarFeria = new javax.swing.JButton();
         jbtnProveedores = new javax.swing.JButton();
@@ -22,6 +20,7 @@ public class WindowMain extends javax.swing.JFrame {
         jbtnAjustes = new javax.swing.JButton();
         jbtnBusqueda = new javax.swing.JButton();
         jbtnInformacion = new javax.swing.JButton();
+        jbtnCerrarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1100, 900));
@@ -38,29 +37,6 @@ public class WindowMain extends javax.swing.JFrame {
         Button_Mi_Info.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Button_Mi_Info.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         BarraLateral.add(Button_Mi_Info, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, -1));
-
-        Panel_Exit.setBackground(new java.awt.Color(102, 0, 0));
-        Panel_Exit.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jbtnSalir.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jbtnSalir.setForeground(new java.awt.Color(255, 255, 255));
-        jbtnSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jbtnSalir.setText("Salir");
-        jbtnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbtnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbtnSalirMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jbtnSalirMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jbtnSalirMouseExited(evt);
-            }
-        });
-        Panel_Exit.add(jbtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 40));
-
-        BarraLateral.add(Panel_Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 800, 190, 40));
 
         jbtnRegistrarLocal.setText("Registrar Local");
         BarraLateral.add(jbtnRegistrarLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
@@ -83,6 +59,12 @@ public class WindowMain extends javax.swing.JFrame {
         jbtnInformacion.setText("Informacion");
         BarraLateral.add(jbtnInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 670, -1, -1));
 
+        jbtnCerrarSesion.setBackground(new java.awt.Color(204, 0, 51));
+        jbtnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jbtnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnCerrarSesion.setText("Cerrar sesion");
+        BarraLateral.add(jbtnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 790, 130, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,18 +82,6 @@ public class WindowMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbtnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnSalirMouseClicked
-     
-    }//GEN-LAST:event_jbtnSalirMouseClicked
-
-    private void jbtnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnSalirMouseEntered
-        
-    }//GEN-LAST:event_jbtnSalirMouseEntered
-
-    private void jbtnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnSalirMouseExited
-        
-    }//GEN-LAST:event_jbtnSalirMouseExited
 
     /**
      * @param args the command line arguments
@@ -154,14 +124,13 @@ public class WindowMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BarraLateral;
     public javax.swing.JLabel Button_Mi_Info;
-    private javax.swing.JPanel Panel_Exit;
     public javax.swing.JButton jbtnAjustes;
     public javax.swing.JButton jbtnBusqueda;
+    public javax.swing.JButton jbtnCerrarSesion;
     public javax.swing.JButton jbtnDocumentacion;
     public javax.swing.JButton jbtnInformacion;
     public javax.swing.JButton jbtnProveedores;
     public javax.swing.JButton jbtnRegistrarFeria;
     public javax.swing.JButton jbtnRegistrarLocal;
-    public javax.swing.JLabel jbtnSalir;
     // End of variables declaration//GEN-END:variables
 }
