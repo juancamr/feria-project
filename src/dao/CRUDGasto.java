@@ -1,10 +1,11 @@
 package dao;
+import interfaces.Querys;
 import java.sql.SQLException;
 import modelo.Gasto;
 import java.util.ArrayList;
 import utils.Calculo;
 
-public class CRUDGasto extends BaseCRUD<Gasto> {
+public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
     public static CRUDGasto crudGasto;
 
     @Override
@@ -21,7 +22,7 @@ public class CRUDGasto extends BaseCRUD<Gasto> {
     public ArrayList<Gasto> getMany(int reporteId) {
         
         ArrayList<Gasto> gastoList = new ArrayList<>();
-        String sql = "SELECT id, cant_gast, reporte_id FROM gasto WHERE reporte_id=" + reporteId;
+        String sql = GET_MANY_GASTOS + reporteId;
         try {
             rs = st.executeQuery(sql);
             if (rs.next()) {

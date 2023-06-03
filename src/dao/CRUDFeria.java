@@ -1,18 +1,18 @@
 package dao;
 
+import interfaces.Querys;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Feria;
 import java.text.SimpleDateFormat;
 
-public class CRUDFeria extends BaseCRUD<Feria> {
+public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     public static CRUDFeria crudFeria;
 
     @Override
     public boolean add(Feria feria) {
         try {
-            String sql = "Insert into ferias (nom_fer, afor_fer, cost_fer, fech_fer, seg_fer,presu_fer) values (?,?,?,?,?,?)";
-            ps = connection.prepareStatement(sql);
+            ps = connection.prepareStatement(ADD_FERIA);
             ps.setString(1, feria.getNombre());
             ps.setInt(2, feria.getAforo());
             ps.setDouble(3, feria.getCosto());

@@ -1,10 +1,11 @@
 package dao;
 
+import interfaces.Querys;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Reporte;
 
-public class CRUDReporte extends BaseCRUD<Reporte> {
+public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
     
     public static CRUDReporte crudReporte;
 
@@ -16,7 +17,7 @@ public class CRUDReporte extends BaseCRUD<Reporte> {
     @Override
     public Reporte get(int idReporte) {
         
-        String sql = "SELECT nombre_reporte, column_3, stand_id FROM reporte WHERE id=" + idReporte;
+        String sql = GET_REPORTE + idReporte;
         Reporte reporte = new Reporte();
         try {
             rs = st.executeQuery(sql);

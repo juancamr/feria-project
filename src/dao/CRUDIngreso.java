@@ -1,11 +1,12 @@
 package dao;
 
+import interfaces.Querys;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Ingreso;
 import utils.Calculo;
 
-public class CRUDIngreso extends BaseCRUD<Ingreso> {
+public class CRUDIngreso extends BaseCRUD<Ingreso> implements Querys {
 
     public static CRUDIngreso crudIngreso;
 
@@ -23,7 +24,7 @@ public class CRUDIngreso extends BaseCRUD<Ingreso> {
     public ArrayList<Ingreso> getMany(int reporteId) {
         
         ArrayList<Ingreso> ingresoList = new ArrayList<>();
-        String sql = "SELECT id, cantidad_in, reporte_id FROM ingreso WHERE reporte_id=" + reporteId;
+        String sql = GET_MANY_INGRESOS + reporteId;
         try {
             rs = st.executeQuery(sql);
             if (rs.next()) {
