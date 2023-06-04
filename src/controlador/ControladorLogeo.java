@@ -30,7 +30,7 @@ public class ControladorLogeo implements ActionListener {
             if (isFilledFields(user)) {
                 if (CRUDUsuario.getInstance().isMatchCredentials(user)) {
                     vista.dispose();
-                    Go.toHome();
+                    Go.toWindowMain();
                 } else {
                     Dialog.message("Username o contraseña incorrecta");
                 }

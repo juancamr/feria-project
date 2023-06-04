@@ -1,4 +1,3 @@
-
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -7,9 +6,9 @@ import javax.swing.JPanel;
 import utils.FormatFrame;
 import vista.WindowMain;
 
-public class ControladorHome implements ActionListener {
+public class ControladorRegistroFeria implements ActionListener {
     
-    public ControladorHome(WindowMain vista, JPanel panel) {
+    public ControladorRegistroFeria(WindowMain vista, JPanel panel) {
         FormatFrame.panel(vista, panel);
     }
 

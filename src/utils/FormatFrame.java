@@ -1,7 +1,9 @@
 package utils;
 
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import vista.WindowMain;
 
 public class FormatFrame {
     public static void window(JFrame vista, int[] dimensions, String title) {
@@ -12,9 +14,12 @@ public class FormatFrame {
         vista.setResizable(false);
     }
     
-    public static void panel(JFrame vista, JPanel panel) {
-        panel.setSize(840, 790);
+    public static void panel(WindowMain vista, JPanel panel) {
+        panel.setSize(900, 900);
         panel.setLocation(0,0);
-//        vista.content.removeAll();
+        vista.content.removeAll();
+        vista.content.add(panel, BorderLayout.CENTER);
+        vista.content.revalidate();
+        vista.content.repaint();
     }
 }

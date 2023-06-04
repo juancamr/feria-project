@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 import utils.FormatFrame;
 import vista.WindowMain;
 
-public class ControladorHome implements ActionListener {
+public class ControladorRegistroProveedor implements ActionListener {
     
-    public ControladorHome(WindowMain vista, JPanel panel) {
+    public ControladorRegistroProveedor(WindowMain vista, JPanel panel) {
         FormatFrame.panel(vista, panel);
     }
 

@@ -8,12 +8,12 @@ package vista;
  *
  * @author jcmro
  */
-public class PanelHome extends javax.swing.JPanel {
+public class PanelRegistroFeria extends javax.swing.JPanel {
 
     /**
-     * Creates new form Home
+     * Creates new form PanelRegistrarFeria
      */
-    public PanelHome() {
+    public PanelRegistroFeria() {
         initComponents();
     }
 
@@ -29,25 +29,26 @@ public class PanelHome extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(900, 900));
+        setMinimumSize(new java.awt.Dimension(900, 850));
+        setPreferredSize(new java.awt.Dimension(900, 850));
 
-        jLabel1.setText("Holamundo");
+        jLabel1.setText("Registrar Feria");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(356, 356, 356)
+                .addGap(349, 349, 349)
                 .addComponent(jLabel1)
-                .addContainerGap(468, Short.MAX_VALUE))
+                .addContainerGap(477, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(257, 257, 257)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(433, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(515, Short.MAX_VALUE))
+                .addGap(401, 401, 401))
         );
     }// </editor-fold>//GEN-END:initComponents
 

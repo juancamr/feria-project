@@ -1,15 +1,13 @@
-
 package controlador;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import utils.FormatFrame;
 import vista.WindowMain;
 
-public class ControladorHome implements ActionListener {
+public class ControladorRegistroEntradas implements ActionListener {
     
-    public ControladorHome(WindowMain vista, JPanel panel) {
+    public ControladorRegistroEntradas(WindowMain vista, JPanel panel) {
         FormatFrame.panel(vista, panel);
     }
 

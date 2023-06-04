@@ -24,7 +24,9 @@ public class WindowMain extends javax.swing.JFrame {
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(1100, 900));
+        setMinimumSize(new java.awt.Dimension(1100, 800));
+        setPreferredSize(new java.awt.Dimension(1100, 800));
+        setSize(new java.awt.Dimension(1100, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BarraLateral.setBackground(new java.awt.Color(204, 204, 255));
@@ -44,32 +46,34 @@ public class WindowMain extends javax.swing.JFrame {
         BarraLateral.add(jbtnRegistrarLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
         jbtnRegistrarFeria.setText("Registrar Feria");
-        BarraLateral.add(jbtnRegistrarFeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
+        BarraLateral.add(jbtnRegistrarFeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
         jbtnProveedores.setText("Proveedores");
-        BarraLateral.add(jbtnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
+        BarraLateral.add(jbtnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
 
         jbtnDocumentacion.setText("Documentacion");
-        BarraLateral.add(jbtnDocumentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
+        BarraLateral.add(jbtnDocumentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
         jbtnAjustes.setText("Ajustes");
-        BarraLateral.add(jbtnAjustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, -1, -1));
+        BarraLateral.add(jbtnAjustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
 
         jbtnBusqueda.setText("Busqueda");
-        BarraLateral.add(jbtnBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 590, -1, -1));
+        BarraLateral.add(jbtnBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
 
         jbtnInformacion.setText("Informacion");
-        BarraLateral.add(jbtnInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 670, -1, -1));
+        BarraLateral.add(jbtnInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, -1, -1));
 
         jbtnCerrarSesion.setBackground(new java.awt.Color(204, 0, 51));
         jbtnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbtnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         jbtnCerrarSesion.setText("Cerrar sesion");
-        BarraLateral.add(jbtnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 790, 130, 40));
+        BarraLateral.add(jbtnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 720, 130, 40));
 
-        getContentPane().add(BarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 900));
+        getContentPane().add(BarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 850));
 
         content.setBackground(new java.awt.Color(255, 255, 255));
+        content.setMinimumSize(new java.awt.Dimension(800, 800));
+        content.setPreferredSize(new java.awt.Dimension(800, 800));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
@@ -79,10 +83,10 @@ public class WindowMain extends javax.swing.JFrame {
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGap(0, 850, Short.MAX_VALUE)
         );
 
-        getContentPane().add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 900, 900));
+        getContentPane().add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 900, 850));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

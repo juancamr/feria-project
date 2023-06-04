@@ -11,11 +11,11 @@ import utils.Dialog;
 import utils.FormatFrame;
 import utils.Go;
 
-public class ControladorRegistro implements ActionListener {
+public class ControladorRegister implements ActionListener {
 
     WindowRegister vista;
 
-    public ControladorRegistro(WindowRegister v) {
+    public ControladorRegister(WindowRegister v) {
         vista = v;
         vista.jbtnVolver.addActionListener(this);
         vista.jbtnRegistrar.addActionListener(this);
@@ -35,7 +35,7 @@ public class ControladorRegistro implements ActionListener {
                 if (!CRUDUsuario.getInstance().isUserAlreadyExist(user)) {
                     if (CRUDUsuario.getInstance().add(user)) {
                         vista.dispose();
-                        Go.toHome();
+                        Go.toWindowMain();
                     } else {
                         Dialog.message("Algo salio mal, por favor intentelo de nuevo.");
                     }
