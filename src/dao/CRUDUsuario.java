@@ -4,8 +4,7 @@ import interfaces.Querys;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Usuario;
-import utils.Hash;
-import utils.MySql;
+import utils.Utils;
 
 public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
 
@@ -23,7 +22,7 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
     }
 
     public boolean isMatchCredentials(Usuario user) {
-        String passwordEntered = Hash.encryptPassword(user.getPassword());
+        String passwordEntered = Utils.encryptPassword(user.getPassword());
         try {
             rs = st.executeQuery(GET_BY_USERNAME + user.getUserName() + "\"");
             if (rs.next()) {
@@ -79,10 +78,10 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
         ps.setString(2, user.getDni());
         ps.setString(3, user.getTelefono());
         ps.setString(4, user.getUserName());
-        ps.setString(5, Hash.encryptPassword(user.getPassword()));
+        ps.setString(5, Utils.encryptPassword(user.getPassword()));
         ps.setString(6, user.getCorreo());
         ps.setString(7, user.getTipoUsuario());
-        ps.setString(8, MySql.makeDate(user.getFechaRegistro()));
+        ps.setString(8, Utils.makeDate(user.getFechaRegistro()));
         ps.executeUpdate();
         ps.close();
     }

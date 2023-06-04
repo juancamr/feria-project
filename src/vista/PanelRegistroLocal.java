@@ -28,18 +28,18 @@ public class PanelRegistroLocal extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtNom = new javax.swing.JTextField();
-        txtDist = new javax.swing.JTextField();
-        txtAfor = new javax.swing.JTextField();
-        txtFor = new javax.swing.JTextField();
+        jtxtNombre = new javax.swing.JTextField();
+        jtxtDistrito = new javax.swing.JTextField();
+        jtxtAforo = new javax.swing.JTextField();
+        jtxtCosto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btnSubir = new javax.swing.JButton();
+        jbtnRegistrar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        txtFech = new javax.swing.JTextField();
+        jdchFecha = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 850));
@@ -51,10 +51,10 @@ public class PanelRegistroLocal extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Registro de Local");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
-        jPanel1.add(txtNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 148, -1));
-        jPanel1.add(txtDist, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 148, -1));
-        jPanel1.add(txtAfor, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, 148, -1));
-        jPanel1.add(txtFor, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, 148, -1));
+        jPanel1.add(jtxtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 148, -1));
+        jPanel1.add(jtxtDistrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 148, -1));
+        jPanel1.add(jtxtAforo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, 148, -1));
+        jPanel1.add(jtxtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, 148, -1));
 
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Ingresar el nombre del local");
@@ -73,19 +73,19 @@ public class PanelRegistroLocal extends javax.swing.JPanel {
         jLabel6.setText("Ingresar el costo del local");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, -1, -1));
 
-        btnSubir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnSubir.setText("Subir datos");
-        btnSubir.addActionListener(new java.awt.event.ActionListener() {
+        jbtnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jbtnRegistrar.setText("Subir datos");
+        jbtnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubirActionPerformed(evt);
+                jbtnRegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSubir, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 146, 65));
+        jPanel1.add(jbtnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 146, 65));
 
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Ingresar fecha");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, -1, -1));
-        jPanel1.add(txtFech, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 148, -1));
+        jPanel1.add(jdchFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 150, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -99,14 +99,13 @@ public class PanelRegistroLocal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubirActionPerformed
+    private void jbtnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegistrarActionPerformed
 
 
-    }//GEN-LAST:event_btnSubirActionPerformed
+    }//GEN-LAST:event_jbtnRegistrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSubir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -115,10 +114,11 @@ public class PanelRegistroLocal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtAfor;
-    private javax.swing.JTextField txtDist;
-    private javax.swing.JTextField txtFech;
-    private javax.swing.JTextField txtFor;
-    private javax.swing.JTextField txtNom;
+    public javax.swing.JButton jbtnRegistrar;
+    public com.toedter.calendar.JDateChooser jdchFecha;
+    public javax.swing.JTextField jtxtAforo;
+    public javax.swing.JTextField jtxtCosto;
+    public javax.swing.JTextField jtxtDistrito;
+    public javax.swing.JTextField jtxtNombre;
     // End of variables declaration//GEN-END:variables
 }

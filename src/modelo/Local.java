@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Date;
+
 public class Local {
     private int idLocal;
     private String nombre;
@@ -7,9 +9,27 @@ public class Local {
     private String distrito;
     private String horarioDisponible;
     private int aforo;
+    private Date fecha;
+    private double costo;
     private Usuario usuario;
 
     public Local() {}
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public double getCosto() {
+        return costo;
+    }
+
+    public void setCosto(double costo) {
+        this.costo = costo;
+    }
 
     public int getIdLocal() {
         return idLocal;

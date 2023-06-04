@@ -4,8 +4,14 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class Hash {
+public class Utils {
+    
+    public static String makeDate(Date fecha) {
+        return new SimpleDateFormat("yyyy-MM-dd").format(fecha);
+    }
 
     public static String encryptPassword(String input) {
         try {

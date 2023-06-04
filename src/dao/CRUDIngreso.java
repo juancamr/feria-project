@@ -3,12 +3,12 @@ package dao;
 import interfaces.Querys;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import modelo.Ingreso;
-import utils.Calculo;
 
 public class CRUDIngreso extends BaseCRUD<Ingreso> implements Querys {
 
-    public static CRUDIngreso crudIngreso;
+    private static CRUDIngreso crudIngreso;
 
     @Override
     public boolean add(Ingreso object) {
@@ -56,12 +56,11 @@ public class CRUDIngreso extends BaseCRUD<Ingreso> implements Querys {
     }
 
     public double calcularIngresos(ArrayList<Ingreso> ingresoList) {
-        Calculo utils = new Calculo();
         double[] listaCantidadIngresos = new double[ingresoList.size()];
         for (int i = 0; i < ingresoList.size(); i++) {
             listaCantidadIngresos[i] = ingresoList.get(i).getCantidadIn();
         }
-        return utils.calcularSuma(listaCantidadIngresos);
+        return Arrays.stream(listaCantidadIngresos).sum();
     }
 
     public static CRUDIngreso getInstance() {

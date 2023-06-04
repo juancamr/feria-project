@@ -1,6 +1,8 @@
 package utils;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import vista.WindowMain;

@@ -7,7 +7,7 @@ import modelo.Reporte;
 
 public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
     
-    public static CRUDReporte crudReporte;
+    private static CRUDReporte crudReporte;
 
     @Override
     public boolean add(Reporte object) {

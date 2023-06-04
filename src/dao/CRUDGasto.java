@@ -3,10 +3,10 @@ import interfaces.Querys;
 import java.sql.SQLException;
 import modelo.Gasto;
 import java.util.ArrayList;
-import utils.Calculo;
+import java.util.Arrays;
 
 public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
-    public static CRUDGasto crudGasto;
+    private static CRUDGasto crudGasto;
 
     @Override
     public boolean add(Gasto gasto) {
@@ -54,12 +54,11 @@ public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
     }
     
     public double calcularGastos(ArrayList<Gasto> gastoList) {
-        Calculo utils = new Calculo();
         double[] listaCantidadGastos = new double[gastoList.size()];
         for (int i = 0; i < gastoList.size(); i++) {
             listaCantidadGastos[i] = gastoList.get(i).getCantGast();
         }
-        return utils.calcularSuma(listaCantidadGastos);
+        return Arrays.stream(listaCantidadGastos).sum();
     }
 
     public static CRUDGasto getInstance() {

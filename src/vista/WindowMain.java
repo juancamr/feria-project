@@ -12,7 +12,6 @@ public class WindowMain extends javax.swing.JFrame {
     private void initComponents() {
 
         BarraLateral = new javax.swing.JPanel();
-        Button_Mi_Info = new javax.swing.JLabel();
         jbtnRegistrarLocal = new javax.swing.JButton();
         jbtnRegistrarFeria = new javax.swing.JButton();
         jbtnProveedores = new javax.swing.JButton();
@@ -22,6 +21,7 @@ public class WindowMain extends javax.swing.JFrame {
         jbtnInformacion = new javax.swing.JButton();
         jbtnCerrarSesion = new javax.swing.JButton();
         jbtnHome = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -32,16 +32,6 @@ public class WindowMain extends javax.swing.JFrame {
 
         BarraLateral.setBackground(new java.awt.Color(204, 204, 255));
         BarraLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Button_Mi_Info.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
-        Button_Mi_Info.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Button_Mi_Info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/usuario48.png"))); // NOI18N
-        Button_Mi_Info.setText("Ver mi Información");
-        Button_Mi_Info.setToolTipText("");
-        Button_Mi_Info.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Button_Mi_Info.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Button_Mi_Info.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BarraLateral.add(Button_Mi_Info, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, -1));
 
         jbtnRegistrarLocal.setText("Registrar Local");
         BarraLateral.add(jbtnRegistrarLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
@@ -72,6 +62,9 @@ public class WindowMain extends javax.swing.JFrame {
 
         jbtnHome.setText("Home");
         BarraLateral.add(jbtnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
+
+        jLabel1.setText("Mi Informacion");
+        BarraLateral.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
         getContentPane().add(BarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 850));
 
@@ -135,8 +128,8 @@ public class WindowMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BarraLateral;
-    public javax.swing.JLabel Button_Mi_Info;
     public javax.swing.JPanel content;
+    private javax.swing.JLabel jLabel1;
     public javax.swing.JButton jbtnAjustes;
     public javax.swing.JButton jbtnBusqueda;
     public javax.swing.JButton jbtnCerrarSesion;

@@ -3,42 +3,38 @@ package dao;
 import interfaces.Querys;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import modelo.Feria;
-import java.text.SimpleDateFormat;
+import modelo.Local;
+import utils.DebugObject;
+import utils.Utils;
 
-public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
-    private static CRUDFeria crudFeria;
+public class CRUDLocal extends BaseCRUD<Local> implements Querys {
+    
+    private static CRUDLocal crudLocal;
 
     @Override
-    public boolean add(Feria feria) {
+    public boolean add(Local local) {
         try {
-            ps = connection.prepareStatement(ADD_FERIA);
-            ps.setString(1, feria.getNombre());
-            ps.setInt(2, feria.getAforo());
-            ps.setDouble(3, feria.getCosto());
-            ps.setString(4, new SimpleDateFormat("yyyy-MM-dd").format(feria.getFecha()));
-            ps.setString(5, feria.getSeguridad());
-            ps.setDouble(6, feria.getPresupuesto());
-            ps.executeUpdate();
+            DebugObject.printObject(local);
+            makePs(local, ADD_LOCAL);
             return true;
         } catch (SQLException e) {
-            System.err.print(e.toString());
+            System.out.println(e);
             return false;
         }
     }
 
     @Override
-    public Feria get(int id) {
+    public Local get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Feria> getMany(int id) {
+    public ArrayList<Local> getMany(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Feria> getAll() {
+    public ArrayList<Local> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -52,9 +48,21 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    public static CRUDFeria getInstance() {
-        if (crudFeria == null)
-            crudFeria = new CRUDFeria();
-        return crudFeria;
+    private void makePs(Local local, String sql) throws SQLException {
+        ps = connection.prepareStatement(sql);
+        ps.setString(1, local.getNombre());
+        ps.setString(2, local.getDistrito());
+        ps.setInt(3, local.getAforo());
+        ps.setDouble(4, local.getCosto());
+        ps.setString(5, Utils.makeDate(local.getFecha()));
+        ps.executeUpdate();
+        ps.close();
     }
+    
+    public static CRUDLocal getInstance() {
+        if (crudLocal == null)
+            crudLocal = new CRUDLocal();
+        return crudLocal;
+    }
+    
 }
