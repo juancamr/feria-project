@@ -13,7 +13,7 @@ public class Go {
     }
     
     public static void toWindowMain() {
-        new ControladorMain(new WindowMain());
+        new ControladorWindowMain(new WindowMain());
     }
     
     public static void toHome(WindowMain vista) {

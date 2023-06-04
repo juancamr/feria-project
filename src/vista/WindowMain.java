@@ -21,6 +21,7 @@ public class WindowMain extends javax.swing.JFrame {
         jbtnBusqueda = new javax.swing.JButton();
         jbtnInformacion = new javax.swing.JButton();
         jbtnCerrarSesion = new javax.swing.JButton();
+        jbtnHome = new javax.swing.JButton();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,31 +44,34 @@ public class WindowMain extends javax.swing.JFrame {
         BarraLateral.add(Button_Mi_Info, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 210, -1));
 
         jbtnRegistrarLocal.setText("Registrar Local");
-        BarraLateral.add(jbtnRegistrarLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+        BarraLateral.add(jbtnRegistrarLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
         jbtnRegistrarFeria.setText("Registrar Feria");
-        BarraLateral.add(jbtnRegistrarFeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+        BarraLateral.add(jbtnRegistrarFeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
 
         jbtnProveedores.setText("Proveedores");
-        BarraLateral.add(jbtnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
+        BarraLateral.add(jbtnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
 
         jbtnDocumentacion.setText("Documentacion");
-        BarraLateral.add(jbtnDocumentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
+        BarraLateral.add(jbtnDocumentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
 
         jbtnAjustes.setText("Ajustes");
-        BarraLateral.add(jbtnAjustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
+        BarraLateral.add(jbtnAjustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, -1, -1));
 
         jbtnBusqueda.setText("Busqueda");
-        BarraLateral.add(jbtnBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
+        BarraLateral.add(jbtnBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, -1, -1));
 
         jbtnInformacion.setText("Informacion");
-        BarraLateral.add(jbtnInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, -1, -1));
+        BarraLateral.add(jbtnInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 600, -1, -1));
 
         jbtnCerrarSesion.setBackground(new java.awt.Color(204, 0, 51));
         jbtnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbtnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         jbtnCerrarSesion.setText("Cerrar sesion");
         BarraLateral.add(jbtnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 720, 130, 40));
+
+        jbtnHome.setText("Home");
+        BarraLateral.add(jbtnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
         getContentPane().add(BarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 850));
 
@@ -137,6 +141,7 @@ public class WindowMain extends javax.swing.JFrame {
     public javax.swing.JButton jbtnBusqueda;
     public javax.swing.JButton jbtnCerrarSesion;
     public javax.swing.JButton jbtnDocumentacion;
+    public javax.swing.JButton jbtnHome;
     public javax.swing.JButton jbtnInformacion;
     public javax.swing.JButton jbtnProveedores;
     public javax.swing.JButton jbtnRegistrarFeria;
