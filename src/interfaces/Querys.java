@@ -6,7 +6,7 @@ public interface Querys {
                       INSERT INTO usuario (nombres, dni, telefono, user_name, passwd, correo, tipo_usuario, fecha_registro)
                       VALUES(?, ?, ?, ?, ?, ?, ?, ?)
                       """;
-    String IS_USER_EXIST = "SELECT correo, passwd FROM usuario WHERE user_name=\"";
+    String GET_BY_USERNAME = "SELECT correo, passwd FROM usuario WHERE user_name=\"";
     
     String ADD_FERIA = "Insert into ferias (nom_fer, afor_fer, cost_fer, fech_fer, seg_fer,presu_fer) values (?,?,?,?,?,?)";
     

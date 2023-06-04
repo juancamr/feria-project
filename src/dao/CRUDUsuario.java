@@ -22,16 +22,28 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
         }
     }
 
-    public boolean isUserExist(Usuario user) {
+    public boolean isMatchCredentials(Usuario user) {
         String passwordEntered = Hash.encryptPassword(user.getPassword());
         try {
-            rs = st.executeQuery(IS_USER_EXIST + user.getUserName() + "\"");
+            rs = st.executeQuery(GET_BY_USERNAME + user.getUserName() + "\"");
             if (rs.next()) {
                 return passwordEntered.equals(rs.getString(2));
             }
         } catch (SQLException e) {
             System.out.println(e);
             return false;
+        }
+        return false;
+    }
+    
+    public boolean isUserAlreadyExist(Usuario user) {
+        try {
+            rs = st.executeQuery(GET_BY_USERNAME + user.getUserName() + "\"");
+            if (rs.next()) {
+                return !rs.getString(1).isEmpty();
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
         }
         return false;
     }

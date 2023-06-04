@@ -13,5 +13,5 @@ CREATE TABLE
         correo VARCHAR(100) NOT NULL,
         tipo_usuario VARCHAR(30),
         fecha_registro date,
-        CONSTRAINT UNIQUE key (passwd)
+        CONSTRAINT UNIQUE key (user_name)
     ) Engine = InnoDB;
