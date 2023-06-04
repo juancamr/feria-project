@@ -31,6 +31,7 @@ CREATE TABLE
     if NOT EXISTS feria (
         id INT PRIMARY key NOT NULL auto_increment,
         id_local INT NOT NULL,
+        nombre varchar(50),
         aforo INT,
         costo_entrada DECIMAL(10, 2),
         fecha DATE,

@@ -6,10 +6,13 @@ public interface Querys {
                       INSERT INTO usuario (nombres, dni, telefono, user_name, passwd, correo, tipo_usuario, fecha_registro)
                       VALUES(?, ?, ?, ?, ?, ?, ?, ?)
                       """;
-    String GET_BY_USERNAME = "SELECT correo, passwd FROM usuario WHERE user_name=\"";
+    String GET_USER_BY_USERNAME = "SELECT correo, passwd FROM usuario WHERE user_name=\"";
     
     //feria
-    String ADD_FERIA = "Insert into ferias (nom_fer, afor_fer, cost_fer, fech_fer, seg_fer,presu_fer) values (?,?,?,?,?,?)";
+    String ADD_FERIA = """
+                       INSERT INTO feria (id_local, nombre, aforo, costo_entrada, fecha, seguridad, presupuesto)
+                       VALUES(?, ?, ?, ?, ?, ?, ?)
+                       """;
     
     //gasto
     String GET_MANY_GASTOS = "SELECT id, cant_gast, reporte_id FROM gasto WHERE reporte_id=";
@@ -25,4 +28,6 @@ public interface Querys {
                        INSERT INTO local (nombre, distrito, aforo, costo, fecha)
                         VALUES(?, ?, ?, ?, ?)
               """;
+    String GET_ALL_LOCALS = "SELECT * FROM local";
+    String GET_LOCAL_BY_NAME = "SELECT * FROM local where nombre=\"";
 }

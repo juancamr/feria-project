@@ -17,8 +17,6 @@ public class WindowLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jtxtUserName = new javax.swing.JTextField();
         jbtnIngresar = new javax.swing.JButton();
         jbtnRegistrarse = new javax.swing.JButton();
@@ -30,14 +28,6 @@ public class WindowLogin extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/lock_32.png"))); // NOI18N
-        jLabel1.setName(""); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 217, -1, 48));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/user_32.png"))); // NOI18N
-        jLabel2.setName(""); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 133, -1, 48));
 
         jtxtUserName.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jtxtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 133, 437, 48));
@@ -130,8 +120,6 @@ public class WindowLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

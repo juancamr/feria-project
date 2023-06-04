@@ -10,8 +10,17 @@ public class Feria {
     private Date fecha;
     private String seguridad;
     private double presupuesto;
+    private Local local;
 
     public Feria() {
+    }
+
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
     }
 
     public String getNombre() {

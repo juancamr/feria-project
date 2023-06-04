@@ -7,19 +7,13 @@ import modelo.Feria;
 import java.text.SimpleDateFormat;
 
 public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
+
     private static CRUDFeria crudFeria;
 
     @Override
     public boolean add(Feria feria) {
         try {
-            ps = connection.prepareStatement(ADD_FERIA);
-            ps.setString(1, feria.getNombre());
-            ps.setInt(2, feria.getAforo());
-            ps.setDouble(3, feria.getCosto());
-            ps.setString(4, new SimpleDateFormat("yyyy-MM-dd").format(feria.getFecha()));
-            ps.setString(5, feria.getSeguridad());
-            ps.setDouble(6, feria.getPresupuesto());
-            ps.executeUpdate();
+            makePs(feria, ADD_FERIA);
             return true;
         } catch (SQLException e) {
             System.err.print(e.toString());
@@ -51,10 +45,23 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     public boolean delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    private void makePs(Feria feria, String sql) throws SQLException {
+        ps = connection.prepareStatement(sql);
+        ps.setInt(1, feria.getLocal().getIdLocal());
+        ps.setString(2, feria.getNombre());
+        ps.setInt(3, feria.getAforo());
+        ps.setDouble(4, feria.getCosto());
+        ps.setString(5, new SimpleDateFormat("yyyy-MM-dd").format(feria.getFecha()));
+        ps.setString(6, feria.getSeguridad());
+        ps.setDouble(7, feria.getPresupuesto());
+        ps.executeUpdate();
+    }
+
     public static CRUDFeria getInstance() {
-        if (crudFeria == null)
+        if (crudFeria == null) {
             crudFeria = new CRUDFeria();
+        }
         return crudFeria;
     }
 }

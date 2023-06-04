@@ -5,13 +5,13 @@ import java.util.Date;
 public class Local {
     private int idLocal;
     private String nombre;
-    private String direccion;
+//    private String direccion;
     private String distrito;
-    private String horarioDisponible;
+//    private String horarioDisponible;
     private int aforo;
     private Date fecha;
     private double costo;
-    private Usuario usuario;
+//    private Usuario usuario;
 
     public Local() {}
 
@@ -47,13 +47,13 @@ public class Local {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
+//    public String getDireccion() {
+//        return direccion;
+//    }
+//
+//    public void setDireccion(String direccion) {
+//        this.direccion = direccion;
+//    }
 
     public String getDistrito() {
         return distrito;
@@ -63,13 +63,13 @@ public class Local {
         this.distrito = distrito;
     }
 
-    public String getHorarioDisponible() {
-        return horarioDisponible;
-    }
-
-    public void setHorarioDisponible(String horarioDisponible) {
-        this.horarioDisponible = horarioDisponible;
-    }
+//    public String getHorarioDisponible() {
+//        return horarioDisponible;
+//    }
+//
+//    public void setHorarioDisponible(String horarioDisponible) {
+//        this.horarioDisponible = horarioDisponible;
+//    }
 
     public int getAforo() {
         return aforo;
@@ -79,11 +79,11 @@ public class Local {
         this.aforo = aforo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+//    public Usuario getUsuario() {
+//        return usuario;
+//    }
+//
+//    public void setUsuario(Usuario usuario) {
+//        this.usuario = usuario;
+//    }
 }

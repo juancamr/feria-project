@@ -32,7 +32,7 @@ public class ControladorRegister implements ActionListener {
         if (e.getSource() == vista.jbtnRegistrar) {
             Usuario user = makeUsuario();
             if (DebugObject.isFilledObject(user)) {
-                if (!CRUDUsuario.getInstance().isUserAlreadyExist(user)) {
+                if (CRUDUsuario.getInstance().isUserNotExist(user)) {
                     if (CRUDUsuario.getInstance().add(user)) {
                         vista.dispose();
                         Go.toWindowMain();

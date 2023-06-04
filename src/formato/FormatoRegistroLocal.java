@@ -9,5 +9,6 @@ public class FormatoRegistroLocal {
         panel.jtxtCosto.setText("");
         panel.jtxtDistrito.setText("");
         panel.jtxtNombre.setText("");
+        panel.jtxtNombre.requestFocus();
     }
 }

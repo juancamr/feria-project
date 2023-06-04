@@ -1,10 +1,12 @@
 package utils;
 
+import dao.CRUDLocal;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import modelo.Local;
 import vista.WindowMain;
 
 public class FormatFrame {
@@ -23,5 +25,12 @@ public class FormatFrame {
         vista.content.add(panel, BorderLayout.CENTER);
         vista.content.revalidate();
         vista.content.repaint();
+    }
+    
+    public static void fillComboBoxWithLocals(JComboBox combo) {
+        ArrayList<Local> listaLocals = CRUDLocal.getInstance().getAll();
+        for (Local local : listaLocals) {
+            combo.addItem(local.getNombre());
+        }
     }
 }

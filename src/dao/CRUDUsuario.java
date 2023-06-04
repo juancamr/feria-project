@@ -24,7 +24,7 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
     public boolean isMatchCredentials(Usuario user) {
         String passwordEntered = Utils.encryptPassword(user.getPassword());
         try {
-            rs = st.executeQuery(GET_BY_USERNAME + user.getUserName() + "\"");
+            rs = st.executeQuery(GET_USER_BY_USERNAME + user.getUserName() + "\"");
             if (rs.next()) {
                 return passwordEntered.equals(rs.getString(2));
             }
@@ -35,11 +35,11 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
         return false;
     }
     
-    public boolean isUserAlreadyExist(Usuario user) {
+    public boolean isUserNotExist(Usuario user) {
         try {
-            rs = st.executeQuery(GET_BY_USERNAME + user.getUserName() + "\"");
+            rs = st.executeQuery(GET_USER_BY_USERNAME + user.getUserName() + "\"");
             if (rs.next()) {
-                return !rs.getString(1).isEmpty();
+                return rs == null;
             }
         } catch (SQLException e) {
             System.out.println(e);

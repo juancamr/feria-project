@@ -30,17 +30,19 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtNom = new javax.swing.JTextField();
-        btnSubir = new javax.swing.JButton();
+        jtxtNombre = new javax.swing.JTextField();
+        jbtnRegistrar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        txtAfor = new javax.swing.JTextField();
-        txtFech = new javax.swing.JTextField();
-        txtFor = new javax.swing.JTextField();
+        jtxtAforo = new javax.swing.JTextField();
+        jtxtCostoEntrada = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtSeg = new javax.swing.JTextField();
+        jtxtSeguridad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtPresu = new javax.swing.JTextField();
+        jtxtPresupuesto = new javax.swing.JTextField();
+        jdchFecha = new com.toedter.calendar.JDateChooser();
+        jLabel8 = new javax.swing.JLabel();
+        jcbxLocal = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 850));
@@ -61,23 +63,22 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Ingresar el costo de la entrada");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
-        jPanel1.add(txtNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 148, -1));
+        jPanel1.add(jtxtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 148, -1));
 
-        btnSubir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnSubir.setText("Subir datos");
-        btnSubir.addActionListener(new java.awt.event.ActionListener() {
+        jbtnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jbtnRegistrar.setText("Subir datos");
+        jbtnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubirActionPerformed(evt);
+                jbtnRegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSubir, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 146, 65));
+        jPanel1.add(jbtnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 146, 65));
 
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Ingresar fecha");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
-        jPanel1.add(txtAfor, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 148, -1));
-        jPanel1.add(txtFech, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 148, -1));
-        jPanel1.add(txtFor, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 148, -1));
+        jPanel1.add(jtxtAforo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 148, -1));
+        jPanel1.add(jtxtCostoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 148, -1));
 
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Ingresar el nombre de la feria");
@@ -86,12 +87,18 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Ingresar la seguridad requerida");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
-        jPanel1.add(txtSeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 148, -1));
+        jPanel1.add(jtxtSeguridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 148, -1));
 
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Ingresar presupuesto planteado");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
-        jPanel1.add(txtPresu, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 148, -1));
+        jPanel1.add(jtxtPresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 148, -1));
+        jPanel1.add(jdchFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 150, -1));
+
+        jLabel8.setText("Local");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, -1, -1));
+
+        jPanel1.add(jcbxLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, 150, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -105,13 +112,12 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubirActionPerformed
+    private void jbtnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegistrarActionPerformed
        
-    }//GEN-LAST:event_btnSubirActionPerformed
+    }//GEN-LAST:event_jbtnRegistrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSubir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -119,12 +125,15 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtAfor;
-    private javax.swing.JTextField txtFech;
-    private javax.swing.JTextField txtFor;
-    private javax.swing.JTextField txtNom;
-    private javax.swing.JTextField txtPresu;
-    private javax.swing.JTextField txtSeg;
+    public javax.swing.JButton jbtnRegistrar;
+    public javax.swing.JComboBox<String> jcbxLocal;
+    public com.toedter.calendar.JDateChooser jdchFecha;
+    public javax.swing.JTextField jtxtAforo;
+    public javax.swing.JTextField jtxtCostoEntrada;
+    public javax.swing.JTextField jtxtNombre;
+    public javax.swing.JTextField jtxtPresupuesto;
+    public javax.swing.JTextField jtxtSeguridad;
     // End of variables declaration//GEN-END:variables
 }
