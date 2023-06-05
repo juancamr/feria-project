@@ -32,15 +32,15 @@ public class ControladorRegister implements ActionListener {
         if (e.getSource() == vista.jbtnRegistrar) {
             Usuario user = makeUsuario();
             if (DebugObject.isFilledObject(user)) {
-                if (CRUDUsuario.getInstance().isUserNotExist(user)) {
+                if (CRUDUsuario.getInstance().isUserAlreadyExist(user)) {
+                    Dialog.message("El usuario ya existe");
+                } else {
                     if (CRUDUsuario.getInstance().add(user)) {
                         vista.dispose();
                         Go.toWindowMain();
                     } else {
                         Dialog.message("Algo salio mal, por favor intentelo de nuevo.");
                     }
-                } else {
-                    Dialog.message("El usuario ya existe");
                 }
             } else {
                 Dialog.message("Por favor, llene todos los campos");

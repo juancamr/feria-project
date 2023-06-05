@@ -39,14 +39,15 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
         return local;
     }
     
-    public boolean isLocalNotExist(Local local) {
+    public boolean isLocalAlreadyExist(Local local) {
         try {
-            rs = st.executeQuery(GET_LOCAL_BY_NAME + local.getNombre() + "\"");
+            rs = st.executeQuery(GET_LOCAL_BY_NAME);
             if (rs.next()) {
-                return rs == null;
+                return !rs.getString(2).isEmpty();
             }
         } catch (SQLException e) {
             System.out.println(e);
+            return false;
         }
         return false;
     }

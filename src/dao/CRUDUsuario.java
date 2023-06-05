@@ -4,6 +4,7 @@ import interfaces.Querys;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Usuario;
+import utils.DebugObject;
 import utils.Utils;
 
 public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
@@ -34,15 +35,16 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
         }
         return false;
     }
-    
-    public boolean isUserNotExist(Usuario user) {
+
+    public boolean isUserAlreadyExist(Usuario user) {
         try {
             rs = st.executeQuery(GET_USER_BY_USERNAME + user.getUserName() + "\"");
             if (rs.next()) {
-                return rs == null;
+                return !rs.getString(1).isEmpty();
             }
         } catch (SQLException e) {
             System.out.println(e);
+            return false;
         }
         return false;
     }
