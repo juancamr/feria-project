@@ -48,8 +48,8 @@ public class ControladorRegistroLocal implements ActionListener {
         Local local = new Local();
         local.setNombre(panel.jtxtNombre.getText());
         local.setDistrito(panel.jtxtDistrito.getText());
-        local.setAforo(Integer.parseInt(panel.jtxtAforo.getText()));
-        local.setCosto(Double.parseDouble(panel.jtxtCosto.getText()));
+        local.setAforo(Integer.parseInt(panel.jspnAforo.getValue().toString()));
+        local.setCosto(Double.parseDouble(panel.jspnCosto.getValue().toString()));
         local.setFecha(panel.jdchFecha.getDate());
         return local;
     }

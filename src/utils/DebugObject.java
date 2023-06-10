@@ -37,7 +37,6 @@ public class DebugObject {
                 System.out.println(e);
             }
             if(valorAtributo.toString().trim().isEmpty()) {
-                System.out.println("entra");
                 return false;
             }
         }

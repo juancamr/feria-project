@@ -6,6 +6,7 @@ import interfaces.Strings;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import modelo.Feria;
+import utils.DebugObject;
 import utils.Dialog;
 import utils.FormatFrame;
 import vista.PanelRegistroFeria;
@@ -27,11 +28,16 @@ public class ControladorRegistroFeria implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == panel.jbtnRegistrar) {
             Feria feria = FormatoRegistrarFeria.makeFeria(panel);
-            if (CRUDFeria.getInstance().add(feria)) {
-                Dialog.message("Feria registrada con exito!");
-                FormatoRegistrarFeria.emptyFields(panel);
+            feria.setId(0);
+            if (DebugObject.isFilledObject(feria)) {
+                if (CRUDFeria.getInstance().add(feria)) {
+                    Dialog.message("Feria registrada con exito!");
+                    FormatoRegistrarFeria.emptyFields(panel);
+                } else {
+                    Dialog.message(Strings.SOMETHING_WENT_WRONG);
+                }
             } else {
-                Dialog.message(Strings.SOMETHING_WENT_WRONG);
+                Dialog.message(Strings.PLEASE_FILL_FIELDS);
             }
         }
     }

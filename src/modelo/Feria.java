@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Feria {
 
+    private int id;
     private String nombre;
     private int aforo;
     private double costo;
@@ -13,6 +14,14 @@ public class Feria {
     private Local local;
 
     public Feria() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Local getLocal() {

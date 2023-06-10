@@ -33,16 +33,16 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
         jtxtNombre = new javax.swing.JTextField();
         jbtnRegistrar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jtxtAforo = new javax.swing.JTextField();
-        jtxtCostoEntrada = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jtxtSeguridad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jtxtPresupuesto = new javax.swing.JTextField();
         jdchFecha = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         jcbxLocal = new javax.swing.JComboBox<>();
+        jspnAforo = new javax.swing.JSpinner();
+        jspnCostoEntrada = new javax.swing.JSpinner();
+        jspnPrespuesto = new javax.swing.JSpinner();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 850));
@@ -77,8 +77,6 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Ingresar fecha");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
-        jPanel1.add(jtxtAforo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 148, -1));
-        jPanel1.add(jtxtCostoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 148, -1));
 
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Ingresar el nombre de la feria");
@@ -87,18 +85,20 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Ingresar la seguridad requerida");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
-        jPanel1.add(jtxtSeguridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 148, -1));
+        jPanel1.add(jtxtSeguridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 148, -1));
 
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Ingresar presupuesto planteado");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
-        jPanel1.add(jtxtPresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 148, -1));
         jPanel1.add(jdchFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 150, -1));
 
         jLabel8.setText("Local");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, -1, -1));
 
         jPanel1.add(jcbxLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, 150, -1));
+        jPanel1.add(jspnAforo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 150, -1));
+        jPanel1.add(jspnCostoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 150, -1));
+        jPanel1.add(jspnPrespuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 150, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -130,10 +130,10 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
     public javax.swing.JButton jbtnRegistrar;
     public javax.swing.JComboBox<String> jcbxLocal;
     public com.toedter.calendar.JDateChooser jdchFecha;
-    public javax.swing.JTextField jtxtAforo;
-    public javax.swing.JTextField jtxtCostoEntrada;
+    public javax.swing.JSpinner jspnAforo;
+    public javax.swing.JSpinner jspnCostoEntrada;
+    public javax.swing.JSpinner jspnPrespuesto;
     public javax.swing.JTextField jtxtNombre;
-    public javax.swing.JTextField jtxtPresupuesto;
     public javax.swing.JTextField jtxtSeguridad;
     // End of variables declaration//GEN-END:variables
 }
