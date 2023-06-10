@@ -1,11 +1,10 @@
 package dao;
-
 import interfaces.Querys;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Feria;
 import java.text.SimpleDateFormat;
-import utils.DebugObject;
+import modelo.Local;
 
 public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
 
@@ -32,8 +31,11 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
             rs = st.executeQuery(GET_FERIA_BY_NAME + nombreFeria + "\"");
             Feria feria = new Feria();
             if (rs.next()) {
+                Local local = new Local();
+                local.setIdLocal(rs.getInt(2));
+                
                 feria.setId(rs.getInt(1));
-                feria.setLocal(CRUDLocal.getInstance().get(rs.getInt(2)));
+                feria.setLocal(local);
                 feria.setNombre(rs.getString(3));
                 feria.setAforo(rs.getInt(4));
                 feria.setCosto(rs.getDouble(5));
