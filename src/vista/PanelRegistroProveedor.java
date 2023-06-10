@@ -127,7 +127,7 @@ public class PanelRegistroProveedor extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     public javax.swing.JButton jbtnSubir;
     public javax.swing.JComboBox<String> jcbxFeria;
-    private javax.swing.JTextField jtxtCosto;
+    public javax.swing.JTextField jtxtCosto;
     public javax.swing.JTextField jtxtDescripcion;
     public javax.swing.JTextField jtxtNombre;
     // End of variables declaration//GEN-END:variables

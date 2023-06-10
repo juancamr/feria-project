@@ -30,7 +30,6 @@ public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
                 gasto.setId(rs.getInt(1));
                 gasto.setCantGast(rs.getInt(2));
                 gastoList.add(gasto);
-                rs.close();
             }
         } catch (SQLException e) {
             System.out.println(e);

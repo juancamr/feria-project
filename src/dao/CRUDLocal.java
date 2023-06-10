@@ -24,7 +24,23 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
 
     @Override
     public Local get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            rs = st.executeQuery(GET_LOCAL + id);
+            Local local = new Local();
+            if (rs.next()) {
+                local.setIdLocal(rs.getInt(1));
+                local.setNombre(rs.getString(2));
+                local.setDistrito(rs.getString(3));
+                local.setAforo(rs.getInt(4));
+                local.setCosto(rs.getDouble(5));
+                local.setFecha(rs.getDate(6));
+                return local;
+            }
+            return local;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
     }
 
     public Local getByName(String name) {

@@ -14,6 +14,7 @@ public interface Querys {
                        VALUES(?, ?, ?, ?, ?, ?, ?)
                        """;
     String GET_FERIA_BY_NAME = "SELECT * FROM feria WHERE nombre=\"";
+    String GET_ALL_FERIA_NAMES = "SELECT nombre FROM feria";
     
     //gasto
     String GET_MANY_GASTOS = "SELECT id, cant_gast, reporte_id FROM gasto WHERE reporte_id=";
@@ -29,6 +30,7 @@ public interface Querys {
                        INSERT INTO local (nombre, distrito, aforo, costo, fecha)
                         VALUES(?, ?, ?, ?, ?)
               """;
+    String GET_LOCAL = "SELECT * FROM local WHERE id=";
     String GET_ALL_LOCALS = "SELECT * FROM local";
     String GET_LOCAL_BY_NAME = "SELECT * FROM local where nombre=\"";
     

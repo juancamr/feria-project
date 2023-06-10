@@ -27,7 +27,6 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
                 reporte.setColumn_3(rs.getInt(2));
                 reporte.setStandId(rs.getInt(3));
             }
-            rs.close();
         } catch (SQLException e) {
             System.out.println(e);
         }

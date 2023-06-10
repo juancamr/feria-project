@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Feria;
 import java.text.SimpleDateFormat;
+import utils.DebugObject;
 
 public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
 
@@ -54,7 +55,18 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
 
     @Override
     public ArrayList<Feria> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Feria> listaFeria = new ArrayList<>();
+        try {
+            rs = st.executeQuery(GET_ALL_FERIA_NAMES);
+            while (rs.next()) {
+                Feria feria = new Feria();
+                feria.setNombre(rs.getString(1));
+                listaFeria.add(feria);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return listaFeria;
     }
 
     @Override
@@ -77,6 +89,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         ps.setString(6, feria.getSeguridad());
         ps.setDouble(7, feria.getPresupuesto());
         ps.executeUpdate();
+        ps.close();
     }
 
     public static CRUDFeria getInstance() {

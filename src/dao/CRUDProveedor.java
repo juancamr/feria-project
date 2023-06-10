@@ -22,6 +22,7 @@ public class CRUDProveedor extends BaseCRUD<Proveedor> implements Querys {
             ps.setString(3, proveedor.getDescripcion());
             ps.setDouble(4, proveedor.getCosto());
             ps.executeUpdate();
+            ps.close();
             return new Object[]{true, "El proveedor " + proveedor.getNombre() + " ah sido registrado con exito!"};
         } catch (SQLException e) {
             System.out.println(e);

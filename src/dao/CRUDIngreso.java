@@ -32,7 +32,6 @@ public class CRUDIngreso extends BaseCRUD<Ingreso> implements Querys {
                 ingreso.setId(rs.getInt(1));
                 ingreso.setCantidadIn(rs.getInt(2));
                 ingresoList.add(ingreso);
-                rs.close();
             }
         } catch (SQLException e) {
             System.out.println(e);
