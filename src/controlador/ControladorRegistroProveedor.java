@@ -3,19 +3,24 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 import utils.FormatFrame;
+import vista.PanelRegistroProveedor;
 import vista.WindowMain;
 
 public class ControladorRegistroProveedor implements ActionListener {
+    PanelRegistroProveedor panel;
     
-    public ControladorRegistroProveedor(WindowMain vista, JPanel panel) {
+    public ControladorRegistroProveedor(WindowMain vista, PanelRegistroProveedor pan) {
+        panel = pan;
+        panel.jbtnSubir.addActionListener(this);
         FormatFrame.panel(vista, panel);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (e.getSource() == panel.jbtnSubir) {
+            
+        }
     }
     
 }

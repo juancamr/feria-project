@@ -31,12 +31,12 @@ public class PanelRegistroProveedor extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtNom = new javax.swing.JTextField();
-        txtDesc = new javax.swing.JTextField();
-        txtCost = new javax.swing.JTextField();
-        txtFeria = new javax.swing.JTextField();
-        btnSubir = new javax.swing.JButton();
+        jtxtNombre = new javax.swing.JTextField();
+        jtxtDescripcion = new javax.swing.JTextField();
+        jtxtCosto = new javax.swing.JTextField();
+        jbtnSubir = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jcbxFeria = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 850));
@@ -67,54 +67,68 @@ public class PanelRegistroProveedor extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Nombre de la feria a proveer: ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
-        jPanel1.add(txtNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 123, -1));
-        jPanel1.add(txtDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 123, -1));
-        jPanel1.add(txtCost, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 123, -1));
-        jPanel1.add(txtFeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 130, -1));
+        jPanel1.add(jtxtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 123, -1));
+        jPanel1.add(jtxtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 123, -1));
 
-        btnSubir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnSubir.setText("Subir Proovedor");
-        btnSubir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubirActionPerformed(evt);
+        jtxtCosto.setText("0");
+        jtxtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtxtCostoKeyPressed(evt);
             }
         });
-        jPanel1.add(btnSubir, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 187, 60));
+        jPanel1.add(jtxtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 123, -1));
+
+        jbtnSubir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jbtnSubir.setText("Subir Proovedor");
+        jbtnSubir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnSubirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbtnSubir, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 187, 60));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Registro de proveedores");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
 
+        jPanel1.add(jcbxFeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 120, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubirActionPerformed
+    private void jbtnSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSubirActionPerformed
         
 
-    }//GEN-LAST:event_btnSubirActionPerformed
+    }//GEN-LAST:event_jbtnSubirActionPerformed
+
+    private void jtxtCostoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtCostoKeyPressed
+        if (jtxtCosto.getText().isEmpty()) {
+            jtxtCosto.setText("0");
+        }
+    }//GEN-LAST:event_jtxtCostoKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSubir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtCost;
-    private javax.swing.JTextField txtDesc;
-    private javax.swing.JTextField txtFeria;
-    private javax.swing.JTextField txtNom;
+    public javax.swing.JButton jbtnSubir;
+    public javax.swing.JComboBox<String> jcbxFeria;
+    private javax.swing.JTextField jtxtCosto;
+    public javax.swing.JTextField jtxtDescripcion;
+    public javax.swing.JTextField jtxtNombre;
     // End of variables declaration//GEN-END:variables
 }

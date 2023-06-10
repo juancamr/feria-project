@@ -16,11 +16,9 @@ public class ControladorWindowMain implements ActionListener {
         vista.jbtnRegistrarLocal.addActionListener(this);
         vista.jbtnRegistrarFeria.addActionListener(this);
         vista.jbtnProveedores.addActionListener(this);
-        vista.jbtnDocumentacion.addActionListener(this);
-        vista.jbtnAjustes.addActionListener(this);
-        vista.jbtnBusqueda.addActionListener(this);
-        vista.jbtnInformacion.addActionListener(this);
         vista.jbtnCerrarSesion.addActionListener(this);
+        vista.jbtnEntradas.addActionListener(this);
+        vista.jbtnPatrocinadores.addActionListener(this);
         int[] dimensions = {1100, 850};
         FormatFrame.window(vista, dimensions, "Feria");
         Go.toHome(vista);
@@ -40,17 +38,11 @@ public class ControladorWindowMain implements ActionListener {
         if (e.getSource() == vista.jbtnProveedores) {
             Go.toRegistroProveedor(vista);
         }
-        if (e.getSource() == vista.jbtnDocumentacion) {
-            //
+        if (e.getSource() == vista.jbtnEntradas) {
+            Go.toRegistroEntradas(vista);
         }
-        if (e.getSource() == vista.jbtnAjustes) {
-            //
-        }
-        if (e.getSource() == vista.jbtnBusqueda) {
-            //
-        }
-        if (e.getSource() == vista.jbtnInformacion) {
-            //
+        if (e.getSource() == vista.jbtnPatrocinadores) {
+            Go.toRegistroPatrocinadores(vista);
         }
         if (e.getSource() == vista.jbtnCerrarSesion) {
             vista.dispose();

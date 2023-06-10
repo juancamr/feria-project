@@ -26,6 +26,27 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public Feria getByName(String nombreFeria) {
+        try {
+            rs = st.executeQuery(GET_FERIA_BY_NAME + nombreFeria + "\"");
+            Feria feria = new Feria();
+            if (rs.next()) {
+                feria.setId(rs.getInt(1));
+                feria.setLocal(CRUDLocal.getInstance().get(rs.getInt(2)));
+                feria.setNombre(rs.getString(3));
+                feria.setAforo(rs.getInt(4));
+                feria.setCosto(rs.getDouble(5));
+                feria.setFecha(rs.getDate(6));
+                feria.setSeguridad(rs.getString(7));
+                feria.setPresupuesto(rs.getDouble(8));
+            }
+            return feria;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
     @Override
     public ArrayList<Feria> getMany(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
