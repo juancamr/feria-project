@@ -35,7 +35,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
             if (rs.next()) {
                 feria = makeFeriaResponse(rs);
             }
-            feria.setLocal(CRUDLocal.getInstance().get(feria.getLocal().getIdLocal()));
+            feria = updateFeriaAddingLocal(feria);
             return feria;
         } catch (SQLException e) {
             System.out.println(e);
@@ -52,15 +52,18 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     public ArrayList<Feria> getAll() {
         ArrayList<Feria> listaFeria = new ArrayList<>();
         try {
-            rs = st.executeQuery(GET_ALL_FERIA_NAMES);
+            rs = st.executeQuery(GET_ALL_FERIA);
             while (rs.next()) {
-                Feria feria = new Feria();
-                feria.setNombre(rs.getString(1));
+                Feria feria = makeFeriaResponse(rs);
                 listaFeria.add(feria);
+            }
+            for (Feria feria : listaFeria) {
+                feria = updateFeriaAddingLocal(feria);
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
+
         return listaFeria;
     }
 
@@ -72,6 +75,19 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     @Override
     public boolean delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void makeFeriaRequest(Feria feria, String sql) throws SQLException {
+        ps = connection.prepareStatement(sql);
+        ps.setInt(1, feria.getLocal().getIdLocal());
+        ps.setString(2, feria.getNombre());
+        ps.setInt(3, feria.getAforo());
+        ps.setDouble(4, feria.getCosto());
+        ps.setString(5, new SimpleDateFormat("yyyy-MM-dd").format(feria.getFecha()));
+        ps.setString(6, feria.getSeguridad());
+        ps.setDouble(7, feria.getPresupuesto());
+        ps.executeUpdate();
+        ps.close();
     }
 
     private Feria makeFeriaResponse(ResultSet rs) throws SQLException {
@@ -90,17 +106,9 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         return feria;
     }
 
-    private void makeFeriaRequest(Feria feria, String sql) throws SQLException {
-        ps = connection.prepareStatement(sql);
-        ps.setInt(1, feria.getLocal().getIdLocal());
-        ps.setString(2, feria.getNombre());
-        ps.setInt(3, feria.getAforo());
-        ps.setDouble(4, feria.getCosto());
-        ps.setString(5, new SimpleDateFormat("yyyy-MM-dd").format(feria.getFecha()));
-        ps.setString(6, feria.getSeguridad());
-        ps.setDouble(7, feria.getPresupuesto());
-        ps.executeUpdate();
-        ps.close();
+    private Feria updateFeriaAddingLocal(Feria feria) {
+        feria.setLocal(CRUDLocal.getInstance().get(feria.getLocal().getIdLocal()));
+        return feria;
     }
 
     public static CRUDFeria getInstance() {
