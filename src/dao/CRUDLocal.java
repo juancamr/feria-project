@@ -14,7 +14,7 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
     @Override
     public boolean add(Local local) {
         try {
-            makePs(local, ADD_LOCAL);
+            makeLocalRequest(local, ADD_LOCAL);
             return true;
         } catch (SQLException e) {
             System.out.println(e);
@@ -28,12 +28,7 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
             rs = st.executeQuery(GET_LOCAL + id);
             Local local = new Local();
             if (rs.next()) {
-                local.setIdLocal(rs.getInt(1));
-                local.setNombre(rs.getString(2));
-                local.setDistrito(rs.getString(3));
-                local.setAforo(rs.getInt(4));
-                local.setCosto(rs.getDouble(5));
-                local.setFecha(rs.getDate(6));
+                local = makeLocalResponse(rs);
                 return local;
             }
             return local;
@@ -47,14 +42,15 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
         Local local = new Local();
         try {
             rs = st.executeQuery(GET_LOCAL_BY_NAME + name + "\"");
-            if (rs.next()) {local = makeLocal(rs);
+            if (rs.next()) {
+                local = makeLocalResponse(rs);
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
         return local;
     }
-    
+
     public boolean isLocalAlreadyExist(Local local) {
         try {
             rs = st.executeQuery(GET_LOCAL_BY_NAME);
@@ -79,13 +75,7 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
         try {
             rs = st.executeQuery(GET_ALL_LOCALS);
             while (rs.next()) {
-                Local local = new Local();
-                local.setIdLocal(rs.getInt(1));
-                local.setNombre(rs.getString(2));
-                local.setDistrito(rs.getString(3));
-                local.setAforo(rs.getInt(4));
-                local.setCosto(rs.getDouble(5));
-                local.setFecha(rs.getDate(6));
+                Local local = makeLocalResponse(rs);
                 listaLocal.add(local);
             }
         } catch (SQLException e) {
@@ -104,7 +94,7 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private void makePs(Local local, String sql) throws SQLException {
+    private void makeLocalRequest(Local local, String sql) throws SQLException {
         ps = connection.prepareStatement(sql);
         ps.setString(1, local.getNombre());
         ps.setString(2, local.getDistrito());
@@ -115,7 +105,7 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
         ps.close();
     }
 
-    private Local makeLocal(ResultSet rs) throws SQLException {
+    private Local makeLocalResponse(ResultSet rs) throws SQLException {
         Local local = new Local();
         local.setIdLocal(rs.getInt(1));
         local.setNombre(rs.getString(2));

@@ -1,6 +1,8 @@
 package dao;
+
 import interfaces.Querys;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import modelo.Feria;
 import java.text.SimpleDateFormat;
@@ -13,7 +15,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     @Override
     public boolean add(Feria feria) {
         try {
-            makePs(feria, ADD_FERIA);
+            makeFeriaRequest(feria, ADD_FERIA);
             return true;
         } catch (SQLException e) {
             System.err.print(e.toString());
@@ -31,18 +33,9 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
             rs = st.executeQuery(GET_FERIA_BY_NAME + nombreFeria + "\"");
             Feria feria = new Feria();
             if (rs.next()) {
-                Local local = new Local();
-                local.setIdLocal(rs.getInt(2));
-                
-                feria.setId(rs.getInt(1));
-                feria.setLocal(local);
-                feria.setNombre(rs.getString(3));
-                feria.setAforo(rs.getInt(4));
-                feria.setCosto(rs.getDouble(5));
-                feria.setFecha(rs.getDate(6));
-                feria.setSeguridad(rs.getString(7));
-                feria.setPresupuesto(rs.getDouble(8));
+                feria = makeFeriaResponse(rs);
             }
+            feria.setLocal(CRUDLocal.getInstance().get(feria.getLocal().getIdLocal()));
             return feria;
         } catch (SQLException e) {
             System.out.println(e);
@@ -81,7 +74,23 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private void makePs(Feria feria, String sql) throws SQLException {
+    private Feria makeFeriaResponse(ResultSet rs) throws SQLException {
+        Feria feria = new Feria();
+        Local local = new Local();
+        local.setIdLocal(rs.getInt(2));
+
+        feria.setId(rs.getInt(1));
+        feria.setLocal(local);
+        feria.setNombre(rs.getString(3));
+        feria.setAforo(rs.getInt(4));
+        feria.setCosto(rs.getDouble(5));
+        feria.setFecha(rs.getDate(6));
+        feria.setSeguridad(rs.getString(7));
+        feria.setPresupuesto(rs.getDouble(8));
+        return feria;
+    }
+
+    private void makeFeriaRequest(Feria feria, String sql) throws SQLException {
         ps = connection.prepareStatement(sql);
         ps.setInt(1, feria.getLocal().getIdLocal());
         ps.setString(2, feria.getNombre());
