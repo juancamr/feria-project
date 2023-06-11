@@ -32,9 +32,14 @@ public class DbConnection implements DbCredentials {
         connection.close();
     }
 
-    public String getStatus() throws SQLException {
-        return !(connection == null || connection.isClosed()) ? "Connected to database server!"
-                : "Error, we can't connect to database!";
+    public String getStatus() {
+        try {
+            return !(connection == null || connection.isClosed()) ? "Connected to database server!"
+                    : "Error, we can't connect to database!";
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "Error";
+        }
     }
 
     public Connection getConnection() {

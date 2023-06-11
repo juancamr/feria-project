@@ -2,6 +2,7 @@ package utils;
 
 import controlador.*;
 import vista.*;
+import dao.DbConnection;
 
 public class Go {
 
@@ -39,5 +40,11 @@ public class Go {
 
     public static void toRegistroPatrocinadores(WindowMain vista) {
         new ControladorRegistroPatrocinador(vista, new PanelRegistroPatrocinador());
+    }
+    
+    public static void startProgram() {
+        System.out.println(DbConnection.getInstance().getStatus());
+        System.out.println("Program running!");
+        toWindowMain();
     }
 }

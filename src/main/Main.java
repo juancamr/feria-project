@@ -1,14 +1,11 @@
 package main;
 
-import java.sql.SQLException;
-import dao.DbConnection;
 import utils.Go;
 
 public class Main {
     
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        System.out.println(DbConnection.getInstance().getStatus());
-        Go.toWindowMain();
+    public static void main(String[] args) {
+        Go.startProgram();
     }
     
 }

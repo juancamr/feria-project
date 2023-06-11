@@ -1,7 +1,6 @@
 package formato;
 
 import dao.CRUDFeria;
-import java.util.ArrayList;
 import modelo.Feria;
 import modelo.Proveedor;
 import modelo.Response;
@@ -13,7 +12,7 @@ public class FormatoRegistroProveedor {
         Proveedor proveedor = new Proveedor();
         proveedor.setNombre(panel.jtxtNombre.getText());
         proveedor.setDescripcion(panel.jtxtDescripcion.getText());
-        proveedor.setCosto(Double.parseDouble(panel.jtxtCosto.toString()));
+        proveedor.setCosto(Double.parseDouble(panel.jtxtCosto.getText()));
         Response<Feria> response = CRUDFeria.getInstance().getByName(panel.jcbxFeria.getSelectedItem().toString());
         proveedor.setFeria(response.isSuccess() ? response.getData() : null);
         return proveedor;

@@ -29,7 +29,6 @@ public class ControladorRegistroProveedor implements ActionListener {
         if (e.getSource() == panel.jbtnSubir) {
             Proveedor proveedor = FormatoRegistroProveedor.makeProveedor(panel);
             proveedor.setId(0);
-            DebugObject.printObject(proveedor);
             if (DebugObject.isFilledObject(proveedor)) {
                 Response<Proveedor> response = CRUDProveedor.getInstance().add(proveedor);
                 if (response.isSuccess()) {
