@@ -1,12 +1,20 @@
-
 package vista;
-        
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 public class WindowMain extends javax.swing.JFrame {
-    
+
     public WindowMain() {
         initComponents();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.out.println("\nClosing program...\nFERIA PROJECT by juancamr\n");
+            }
+        });
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -16,7 +16,8 @@ public class DbConnection implements DbCredentials {
             connection = DriverManager.getConnection(url, USER, PASSWD);
             st = connection.createStatement();
         } catch (SQLException e) {
-            System.out.println("Error no se pudo conectar a la base de datos, " + e.toString());
+            System.out.println("Error, we can't find any database");
+            System.out.println("\nClosing program...\nFERIA PROJECT by juancamr\n");
             System.exit(0);
         }
     }

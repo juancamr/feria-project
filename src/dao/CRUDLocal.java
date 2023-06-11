@@ -55,7 +55,7 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
 
     public Response isLocalAlreadyExist(Local local) {
         try {
-            rs = st.executeQuery(GET_LOCAL_BY_NAME);
+            rs = st.executeQuery(GET_LOCAL_BY_NAME + local.getNombre() + "\"");
             if (rs.next()) {
                 return new Response(!rs.getString(2).isEmpty());
             }
