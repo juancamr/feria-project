@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import modelo.Response;
 
 abstract class BaseCRUD<T> {
     
@@ -15,10 +16,10 @@ abstract class BaseCRUD<T> {
         st = DbConnection.getInstance().getSt();
     }
     
-    public abstract boolean add(T object);
-    public abstract T get(int id);
-    public abstract ArrayList<T> getMany(int id);
-    public abstract ArrayList<T> getAll();
-    public abstract boolean edit(int id);
-    public abstract boolean delete(int id);
+    public abstract Response<T> add(T object);
+    public abstract Response<T> get(int id);
+    public abstract Response<T> getMany(int id);
+    public abstract Response<T> getAll();
+    public abstract Response<T> edit(int id);
+    public abstract Response<T> delete(int id);
 }

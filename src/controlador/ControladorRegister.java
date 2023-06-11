@@ -7,6 +7,8 @@ import modelo.Usuario;
 import utils.DebugObject;
 import java.util.Date;
 import dao.CRUDUsuario;
+import interfaces.Strings;
+import modelo.Response;
 import utils.Dialog;
 import utils.FormatFrame;
 import utils.Go;
@@ -32,18 +34,20 @@ public class ControladorRegister implements ActionListener {
         if (e.getSource() == vista.jbtnRegistrar) {
             Usuario user = makeUsuario();
             if (DebugObject.isFilledObject(user)) {
-                if (CRUDUsuario.getInstance().isUserAlreadyExist(user)) {
+                if (CRUDUsuario.getInstance().isUserAlreadyExist(user).isSuccess()) {
                     Dialog.message("El usuario ya existe");
                 } else {
-                    if (CRUDUsuario.getInstance().add(user)) {
+                    Response<Usuario> response = CRUDUsuario.getInstance().add(user);
+                    if (response.isSuccess()) {
                         vista.dispose();
                         Go.toWindowMain();
+                        Dialog.message(response.getMessage());
                     } else {
-                        Dialog.message("Algo salio mal, por favor intentelo de nuevo.");
+                        Dialog.message(response.getMessage());
                     }
                 }
             } else {
-                Dialog.message("Por favor, llene todos los campos");
+                Dialog.message(Strings.PLEASE_FILL_FIELDS);
                 System.out.println("error");
             }
         }

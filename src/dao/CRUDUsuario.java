@@ -3,6 +3,7 @@ package dao;
 import interfaces.Querys;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import modelo.Response;
 import modelo.Usuario;
 import utils.DebugObject;
 import utils.Utils;
@@ -12,65 +13,64 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
     private static CRUDUsuario crudUsuario;
 
     @Override
-    public boolean add(Usuario user) {
+    public Response add(Usuario user) {
         try {
             makePs(user, ADD_USER);
-            return true;
+            return new Response(true, "Felicitaciones " + user.getNombres() + ", tu registro fue exitoso",
+                    user);
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
+            return new Response(false, "No se pudo agregar el usuario");
         }
     }
 
-    public boolean isMatchCredentials(Usuario user) {
+    public Response isMatchCredentials(Usuario user) {
         String passwordEntered = Utils.encryptPassword(user.getPassword());
         try {
             rs = st.executeQuery(GET_USER_BY_USERNAME + user.getUserName() + "\"");
             if (rs.next()) {
-                return passwordEntered.equals(rs.getString(2));
+                return new Response(passwordEntered.equals(rs.getString(2)));
             }
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
         }
-        return false;
+        return new Response(false);
     }
 
-    public boolean isUserAlreadyExist(Usuario user) {
+    public Response isUserAlreadyExist(Usuario user) {
         try {
             rs = st.executeQuery(GET_USER_BY_USERNAME + user.getUserName() + "\"");
             if (rs.next()) {
-                return !rs.getString(1).isEmpty();
+                return new Response(!rs.getString(1).isEmpty());
             }
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
         }
-        return false;
+        return new Response(false);
     }
 
     @Override
-    public Usuario get(int id) {
+    public Response get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Usuario> getMany(int id) {
+    public Response getMany(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Usuario> getAll() {
+    public Response getAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean edit(int id) {
+    public Response edit(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(int id) {
+    public Response delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

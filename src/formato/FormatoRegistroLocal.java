@@ -1,6 +1,11 @@
 
 package formato;
 
+import dao.CRUDLocal;
+import java.util.List;
+import javax.swing.JComboBox;
+import modelo.Local;
+import modelo.Response;
 import vista.PanelRegistroLocal;
 
 public class FormatoRegistroLocal {
@@ -11,4 +16,6 @@ public class FormatoRegistroLocal {
         panel.jtxtNombre.setText("");
         panel.jtxtNombre.requestFocus();
     }
+    
+
 }

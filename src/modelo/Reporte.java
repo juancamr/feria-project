@@ -1,14 +1,15 @@
 
 package modelo;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Reporte {
     private int id;
     private String nombreReporte;
     private int column_3;
     private int standId;
-    private ArrayList<Gasto> listaGastos;
-    private ArrayList<Ingreso> listaIngresos;
+    private List<Gasto> listaGastos;
+    private List<Ingreso> listaIngresos;
     
     public Reporte() {}
 
@@ -44,19 +45,19 @@ public class Reporte {
         this.standId = standId;
     }
 
-    public ArrayList<Gasto> getListaGastos() {
+    public List<Gasto> getListaGastos() {
         return listaGastos;
     }
 
-    public void setListaGastos(ArrayList<Gasto> listaGastos) {
+    public void setListaGastos(List<Gasto> listaGastos) {
         this.listaGastos = listaGastos;
     }
 
-    public ArrayList<Ingreso> getListaIngresos() {
+    public List<Ingreso> getListaIngresos() {
         return listaIngresos;
     }
 
-    public void setListaIngresos(ArrayList<Ingreso> listaIngresos) {
+    public void setListaIngresos(List<Ingreso> listaIngresos) {
         this.listaIngresos = listaIngresos;
     }
     

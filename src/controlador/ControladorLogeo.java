@@ -28,7 +28,7 @@ public class ControladorLogeo implements ActionListener {
             user.setUserName(vista.jtxtUserName.getText());
             user.setPassword(new String(vista.jpwdPassword.getPassword()));
             if (isFilledFields(user)) {
-                if (CRUDUsuario.getInstance().isMatchCredentials(user)) {
+                if (CRUDUsuario.getInstance().isMatchCredentials(user).isSuccess()) {
                     vista.dispose();
                     Go.toWindowMain();
                 } else {

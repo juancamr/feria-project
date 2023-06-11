@@ -2,19 +2,15 @@ package dao;
 
 import interfaces.Querys;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import modelo.Proveedor;
+import modelo.Response;
 
 public class CRUDProveedor extends BaseCRUD<Proveedor> implements Querys {
 
     private static CRUDProveedor crudProveedor;
 
     @Override
-    public boolean add(Proveedor object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public Object[] agregar(Proveedor proveedor) {
+    public Response add(Proveedor proveedor) {
         try {
             ps = connection.prepareStatement(ADD_PROVIDER);
             ps.setInt(1, proveedor.getFeria().getId());
@@ -23,35 +19,35 @@ public class CRUDProveedor extends BaseCRUD<Proveedor> implements Querys {
             ps.setDouble(4, proveedor.getCosto());
             ps.executeUpdate();
             ps.close();
-            return new Object[]{true, "El proveedor " + proveedor.getNombre() + " ah sido registrado con exito!"};
+            return new Response(true, "Proveedor agregado con exito", proveedor);
         } catch (SQLException e) {
             System.out.println(e);
-            return new Object[]{false, "Problema al insertar el proveedor"};
+            return new Response(false, "No se pudo agregar el proveedor");
         }
     }
 
     @Override
-    public Proveedor get(int id) {
+    public Response get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Proveedor> getMany(int id) {
+    public Response getMany(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Proveedor> getAll() {
+    public Response getAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean edit(int id) {
+    public Response edit(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(int id) {
+    public Response delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

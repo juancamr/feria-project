@@ -6,6 +6,7 @@ import interfaces.Strings;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import modelo.Proveedor;
+import modelo.Response;
 import utils.DebugObject;
 import utils.Dialog;
 import utils.FormatFrame;
@@ -30,12 +31,12 @@ public class ControladorRegistroProveedor implements ActionListener {
             proveedor.setId(0);
             DebugObject.printObject(proveedor);
             if (DebugObject.isFilledObject(proveedor)) {
-                Object[] response = CRUDProveedor.getInstance().agregar(proveedor);
-                if ((boolean)response[0]) {
+                Response<Proveedor> response = CRUDProveedor.getInstance().add(proveedor);
+                if (response.isSuccess()) {
                     FormatoRegistroProveedor.emptyFields(panel);
-                    Dialog.message(response[1].toString());
+                    Dialog.message(response.getMessage());
                 } else {
-                    Dialog.message(response[1].toString());
+                    Dialog.message(response.getMessage());
                 }
             } else {
                 Dialog.message(Strings.PLEASE_FILL_FIELDS);

@@ -5,6 +5,7 @@ import interfaces.Strings;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import modelo.Local;
+import modelo.Response;
 import utils.DebugObject;
 import utils.Dialog;
 import utils.FormatFrame;
@@ -28,14 +29,15 @@ public class ControladorRegistroLocal implements ActionListener {
             Local local = makeLocal();
             local.setIdLocal(0);
             if (DebugObject.isFilledObject(local)) {
-                if (CRUDLocal.getInstance().isLocalAlreadyExist(local)) {
+                if (CRUDLocal.getInstance().isLocalAlreadyExist(local).isSuccess()) {
                     Dialog.message("El local ya esta registrado");
                 } else {
-                    if (CRUDLocal.getInstance().add(local)) {
+                    Response<Local> response = CRUDLocal.getInstance().add(local);
+                    if (response.isSuccess()) {
                         formato.FormatoRegistroLocal.emptyFields(panel);
-                        Dialog.message("Local " + local.getNombre() + " agregado con exito!");
+                        Dialog.message(response.getMessage());
                     } else {
-                        Dialog.message("Algo salio mal, por favor intentelo de nuevo");
+                        Dialog.message(response.getMessage());
                     }
                 }
             } else {

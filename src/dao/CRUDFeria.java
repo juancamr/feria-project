@@ -6,29 +6,48 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import modelo.Feria;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import modelo.Local;
+import modelo.Response;
 
 public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
 
     private static CRUDFeria crudFeria;
 
     @Override
-    public boolean add(Feria feria) {
+    public Response add(Feria feria) {
         try {
             makeFeriaRequest(feria, ADD_FERIA);
-            return true;
+            return new Response(
+                    true,
+                    "Feria " + feria.getNombre() + " agregada con exito!"
+            );
         } catch (SQLException e) {
             System.err.print(e.toString());
-            return false;
+            return new Response(
+                    false,
+                    "Error, no se pudo agregar la feria."
+            );
         }
     }
 
     @Override
-    public Feria get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Response get(int id) {
+        try {
+            rs = st.executeQuery("");
+            Feria feria = new Feria();
+            if (rs.next()) {
+                feria = makeFeriaResponse(rs);
+            }
+            feria = updateFeriaAddingLocal(feria);
+            return new Response(true, feria);
+        } catch (SQLException e) {
+            System.out.println(e);
+            return new Response(false, "No se pudo obtener la feria");
+        }
     }
 
-    public Feria getByName(String nombreFeria) {
+    public Response getByName(String nombreFeria) {
         try {
             rs = st.executeQuery(GET_FERIA_BY_NAME + nombreFeria + "\"");
             Feria feria = new Feria();
@@ -36,21 +55,21 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
                 feria = makeFeriaResponse(rs);
             }
             feria = updateFeriaAddingLocal(feria);
-            return feria;
+            return new Response(true, feria);
         } catch (SQLException e) {
             System.out.println(e);
-            return null;
+            return new Response(false, "No se pudo obtener la feria");
         }
     }
 
     @Override
-    public ArrayList<Feria> getMany(int id) {
+    public Response getMany(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Feria> getAll() {
-        ArrayList<Feria> listaFeria = new ArrayList<>();
+    public Response getAll() {
+        List<Feria> listaFeria = new ArrayList<>();
         try {
             rs = st.executeQuery(GET_ALL_FERIA);
             while (rs.next()) {
@@ -60,20 +79,20 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
             for (Feria feria : listaFeria) {
                 feria = updateFeriaAddingLocal(feria);
             }
+            return new Response(true, listaFeria);
         } catch (SQLException e) {
             System.out.println(e);
+            return new Response(false, "No se pudo obtener todas las ferias");
         }
-
-        return listaFeria;
     }
 
     @Override
-    public boolean edit(int id) {
+    public Response edit(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(int id) {
+    public Response delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -107,7 +126,10 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     }
 
     private Feria updateFeriaAddingLocal(Feria feria) {
-        feria.setLocal(CRUDLocal.getInstance().get(feria.getLocal().getIdLocal()));
+        Response<Local> response = CRUDLocal.getInstance().get(feria.getLocal().getIdLocal());
+        if (response.isSuccess()) {
+            feria.setLocal(response.getData());
+        }
         return feria;
     }
 

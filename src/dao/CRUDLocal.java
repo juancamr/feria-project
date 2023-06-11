@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Local;
 import java.sql.ResultSet;
+import java.util.List;
+import modelo.Response;
 import utils.Utils;
 
 public class CRUDLocal extends BaseCRUD<Local> implements Querys {
@@ -12,85 +14,86 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
     private static CRUDLocal crudLocal;
 
     @Override
-    public boolean add(Local local) {
+    public Response add(Local local) {
         try {
             makeLocalRequest(local, ADD_LOCAL);
-            return true;
+            return new Response(true, "Local agregado con exito", local);
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
+            return new Response(false, "No se pudo agregar el local");
         }
     }
 
     @Override
-    public Local get(int id) {
+    public Response get(int id) {
         try {
             rs = st.executeQuery(GET_LOCAL + id);
             Local local = new Local();
             if (rs.next()) {
                 local = makeLocalResponse(rs);
-                return local;
             }
-            return local;
+            return new Response(true, local);
         } catch (SQLException e) {
             System.out.println(e);
-            return null;
+            return new Response(false, "No se pudo obtener el local");
         }
     }
 
-    public Local getByName(String name) {
+    public Response getByName(String name) {
         Local local = new Local();
         try {
             rs = st.executeQuery(GET_LOCAL_BY_NAME + name + "\"");
             if (rs.next()) {
                 local = makeLocalResponse(rs);
             }
+            return new Response(true, local);
         } catch (SQLException e) {
             System.out.println(e);
+            return new Response(false, "No se pudo obtener el local");
         }
-        return local;
     }
 
-    public boolean isLocalAlreadyExist(Local local) {
+    public Response isLocalAlreadyExist(Local local) {
         try {
             rs = st.executeQuery(GET_LOCAL_BY_NAME);
             if (rs.next()) {
-                return !rs.getString(2).isEmpty();
+                return new Response(!rs.getString(2).isEmpty());
             }
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
+            return new Response(false);
         }
-        return false;
+        return new Response(false);
     }
 
     @Override
-    public ArrayList<Local> getMany(int id) {
+    public Response getMany(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<Local> getAll() {
-        ArrayList<Local> listaLocal = new ArrayList<>();
+    public Response getAll() {
+        List<Local> listaLocal = new ArrayList<>();
         try {
             rs = st.executeQuery(GET_ALL_LOCALS);
             while (rs.next()) {
                 Local local = makeLocalResponse(rs);
                 listaLocal.add(local);
             }
+            return new Response(true, listaLocal);
         } catch (SQLException e) {
             System.out.println(e);
+            return new Response(false, "No se pudieron obtener todos los locales");
         }
-        return listaLocal;
     }
 
     @Override
-    public boolean edit(int id) {
+    public Response edit(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(int id) {
+    public Response delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
