@@ -28,6 +28,7 @@ public class WindowMain extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jbtnPatrocinadores = new javax.swing.JButton();
         jbtnEntradas = new javax.swing.JButton();
+        jbtnFinanzas = new javax.swing.JButton();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,10 +62,23 @@ public class WindowMain extends javax.swing.JFrame {
         BarraLateral.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
         jbtnPatrocinadores.setText("Patrocinadores");
+        jbtnPatrocinadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnPatrocinadoresActionPerformed(evt);
+            }
+        });
         BarraLateral.add(jbtnPatrocinadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
 
         jbtnEntradas.setText("Entradas");
         BarraLateral.add(jbtnEntradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, -1));
+
+        jbtnFinanzas.setText("Finanzas");
+        jbtnFinanzas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnFinanzasActionPerformed(evt);
+            }
+        });
+        BarraLateral.add(jbtnFinanzas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, 100, -1));
 
         getContentPane().add(BarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 850));
 
@@ -87,6 +101,14 @@ public class WindowMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtnPatrocinadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPatrocinadoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnPatrocinadoresActionPerformed
+
+    private void jbtnFinanzasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnFinanzasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnFinanzasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,6 +154,7 @@ public class WindowMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     public javax.swing.JButton jbtnCerrarSesion;
     public javax.swing.JButton jbtnEntradas;
+    private javax.swing.JButton jbtnFinanzas;
     public javax.swing.JButton jbtnHome;
     public javax.swing.JButton jbtnPatrocinadores;
     public javax.swing.JButton jbtnProveedores;
