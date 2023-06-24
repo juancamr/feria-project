@@ -69,7 +69,6 @@ public class PanelFinanzas extends javax.swing.JPanel {
             }
         });
 
-        jcbxFeria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcbxFeria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbxFeriaActionPerformed(evt);
@@ -150,8 +149,8 @@ public class PanelFinanzas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> jcbxFeria;
-    private javax.swing.JTextField txtGastos;
-    private javax.swing.JTextField txtIngresos;
+    public javax.swing.JComboBox<String> jcbxFeria;
+    public javax.swing.JTextField txtGastos;
+    public javax.swing.JTextField txtIngresos;
     // End of variables declaration//GEN-END:variables
 }

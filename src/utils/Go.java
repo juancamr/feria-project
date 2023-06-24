@@ -42,6 +42,10 @@ public class Go {
         new ControladorRegistroPatrocinador(vista, new PanelRegistroPatrocinador());
     }
     
+    public static void toRegistroFinanzas(WindowMain vista) {
+        new ControladorRegistroFinanzas(vista, new PanelFinanzas());
+    }
+    
     public static void startProgram() {
         System.out.println(DbConnection.getInstance().getStatus());
         System.out.println("Program running!");

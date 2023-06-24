@@ -154,7 +154,7 @@ public class WindowMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     public javax.swing.JButton jbtnCerrarSesion;
     public javax.swing.JButton jbtnEntradas;
-    private javax.swing.JButton jbtnFinanzas;
+    public javax.swing.JButton jbtnFinanzas;
     public javax.swing.JButton jbtnHome;
     public javax.swing.JButton jbtnPatrocinadores;
     public javax.swing.JButton jbtnProveedores;

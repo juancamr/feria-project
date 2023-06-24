@@ -19,6 +19,7 @@ public class ControladorWindowMain implements ActionListener {
         vista.jbtnCerrarSesion.addActionListener(this);
         vista.jbtnEntradas.addActionListener(this);
         vista.jbtnPatrocinadores.addActionListener(this);
+        vista.jbtnFinanzas.addActionListener(this);
         int[] dimensions = {1100, 850};
         FormatFrame.window(vista, dimensions, "Feria");
         Go.toHome(vista);
@@ -43,6 +44,9 @@ public class ControladorWindowMain implements ActionListener {
         }
         if (e.getSource() == vista.jbtnPatrocinadores) {
             Go.toRegistroPatrocinadores(vista);
+        }
+        if (e.getSource() == vista.jbtnFinanzas) {
+            Go.toRegistroFinanzas(vista);
         }
         if (e.getSource() == vista.jbtnCerrarSesion) {
             vista.dispose();
