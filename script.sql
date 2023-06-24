@@ -1,3 +1,4 @@
+drop database feria;
 CREATE DATABASE IF NOT EXISTS feria;
 
 use feria;
@@ -68,3 +69,12 @@ CREATE TABLE
         costo_proveedores DECIMAL(10, 2),
         CONSTRAINT FOREIGN key (id_feria) REFERENCES feria (id)
     ) Engine = InnoDB;
+
+create table
+    if not exists finanza (
+        id int not primary key not null auto_increment,
+        id_feria int not null,
+        gastos decimal(10, 2),
+        ingresos decimal(10, 2),
+        constraint FOREIGN key (id_feria) references feria (id)
+    ) Engine = Innodb;
