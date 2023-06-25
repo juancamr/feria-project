@@ -28,4 +28,8 @@ public class Utils {
             return "";
         }
     }
+    
+    public static boolean comparePassword(String enteredPassword, String hashedPassword) {
+        return encryptPassword(enteredPassword).equals(hashedPassword);
+    }
 }

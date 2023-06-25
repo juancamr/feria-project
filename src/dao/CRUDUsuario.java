@@ -25,11 +25,10 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
     }
 
     public Response isMatchCredentials(Usuario user) {
-        String passwordEntered = Utils.encryptPassword(user.getPassword());
         try {
             rs = st.executeQuery(GET_USER_BY_USERNAME + user.getUserName() + "\"");
             if (rs.next()) {
-                return new Response(passwordEntered.equals(rs.getString(2)));
+                return new Response(Utils.comparePassword(user.getPassword(), rs.getString(2)));
             }
         } catch (SQLException e) {
             System.out.println(e);
