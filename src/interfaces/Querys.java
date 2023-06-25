@@ -36,4 +36,8 @@ public interface Querys {
     
     //proveedores
     String ADD_PROVIDER = "INSERT INTO proveedor(id_feria, nombre, descripcion, costo_proveedores) VALUES(?, ?, ?, ?)";
+    
+    //finanzas
+    String ADD_FINANZA = "INSERT INTO finanza(id_feria, gastos, ingresos) VALUES(?, ?, ?)";
+    String GET_FINANZA = "SELECT * FROM finanza WHERE id=";
 }
