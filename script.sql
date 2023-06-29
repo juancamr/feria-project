@@ -76,8 +76,10 @@ CREATE TABLE
     if NOT EXISTS reporte (
         id INT PRIMARY key NOT NULL auto_increment,
         id_feria INT NOT NULL,
+        id_chart INT NOT NULL,
         fecha DATE,
-        CONSTRAINT FOREIGN key (id_feria) REFERENCES feria (id)
+        CONSTRAINT FOREIGN key (id_feria) REFERENCES feria (id),
+        CONSTRAINT FOREIGN key (id_chart) REFERENCES chart (id)
     ) Engine = InnoDB;
 
 CREATE TABLE
