@@ -26,7 +26,6 @@ public class FormatoRegistrarFeria {
         feria.setNombre(panel.jtxtNombre.getText());
         feria.setAforo(Integer.parseInt(panel.jspnAforo.getValue().toString()));
         feria.setCosto(Double.parseDouble(panel.jspnCostoEntrada.getValue().toString()));
-        feria.setFecha(panel.jdchFecha.getDate());
         feria.setSeguridad(panel.jtxtSeguridad.getText());
         feria.setPresupuesto(Double.parseDouble(panel.jspnPrespuesto.getValue().toString()));
         return feria;

@@ -32,12 +32,10 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jtxtNombre = new javax.swing.JTextField();
         jbtnRegistrar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jtxtSeguridad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jdchFecha = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         jcbxLocal = new javax.swing.JComboBox<>();
         jspnAforo = new javax.swing.JSpinner();
@@ -74,10 +72,6 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
         });
         jPanel1.add(jbtnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 146, 65));
 
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Ingresar fecha");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
-
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Ingresar el nombre de la feria");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
@@ -90,7 +84,6 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Ingresar presupuesto planteado");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
-        jPanel1.add(jdchFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 150, -1));
 
         jLabel8.setText("Local");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, -1, -1));
@@ -124,12 +117,10 @@ public class PanelRegistroFeria extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JButton jbtnRegistrar;
     public javax.swing.JComboBox<String> jcbxLocal;
-    public com.toedter.calendar.JDateChooser jdchFecha;
     public javax.swing.JSpinner jspnAforo;
     public javax.swing.JSpinner jspnCostoEntrada;
     public javax.swing.JSpinner jspnPrespuesto;

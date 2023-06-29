@@ -1,14 +1,15 @@
 package controlador;
 
-import dao.CRUDFinanzas;
+import dao.CRUDFeria;
 import formato.FormatoRegistroFinanzas;
 import interfaces.Strings;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import modelo.Finanza;
+import modelo.Feria;
 import modelo.Response;
 import utils.Dialog;
 import utils.FormatFrame;
+import utils.Go;
 import vista.PanelFinanzas;
 import vista.WindowMain;
 
@@ -19,25 +20,20 @@ public class ControladorRegistroFinanzas implements ActionListener {
     public ControladorRegistroFinanzas(WindowMain vista, PanelFinanzas p) {
         panel = p;
         panel.jbtnAprobar.addActionListener(this);
-        FormatoRegistroFinanzas.fillComboBox(panel);
-        FormatFrame.panel(vista, panel);
+        Response<Feria> response = CRUDFeria.getInstance().getFeriaToday();
+        if (!response.isSuccess()) {
+            Go.toRegistroFeria(vista);
+            Dialog.message("Por favor, primero registre una feria");
+        } else {
+            FormatFrame.panel(vista, panel);
+        }
+        panel.jlblFeriaActual.setText(response.getData().getNombre());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == panel.jbtnAprobar) {
-            if (FormatoRegistroFinanzas.isAllFieldsFilled(panel)) {
-                Finanza finanza = FormatoRegistroFinanzas.makeFinanza(panel);
-                Response<Finanza> response = CRUDFinanzas.getInstance().add(finanza);
-                if (response.isSuccess()) {
-                    FormatoRegistroFinanzas.emptyFields(panel);
-                    Dialog.message(response.getMessage());
-                } else {
-                    Dialog.message(response.getMessage());
-                }
-            } else {
-                Dialog.message(Strings.PLEASE_FILL_FIELDS);
-            }
+            System.out.println("hola");
         }
     }
 

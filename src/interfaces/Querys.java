@@ -14,6 +14,7 @@ public interface Querys {
                        VALUES(?, ?, ?, ?, ?, ?, ?)
                        """;
     String GET_FERIA_BY_NAME = "SELECT * FROM feria WHERE nombre=\"";
+    String GET_FERIA_TODAY = "SELECT * from feria WHERE fecha=\"";
     String GET_ALL_FERIA = "SELECT * FROM feria";
     
     //gasto

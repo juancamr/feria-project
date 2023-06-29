@@ -5,11 +5,13 @@ import formato.FormatoRegistrarFeria;
 import interfaces.Strings;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import modelo.Feria;
 import modelo.Response;
 import utils.DebugObject;
 import utils.Dialog;
 import utils.FormatFrame;
+import utils.Go;
 import vista.PanelRegistroFeria;
 import vista.WindowMain;
 
@@ -21,7 +23,14 @@ public class ControladorRegistroFeria implements ActionListener {
         panel = pan;
         FormatoRegistrarFeria.fillComboBox(panel.jcbxLocal);
         panel.jbtnRegistrar.addActionListener(this);
-        FormatFrame.panel(vista, panel);
+
+        Response<Feria> response = CRUDFeria.getInstance().getFeriaToday();
+        if (response.isSuccess()) {
+            Go.toHome(vista);
+            Dialog.message("Actualmente se encuentra administrando la feria " + response.getData().getNombre());
+        } else {
+            FormatFrame.panel(vista, panel);
+        }
         panel.jtxtNombre.requestFocus();
     }
 
@@ -30,6 +39,7 @@ public class ControladorRegistroFeria implements ActionListener {
         if (e.getSource() == panel.jbtnRegistrar) {
             Feria feria = FormatoRegistrarFeria.makeFeria(panel);
             feria.setId(0);
+            feria.setFecha(new Date());
             if (DebugObject.isFilledObject(feria)) {
                 Response<Feria> response = CRUDFeria.getInstance().add(feria);
                 if (response.isSuccess()) {

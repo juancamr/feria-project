@@ -6,8 +6,8 @@ import utils.Go;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-//        Go.startProgram();
-        Statistics.showLinear();
+        Go.startProgram();
+//        Statistics.showLinear();
     }
 
 }

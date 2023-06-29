@@ -6,9 +6,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import modelo.Feria;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import modelo.Local;
 import modelo.Response;
+import utils.Utils;
 
 public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
 
@@ -44,6 +46,26 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         } catch (SQLException e) {
             System.out.println(e);
             return new Response(false, "No se pudo obtener la feria");
+        }
+    }
+
+    public Response getFeriaToday() {
+        String today = Utils.makeDate(new Date());
+        try {
+            rs = st.executeQuery(GET_FERIA_TODAY + today + "\"");
+            Feria feria = new Feria();
+            if (rs.next()) {
+                feria = makeFeriaResponse(rs);
+            }
+            if (feria.getLocal() == null) {
+                return new Response(false);
+            } else {
+                feria = updateFeriaAddingLocal(feria);
+                return new Response(true, feria);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return new Response(false, "No se pudo obtener la feria creada hoy");
         }
     }
 
@@ -102,7 +124,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         ps.setString(2, feria.getNombre());
         ps.setInt(3, feria.getAforo());
         ps.setDouble(4, feria.getCosto());
-        ps.setString(5, new SimpleDateFormat("yyyy-MM-dd").format(feria.getFecha()));
+        ps.setString(5, Utils.makeDate(feria.getFecha()));
         ps.setString(6, feria.getSeguridad());
         ps.setDouble(7, feria.getPresupuesto());
         ps.executeUpdate();
