@@ -58,7 +58,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
             if (rs.next()) {
                 feria = makeResponse(rs);
             }
-            if (feria.getLocal() == null) {
+            if (feria == null) {
                 return new Response(false);
             } else {
                 feria = updateFeriaAddingLocal(feria);
@@ -73,7 +73,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     public Response getByName(String nombreFeria) {
         try {
             rs = st.executeQuery(GET_FERIA_BY_NAME + nombreFeria + "\"");
-            Feria feria = null;
+            Feria feria = new Feria();
             if (rs.next()) {
                 feria = makeResponse(rs);
             }

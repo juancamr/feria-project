@@ -2,6 +2,7 @@ package controlador;
 
 import dao.CRUDChart;
 import dao.CRUDFeria;
+import dao.CRUDLocal;
 import dao.CRUDReporte;
 import formato.FormatoRegistrarFeria;
 import interfaces.Strings;
@@ -10,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 import modelo.Chart;
 import modelo.Feria;
+import modelo.Local;
 import modelo.Reporte;
 import modelo.Response;
 import utils.DebugObject;
@@ -24,18 +26,23 @@ public class ControladorRegistroFeria implements ActionListener {
     PanelRegistroFeria panel;
 
     public ControladorRegistroFeria(WindowMain vista, PanelRegistroFeria pan) {
-        panel = pan;
-        FormatoRegistrarFeria.fillComboBox(panel.jcbxLocal);
-        panel.jbtnRegistrar.addActionListener(this);
-
-        Response<Feria> response = CRUDFeria.getInstance().getFeriaToday();
-        if (response.isSuccess()) {
-            Go.toHome(vista);
-            Dialog.message("Actualmente se encuentra administrando la feria " + response.getData().getNombre());
+        Response<Local> rsLocal = CRUDLocal.getInstance().getAll();
+        if (rsLocal.getDataList().isEmpty()) {
+            Go.toRegistroLocal(vista);
+            Dialog.message("Por favor, primero registre un local");
         } else {
-            FormatFrame.panel(vista, panel);
+            panel = pan;
+            FormatoRegistrarFeria.fillComboBox(panel.jcbxLocal, rsLocal.getDataList());
+            panel.jbtnRegistrar.addActionListener(this);
+            Response<Feria> response = CRUDFeria.getInstance().getFeriaToday();
+            if (response.isSuccess()) {
+                Go.toHome(vista);
+                Dialog.message("Actualmente se encuentra administrando la feria " + response.getData().getNombre());
+            } else {
+                FormatFrame.panel(vista, panel);
+            }
+            panel.jtxtNombre.requestFocus();
         }
-        panel.jtxtNombre.requestFocus();
     }
 
     @Override
@@ -49,12 +56,16 @@ public class ControladorRegistroFeria implements ActionListener {
                 if (rsFeria.isSuccess()) {
                     Dialog.message(rsFeria.getMessage());
                     Response<Chart> rsChart = CRUDChart.getInstance().add(new Chart());
+                    Dialog.message(rsChart.isSuccess() ? "init chart" : "no init chart");
                     Response<Reporte> rsReporte = CRUDReporte.getInstance().add(new Reporte.Builder()
                             .setFeria(rsFeria.getData())
                             .setChart(rsChart.getData())
                             .build());
+                    Dialog.message(rsChart.isSuccess() ? "init chart" : "no init chart");
                     if (rsReporte.isSuccess()) {
                         FormatoRegistrarFeria.emptyFields(panel);
+                    } else {
+                        Dialog.message("no se pudo inicializar el reporte");
                     }
                 } else {
                     Dialog.message(rsFeria.getMessage());

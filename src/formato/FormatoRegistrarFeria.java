@@ -33,15 +33,9 @@ public class FormatoRegistrarFeria {
                 .build();
     }
 
-    public static void fillComboBox(JComboBox combo) {
-        Response<Local> response = CRUDLocal.getInstance().getAll();
-        if (response.isSuccess()) {
-            List<Local> listaLocals = response.getDataList();
-            for (Local local : listaLocals) {
-                combo.addItem(local.getNombre());
-            }
-        } else {
-            System.out.println(response.getMessage());
+    public static void fillComboBox(JComboBox combo, List<Local> listaLocals) {
+        for (Local local : listaLocals) {
+            combo.addItem(local.getNombre());
         }
     }
 }

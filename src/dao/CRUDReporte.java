@@ -110,6 +110,8 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
         ps.setInt(1, reporte.getFeria().getId());
         ps.setInt(2, reporte.getChart().getId());
         ps.setString(3, Utils.makeSqlDate(new Date()));
+        ps.executeUpdate();
+        ps.close();
     }
 
     @Override

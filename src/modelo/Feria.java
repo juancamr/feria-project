@@ -12,6 +12,8 @@ public class Feria {
     private String seguridad;
     private double presupuesto;
     private Local local;
+    
+    public Feria() {}
 
     private Feria(Builder builder) {
         this.id = builder.id;

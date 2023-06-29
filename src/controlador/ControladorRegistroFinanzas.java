@@ -26,8 +26,8 @@ public class ControladorRegistroFinanzas implements ActionListener {
             Dialog.message("Por favor, primero registre una feria");
         } else {
             FormatFrame.panel(vista, panel);
+            panel.jlblFeriaActual.setText(response.getData().getNombre());
         }
-        panel.jlblFeriaActual.setText(response.getData().getNombre());
     }
 
     @Override
