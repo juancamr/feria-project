@@ -47,12 +47,11 @@ public class ControladorRegistroLocal implements ActionListener {
     }
 
     private Local makeLocal() {
-        Local local = new Local();
-        local.setNombre(panel.jtxtNombre.getText());
-        local.setDistrito(panel.jtxtDistrito.getText());
-        local.setAforo(Integer.parseInt(panel.jspnAforo.getValue().toString()));
-        local.setCosto(Double.parseDouble(panel.jspnCosto.getValue().toString()));
-        local.setFecha(panel.jdchFecha.getDate());
-        return local;
+        return new Local.Builder()
+                .setNombre(panel.jtxtNombre.getText())
+                .setDistrito(panel.jtxtDistrito.getText())
+                .setAforo(Integer.parseInt(panel.jspnAforo.getValue().toString()))
+                .setCosto(Double.parseDouble(panel.jspnCosto.getValue().toString()))
+                .setFecha(panel.jdchFecha.getDate()).build();
     }
 }

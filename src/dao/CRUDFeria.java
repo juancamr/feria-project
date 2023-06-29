@@ -135,17 +135,17 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     @Override
     public Feria makeResponse(ResultSet rs) throws SQLException {
 
-        Local local = new Local();
-        local.setIdLocal(rs.getInt(2));
+        Local local = new Local.Builder()
+                .setIdLocal(rs.getInt(2)).build();
         return new Feria.Builder()
-        .setId(rs.getInt(1))
-        .setLocal(local)
-        .setNombre(rs.getString(3))
-        .setAforo(rs.getInt(4))
-        .setCosto(rs.getDouble(5))
-        .setFecha(rs.getDate(6))
-        .setSeguridad(rs.getString(7))
-        .setPresupuesto(rs.getDouble(8)).build();
+                .setId(rs.getInt(1))
+                .setLocal(local)
+                .setNombre(rs.getString(3))
+                .setAforo(rs.getInt(4))
+                .setCosto(rs.getDouble(5))
+                .setFecha(rs.getDate(6))
+                .setSeguridad(rs.getString(7))
+                .setPresupuesto(rs.getDouble(8)).build();
     }
 
     private Feria updateFeriaAddingLocal(Feria feria) {

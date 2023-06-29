@@ -40,9 +40,9 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
     }
 
     public Response getByName(String name) {
-        Local local = new Local();
         try {
             rs = st.executeQuery(GET_LOCAL_BY_NAME + name + "\"");
+            Local local = null;
             if (rs.next()) {
                 local = makeResponse(rs);
             }

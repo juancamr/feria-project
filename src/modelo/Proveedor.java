@@ -8,7 +8,54 @@ public class Proveedor {
     private Double costo;
     private Feria feria;
     
-    public Proveedor() {}
+    private Proveedor(Builder builder) {
+        this.id = builder.id;
+        this.nombre = builder.nombre;
+        this.descripcion = builder.descripcion;
+        this.costo = builder.costo;
+        this.feria = builder.feria;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private int id;
+        private String nombre;
+        private String descripcion;
+        private Double costo;
+        private Feria feria;
+
+        public Builder setId(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setNombre(String nombre) {
+            this.nombre = nombre;
+            return this;
+        }
+
+        public Builder setDescripcion(String descripcion) {
+            this.descripcion = descripcion;
+            return this;
+        }
+
+        public Builder setCosto(Double costo) {
+            this.costo = costo;
+            return this;
+        }
+
+        public Builder setFeria(Feria feria) {
+            this.feria = feria;
+            return this;
+        }
+
+        public Proveedor build() {
+            return new Proveedor(this);
+        }
+    }
 
     public int getId() {
         return id;

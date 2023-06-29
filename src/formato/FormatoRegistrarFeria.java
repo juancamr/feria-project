@@ -1,8 +1,10 @@
 package formato;
 
 import dao.CRUDLocal;
+
 import java.util.List;
 import javax.swing.JComboBox;
+
 import modelo.Feria;
 import modelo.Local;
 import modelo.Response;
@@ -20,17 +22,17 @@ public class FormatoRegistrarFeria {
     }
 
     public static Feria makeFeria(PanelRegistroFeria panel) {
-        Feria feria = new Feria();
         Response<Local> response = CRUDLocal.getInstance().getByName(panel.jcbxLocal.getSelectedItem().toString());
-        feria.setLocal(response.isSuccess() ? response.getData() : null);
-        feria.setNombre(panel.jtxtNombre.getText());
-        feria.setAforo(Integer.parseInt(panel.jspnAforo.getValue().toString()));
-        feria.setCosto(Double.parseDouble(panel.jspnCostoEntrada.getValue().toString()));
-        feria.setSeguridad(panel.jtxtSeguridad.getText());
-        feria.setPresupuesto(Double.parseDouble(panel.jspnPrespuesto.getValue().toString()));
-        return feria;
+        return new Feria.Builder()
+                .setLocal(response.isSuccess() ? response.getData() : null)
+                .setNombre(panel.jtxtNombre.getText())
+                .setAforo(Integer.parseInt(panel.jspnAforo.getValue().toString()))
+                .setCosto(Double.parseDouble(panel.jspnCostoEntrada.getValue().toString()))
+                .setSeguridad(panel.jtxtSeguridad.getText())
+                .setPresupuesto(Double.parseDouble(panel.jspnPrespuesto.getValue().toString()))
+                .build();
     }
-    
+
     public static void fillComboBox(JComboBox combo) {
         Response<Local> response = CRUDLocal.getInstance().getAll();
         if (response.isSuccess()) {
