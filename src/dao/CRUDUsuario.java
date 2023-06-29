@@ -82,7 +82,7 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
         ps.setString(5, Utils.encryptPassword(user.getPassword()));
         ps.setString(6, user.getCorreo());
         ps.setString(7, user.getTipoUsuario());
-        ps.setString(8, Utils.makeDate(user.getFechaRegistro()));
+        ps.setString(8, Utils.makeSqlDate(user.getFechaRegistro()));
         ps.executeUpdate();
         ps.close();
     }

@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Utils {
     
-    public static String makeDate(Date fecha) {
+    public static String makeSqlDate(Date fecha) {
         return new SimpleDateFormat("yyyy-MM-dd").format(fecha);
     }
 

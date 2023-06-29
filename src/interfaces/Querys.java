@@ -36,7 +36,7 @@ public interface Querys {
     String ADD_PROVIDER = "INSERT INTO proveedor(id_feria, nombre, descripcion, costo_proveedores) VALUES(?, ?, ?, ?)";
     
     //reporte
-    String ADD_REPORTE = "";
+    String ADD_REPORTE = "INSERT INTO reporte (id_feria, id_chart, fecha) VALUES(?, ?, ?);";
     String GET_MANY_REPORTES = "";
     String GET_ALL_REPORTES = "";
     String GET_REPORTE = "";

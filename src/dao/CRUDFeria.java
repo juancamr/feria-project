@@ -22,7 +22,8 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
             makeRequest(feria, ADD_FERIA);
             return new Response(
                     true,
-                    "Feria " + feria.getNombre() + " agregada con exito!"
+                    "Feria " + feria.getNombre() + " agregada con exito!",
+                    feria
             );
         } catch (SQLException e) {
             System.err.print(e.toString());
@@ -50,7 +51,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     }
 
     public Response getFeriaToday() {
-        String today = Utils.makeDate(new Date());
+        String today = Utils.makeSqlDate(new Date());
         try {
             rs = st.executeQuery(GET_FERIA_TODAY + today + "\"");
             Feria feria = null;
@@ -125,7 +126,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         ps.setString(2, feria.getNombre());
         ps.setInt(3, feria.getAforo());
         ps.setDouble(4, feria.getCosto());
-        ps.setString(5, Utils.makeDate(feria.getFecha()));
+        ps.setString(5, Utils.makeSqlDate(feria.getFecha()));
         ps.setString(6, feria.getSeguridad());
         ps.setDouble(7, feria.getPresupuesto());
         ps.executeUpdate();

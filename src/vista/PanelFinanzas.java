@@ -46,6 +46,8 @@ public class PanelFinanzas extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jlblIngresoAcumulado = new javax.swing.JLabel();
         jlblFeriaActual = new javax.swing.JLabel();
+        jbtnAgregarGasto = new javax.swing.JButton();
+        jbtnAgregarIngreso = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 850));
@@ -97,6 +99,10 @@ public class PanelFinanzas extends javax.swing.JPanel {
 
         jlblFeriaActual.setText("aoeuaou");
 
+        jbtnAgregarGasto.setText("Agregar gasto");
+
+        jbtnAgregarIngreso.setText("Agregar ingreso");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,21 +145,26 @@ public class PanelFinanzas extends javax.swing.JPanel {
                                 .addGap(27, 27, 27)
                                 .addComponent(jlblIngresoAcumulado)))
                         .addGap(243, 243, 243))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(338, 338, 338)
-                        .addComponent(jbtnAprobar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(364, 364, 364)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(203, 203, 203)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(321, 321, 321))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(364, 364, 364)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(336, 336, 336)
+                        .addComponent(jbtnAprobar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(187, 187, 187)
+                        .addComponent(jbtnAgregarGasto)
+                        .addGap(208, 208, 208)
+                        .addComponent(jbtnAgregarIngreso)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,9 +206,13 @@ public class PanelFinanzas extends javax.swing.JPanel {
                     .addComponent(jlblGastoAcumulado)
                     .addComponent(jLabel12)
                     .addComponent(jlblIngresoAcumulado))
-                .addGap(81, 81, 81)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnAgregarGasto)
+                    .addComponent(jbtnAgregarIngreso))
+                .addGap(129, 129, 129)
                 .addComponent(jbtnAprobar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(432, Short.MAX_VALUE))
+                .addContainerGap(343, Short.MAX_VALUE))
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 850));
@@ -221,6 +236,8 @@ public class PanelFinanzas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    public javax.swing.JButton jbtnAgregarGasto;
+    public javax.swing.JButton jbtnAgregarIngreso;
     public javax.swing.JButton jbtnAprobar;
     public javax.swing.JLabel jlblFeriaActual;
     public javax.swing.JLabel jlblGastoAcumulado;

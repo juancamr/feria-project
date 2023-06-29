@@ -102,6 +102,14 @@ CREATE TABLE
 
 /* estadistica */
 CREATE TABLE
+    if NOT exist chart (
+        id INT NOT PRIMARY key NOT NULL auto_increment,
+        title VARCHAR(50),
+        x_name VARCHAR(30),
+        y_name VARCHAR(30)
+    ) Engine = InnoDB;
+
+CREATE TABLE
     if NOT exist data_chart_x (
         id INT PRIMARY key NOT NULL auto_increment,
         id_chart INT,
@@ -115,12 +123,4 @@ CREATE TABLE
         id_chart INT,
         dato DECIMAL(10, 2),
         CONSTRAINT FOREIGN key (id_chart) REFERENCES chart (id)
-    ) Engine = InnoDB;
-
-CREATE TABLE
-    if NOT exist chart (
-        id INT NOT PRIMARY key NOT NULL auto_increment,
-        title VARCHAR(50),
-        x_name VARCHAR(30),
-        y_name VARCHAR(30)
     ) Engine = InnoDB;

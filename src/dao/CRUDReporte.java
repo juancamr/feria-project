@@ -34,6 +34,7 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
             if (rs.next()) {
                 reporte = makeResponse(rs);
             }
+            reporte = addDataForReporte(reporte);
             return new Response(true, reporte);
         } catch (SQLException e) {
             System.out.println(e);
@@ -47,8 +48,8 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
     }
 
     public Response getBetweenDates(Date from, Date to) {
-        String fechaInicial = Utils.makeDate(from);
-        String fechaFinal = Utils.makeDate(to);
+        String fechaInicial = Utils.makeSqlDate(from);
+        String fechaFinal = Utils.makeSqlDate(to);
         List<Reporte> listaReportes = new ArrayList<>();
 
         try {
@@ -57,11 +58,14 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
                 Reporte reporte = makeResponse(rs);
                 listaReportes.add(reporte);
             }
+            for (Reporte reporte : listaReportes) {
+                reporte = addDataForReporte(reporte);
+            }
+            return new Response(true, listaReportes);
         } catch (SQLException e) {
             System.out.println(e);
+            return new Response(false);
         }
-
-        return null;
     }
 
     @Override
@@ -72,6 +76,9 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
             while (rs.next()) {
                 Reporte reporte = makeResponse(rs);
                 listaReportes.add(reporte);
+            }
+            for (Reporte reporte : listaReportes) {
+                reporte = addDataForReporte(reporte);
             }
             return new Response(true, listaReportes);
         } catch (SQLException e) {
@@ -98,8 +105,11 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
     }
 
     @Override
-    public void makeRequest(Reporte data, String sql) throws SQLException {
+    public void makeRequest(Reporte reporte, String sql) throws SQLException {
         ps = connection.prepareStatement(sql);
+        ps.setInt(1, reporte.getFeria().getId());
+        ps.setInt(2, reporte.getChart().getId());
+        ps.setString(3, Utils.makeSqlDate(new Date()));
     }
 
     @Override
@@ -114,11 +124,15 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
                 .build();
     }
 
-    private Reporte addingDataForReporte(Reporte reporte) {
+    private Reporte addDataForReporte(Reporte reporte) {
         Response<Feria> rsFeria = CRUDFeria.getInstance().get(reporte.getFeria().getId());
-        reporte.setFeria(rsFeria.isSuccess() ? rsFeria.getData() : null);
+        Response<Gasto> rsGasto = CRUDGasto.getInstance().getMany(reporte.getId());
+        Response<Ingreso> rsIngreso = CRUDIngreso.getInstance().getMany(reporte.getId());
         Response<Chart> rsChart = CRUDChart.getInstance().get(reporte.getChart().getId());
+        reporte.setFeria(rsFeria.isSuccess() ? rsFeria.getData() : null);
         reporte.setChart(rsChart.isSuccess() ? rsChart.getData() : null);
+        reporte.setListaGastos(rsGasto.isSuccess() ? rsGasto.getDataList() : null);
+        reporte.setListaIngresos(rsIngreso.isSuccess() ? rsIngreso.getDataList() : null);
         return reporte;
     }
 }

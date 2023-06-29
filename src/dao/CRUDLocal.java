@@ -104,7 +104,7 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
         ps.setString(2, local.getDistrito());
         ps.setInt(3, local.getAforo());
         ps.setDouble(4, local.getCosto());
-        ps.setString(5, Utils.makeDate(local.getFecha()));
+        ps.setString(5, Utils.makeSqlDate(local.getFecha()));
         ps.executeUpdate();
         ps.close();
     }

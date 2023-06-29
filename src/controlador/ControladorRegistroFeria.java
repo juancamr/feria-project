@@ -1,12 +1,16 @@
 package controlador;
 
+import dao.CRUDChart;
 import dao.CRUDFeria;
+import dao.CRUDReporte;
 import formato.FormatoRegistrarFeria;
 import interfaces.Strings;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import modelo.Chart;
 import modelo.Feria;
+import modelo.Reporte;
 import modelo.Response;
 import utils.DebugObject;
 import utils.Dialog;
@@ -41,12 +45,19 @@ public class ControladorRegistroFeria implements ActionListener {
             feria.setId(0);
             feria.setFecha(new Date());
             if (DebugObject.isFilledObject(feria)) {
-                Response<Feria> response = CRUDFeria.getInstance().add(feria);
-                if (response.isSuccess()) {
-                    Dialog.message(response.getMessage());
-                    FormatoRegistrarFeria.emptyFields(panel);
+                Response<Feria> rsFeria = CRUDFeria.getInstance().add(feria);
+                if (rsFeria.isSuccess()) {
+                    Dialog.message(rsFeria.getMessage());
+                    Response<Chart> rsChart = CRUDChart.getInstance().add(new Chart());
+                    Response<Reporte> rsReporte = CRUDReporte.getInstance().add(new Reporte.Builder()
+                            .setFeria(rsFeria.getData())
+                            .setChart(rsChart.getData())
+                            .build());
+                    if (rsReporte.isSuccess()) {
+                        FormatoRegistrarFeria.emptyFields(panel);
+                    }
                 } else {
-                    Dialog.message(response.getMessage());
+                    Dialog.message(rsFeria.getMessage());
                 }
             } else {
                 Dialog.message(Strings.PLEASE_FILL_FIELDS);
