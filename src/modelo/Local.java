@@ -44,14 +44,6 @@ public class Local {
         this.nombre = nombre;
     }
 
-//    public String getDireccion() {
-//        return direccion;
-//    }
-//
-//    public void setDireccion(String direccion) {
-//        this.direccion = direccion;
-//    }
-
     public String getDistrito() {
         return distrito;
     }
@@ -60,14 +52,6 @@ public class Local {
         this.distrito = distrito;
     }
 
-//    public String getHorarioDisponible() {
-//        return horarioDisponible;
-//    }
-//
-//    public void setHorarioDisponible(String horarioDisponible) {
-//        this.horarioDisponible = horarioDisponible;
-//    }
-
     public int getAforo() {
         return aforo;
     }
@@ -75,12 +59,4 @@ public class Local {
     public void setAforo(int aforo) {
         this.aforo = aforo;
     }
-
-//    public Usuario getUsuario() {
-//        return usuario;
-//    }
-//
-//    public void setUsuario(Usuario usuario) {
-//        this.usuario = usuario;
-//    }
 }

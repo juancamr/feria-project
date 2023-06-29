@@ -54,17 +54,16 @@ public class ControladorRegister implements ActionListener {
     }
 
     private Usuario makeUsuario() {
-        Usuario user = new Usuario();
-        user.setIdUsuario(1);
-        user.setNombres(vista.jtxtNombre.getText());
-        user.setDni(vista.jtxtDni.getText());
-        user.setTelefono(vista.jtxtTelefono.getText());
-        user.setPassword(new String(vista.jpwdPassword.getPassword()));
-        user.setUserName(vista.jtxtUsuario.getText());
-        user.setCorreo(vista.jtxtCorreo.getText());
-        user.setTipoUsuario("hola mundo");
-        user.setFechaRegistro(new Date());
-        return user;
+        return new Usuario.Builder()
+                .setIdUsuario(1)
+                .setNombres(vista.jtxtNombre.getText())
+                .setDni(vista.jtxtDni.getText())
+                .setTelefono(vista.jtxtTelefono.getText())
+                .setPassword(new String(vista.jpwdPassword.getPassword()))
+                .setUserName(vista.jtxtUsuario.getText())
+                .setCorreo(vista.jtxtCorreo.getText())
+                .setTipoUsuario("hola mundo")
+                .setFechaRegistro(new Date()).build();
     }
 
 }

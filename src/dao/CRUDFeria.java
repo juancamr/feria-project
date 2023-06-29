@@ -37,7 +37,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     public Response get(int id) {
         try {
             rs = st.executeQuery("");
-            Feria feria = new Feria();
+            Feria feria = null;
             if (rs.next()) {
                 feria = makeResponse(rs);
             }
@@ -53,7 +53,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         String today = Utils.makeDate(new Date());
         try {
             rs = st.executeQuery(GET_FERIA_TODAY + today + "\"");
-            Feria feria = new Feria();
+            Feria feria = null;
             if (rs.next()) {
                 feria = makeResponse(rs);
             }
@@ -72,7 +72,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     public Response getByName(String nombreFeria) {
         try {
             rs = st.executeQuery(GET_FERIA_BY_NAME + nombreFeria + "\"");
-            Feria feria = new Feria();
+            Feria feria = null;
             if (rs.next()) {
                 feria = makeResponse(rs);
             }
@@ -134,19 +134,18 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
 
     @Override
     public Feria makeResponse(ResultSet rs) throws SQLException {
-        Feria feria = new Feria();
+
         Local local = new Local();
         local.setIdLocal(rs.getInt(2));
-
-        feria.setId(rs.getInt(1));
-        feria.setLocal(local);
-        feria.setNombre(rs.getString(3));
-        feria.setAforo(rs.getInt(4));
-        feria.setCosto(rs.getDouble(5));
-        feria.setFecha(rs.getDate(6));
-        feria.setSeguridad(rs.getString(7));
-        feria.setPresupuesto(rs.getDouble(8));
-        return feria;
+        return new Feria.Builder()
+        .setId(rs.getInt(1))
+        .setLocal(local)
+        .setNombre(rs.getString(3))
+        .setAforo(rs.getInt(4))
+        .setCosto(rs.getDouble(5))
+        .setFecha(rs.getDate(6))
+        .setSeguridad(rs.getString(7))
+        .setPresupuesto(rs.getDouble(8)).build();
     }
 
     private Feria updateFeriaAddingLocal(Feria feria) {

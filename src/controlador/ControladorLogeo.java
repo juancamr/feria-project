@@ -24,9 +24,10 @@ public class ControladorLogeo implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.jbtnIngresar) {
-            Usuario user = new Usuario();
-            user.setUserName(vista.jtxtUserName.getText());
-            user.setPassword(new String(vista.jpwdPassword.getPassword()));
+            Usuario user = new Usuario.Builder()
+                    .setUserName(vista.jtxtUserName.getText())
+                    .setPassword(new String(vista.jpwdPassword.getPassword()))
+                    .build();
             if (isFilledFields(user)) {
                 if (CRUDUsuario.getInstance().isMatchCredentials(user).isSuccess()) {
                     vista.dispose();
