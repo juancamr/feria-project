@@ -1,17 +1,20 @@
-
 package modelo;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Reporte {
+
     private int id;
-    private String nombreReporte;
-    private int column_3;
-    private int standId;
+    private Date fecha;
+    private Feria feria;
+    private Chart chart;
     private List<Gasto> listaGastos;
     private List<Ingreso> listaIngresos;
-    
-    public Reporte() {}
+
+    public Reporte() {
+    }
 
     public int getId() {
         return id;
@@ -19,30 +22,6 @@ public class Reporte {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getNombreReporte() {
-        return nombreReporte;
-    }
-
-    public void setNombreReporte(String nombreReporte) {
-        this.nombreReporte = nombreReporte;
-    }
-
-    public int getColumn_3() {
-        return column_3;
-    }
-
-    public void setColumn_3(int column_3) {
-        this.column_3 = column_3;
-    }
-
-    public int getStandId() {
-        return standId;
-    }
-
-    public void setStandId(int standId) {
-        this.standId = standId;
     }
 
     public List<Gasto> getListaGastos() {
@@ -53,6 +32,14 @@ public class Reporte {
         this.listaGastos = listaGastos;
     }
 
+    public Chart getChart() {
+        return chart;
+    }
+
+    public void setChart(Chart chart) {
+        this.chart = chart;
+    }
+
     public List<Ingreso> getListaIngresos() {
         return listaIngresos;
     }
@@ -60,6 +47,21 @@ public class Reporte {
     public void setListaIngresos(List<Ingreso> listaIngresos) {
         this.listaIngresos = listaIngresos;
     }
-    
-    
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Feria getFeria() {
+        return feria;
+    }
+
+    public void setFeria(Feria feria) {
+        this.feria = feria;
+    }
+
 }

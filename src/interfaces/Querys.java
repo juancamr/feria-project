@@ -22,9 +22,6 @@ public interface Querys {
 
     //ingreso
     String GET_MANY_INGRESOS = "SELECT id, cantidad_in, reporte_id FROM ingreso WHERE reporte_id=";
-    
-    //reporte
-    String GET_REPORTE = "SELECT nombre_reporte, column_3, stand_id FROM reporte WHERE id=";
 
     //local
     String ADD_LOCAL = """
@@ -38,7 +35,9 @@ public interface Querys {
     //proveedores
     String ADD_PROVIDER = "INSERT INTO proveedor(id_feria, nombre, descripcion, costo_proveedores) VALUES(?, ?, ?, ?)";
     
-    //finanzas
-    String ADD_FINANZA = "INSERT INTO finanza(id_feria, gastos, ingresos) VALUES(?, ?, ?)";
-    String GET_FINANZA = "SELECT * FROM finanza WHERE id=";
+    //reporte
+    String ADD_REPORTE = "";
+    String GET_MANY_REPORTES = "";
+    String GET_ALL_REPORTES = "";
+    String GET_REPORTE = "";
 }

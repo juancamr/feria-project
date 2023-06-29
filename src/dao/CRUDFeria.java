@@ -19,7 +19,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     @Override
     public Response add(Feria feria) {
         try {
-            makeFeriaRequest(feria, ADD_FERIA);
+            makeRequest(feria, ADD_FERIA);
             return new Response(
                     true,
                     "Feria " + feria.getNombre() + " agregada con exito!"
@@ -39,7 +39,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
             rs = st.executeQuery("");
             Feria feria = new Feria();
             if (rs.next()) {
-                feria = makeFeriaResponse(rs);
+                feria = makeResponse(rs);
             }
             feria = updateFeriaAddingLocal(feria);
             return new Response(true, feria);
@@ -55,7 +55,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
             rs = st.executeQuery(GET_FERIA_TODAY + today + "\"");
             Feria feria = new Feria();
             if (rs.next()) {
-                feria = makeFeriaResponse(rs);
+                feria = makeResponse(rs);
             }
             if (feria.getLocal() == null) {
                 return new Response(false);
@@ -74,7 +74,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
             rs = st.executeQuery(GET_FERIA_BY_NAME + nombreFeria + "\"");
             Feria feria = new Feria();
             if (rs.next()) {
-                feria = makeFeriaResponse(rs);
+                feria = makeResponse(rs);
             }
             feria = updateFeriaAddingLocal(feria);
             return new Response(true, feria);
@@ -95,7 +95,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         try {
             rs = st.executeQuery(GET_ALL_FERIA);
             while (rs.next()) {
-                Feria feria = makeFeriaResponse(rs);
+                Feria feria = makeResponse(rs);
                 listaFeria.add(feria);
             }
             for (Feria feria : listaFeria) {
@@ -118,7 +118,8 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private void makeFeriaRequest(Feria feria, String sql) throws SQLException {
+    @Override
+    public void makeRequest(Feria feria, String sql) throws SQLException {
         ps = connection.prepareStatement(sql);
         ps.setInt(1, feria.getLocal().getIdLocal());
         ps.setString(2, feria.getNombre());
@@ -131,7 +132,8 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         ps.close();
     }
 
-    private Feria makeFeriaResponse(ResultSet rs) throws SQLException {
+    @Override
+    public Feria makeResponse(ResultSet rs) throws SQLException {
         Feria feria = new Feria();
         Local local = new Local();
         local.setIdLocal(rs.getInt(2));

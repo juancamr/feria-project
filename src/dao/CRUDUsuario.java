@@ -1,11 +1,10 @@
 package dao;
 
 import interfaces.Querys;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import modelo.Response;
 import modelo.Usuario;
-import utils.DebugObject;
 import utils.Utils;
 
 public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
@@ -15,7 +14,7 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
     @Override
     public Response add(Usuario user) {
         try {
-            makePs(user, ADD_USER);
+            makeRequest(user, ADD_USER);
             return new Response(true, "Felicitaciones " + user.getNombres() + ", tu registro fue exitoso",
                     user);
         } catch (SQLException e) {
@@ -73,7 +72,8 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private void makePs(Usuario user, String sql) throws SQLException {
+    @Override
+    public void makeRequest(Usuario user, String sql) throws SQLException {
         ps = connection.prepareStatement(sql);
         ps.setString(1, user.getNombres());
         ps.setString(2, user.getDni());
@@ -85,6 +85,11 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
         ps.setString(8, Utils.makeDate(user.getFechaRegistro()));
         ps.executeUpdate();
         ps.close();
+    }
+
+    @Override
+    public Usuario makeResponse(ResultSet rs) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public static CRUDUsuario getInstance() {

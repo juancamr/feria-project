@@ -1,8 +1,10 @@
 package dao;
 
 import interfaces.Querys;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import modelo.Reporte;
 import modelo.Response;
 
@@ -11,35 +13,38 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
     private static CRUDReporte crudReporte;
 
     @Override
-    public Response add(Reporte object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Response add(Reporte reporte) {
+        try {
+            makeRequest(reporte, ADD_REPORTE);
+            return new Response(true, reporte);
+        } catch (SQLException e) {
+            System.out.println(e);
+            return new Response(false);
+        }
     }
 
     @Override
     public Response get(int idReporte) {
-
-        String sql = GET_REPORTE + idReporte;
-        Reporte reporte = new Reporte();
         try {
-            rs = st.executeQuery(sql);
+            rs = st.executeQuery(GET_REPORTE);
+            Reporte reporte = new Reporte();
             if (rs.next()) {
-                reporte.setId(idReporte);
-                reporte.setNombreReporte(rs.getString(1));
-                reporte.setColumn_3(rs.getInt(2));
-                reporte.setStandId(rs.getInt(3));
+                reporte = makeResponse(rs);
             }
-            reporte.setListaGastos(CRUDGasto.getInstance().getMany(idReporte).getDataList());
-            reporte.setListaIngresos(CRUDIngreso.getInstance().getMany(idReporte).getDataList());
             return new Response(true, reporte);
         } catch (SQLException e) {
             System.out.println(e);
-            return new Response(false, "No se pudo obtener el reporte");
+            return new Response(false);
         }
     }
 
     @Override
     public Response getMany(int filterId) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public Response getBetweenDates(Date from, Date to) {
+        return null;
     }
 
     @Override
@@ -62,5 +67,15 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
             crudReporte = new CRUDReporte();
         }
         return crudReporte;
+    }
+
+    @Override
+    public void makeRequest(Reporte data, String sql) throws SQLException {
+        ps = connection.prepareStatement(sql);
+    }
+
+    @Override
+    public Reporte makeResponse(ResultSet rs) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

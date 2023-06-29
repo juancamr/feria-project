@@ -16,7 +16,7 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
     @Override
     public Response add(Local local) {
         try {
-            makeLocalRequest(local, ADD_LOCAL);
+            makeRequest(local, ADD_LOCAL);
             return new Response(true, "Local agregado con exito", local);
         } catch (SQLException e) {
             System.out.println(e);
@@ -30,7 +30,7 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
             rs = st.executeQuery(GET_LOCAL + id);
             Local local = new Local();
             if (rs.next()) {
-                local = makeLocalResponse(rs);
+                local = makeResponse(rs);
             }
             return new Response(true, local);
         } catch (SQLException e) {
@@ -44,7 +44,7 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
         try {
             rs = st.executeQuery(GET_LOCAL_BY_NAME + name + "\"");
             if (rs.next()) {
-                local = makeLocalResponse(rs);
+                local = makeResponse(rs);
             }
             return new Response(true, local);
         } catch (SQLException e) {
@@ -77,7 +77,7 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
         try {
             rs = st.executeQuery(GET_ALL_LOCALS);
             while (rs.next()) {
-                Local local = makeLocalResponse(rs);
+                Local local = makeResponse(rs);
                 listaLocal.add(local);
             }
             return new Response(true, listaLocal);
@@ -97,7 +97,8 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private void makeLocalRequest(Local local, String sql) throws SQLException {
+    @Override
+    public void makeRequest(Local local, String sql) throws SQLException {
         ps = connection.prepareStatement(sql);
         ps.setString(1, local.getNombre());
         ps.setString(2, local.getDistrito());
@@ -108,7 +109,8 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
         ps.close();
     }
 
-    private Local makeLocalResponse(ResultSet rs) throws SQLException {
+    @Override
+    public Local makeResponse(ResultSet rs) throws SQLException {
         Local local = new Local();
         local.setIdLocal(rs.getInt(1));
         local.setNombre(rs.getString(2));

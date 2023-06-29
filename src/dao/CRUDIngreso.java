@@ -1,6 +1,7 @@
 package dao;
 
 import interfaces.Querys;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,15 +25,13 @@ public class CRUDIngreso extends BaseCRUD<Ingreso> implements Querys {
 
     @Override
     public Response getMany(int reporteId) {
-        
+
         List<Ingreso> ingresoList = new ArrayList<>();
         String sql = GET_MANY_INGRESOS + reporteId;
         try {
             rs = st.executeQuery(sql);
             if (rs.next()) {
                 Ingreso ingreso = new Ingreso();
-                ingreso.setId(rs.getInt(1));
-                ingreso.setCantidadIn(rs.getInt(2));
                 ingresoList.add(ingreso);
             }
             return new Response(true, ingresoList);
@@ -66,9 +65,23 @@ public class CRUDIngreso extends BaseCRUD<Ingreso> implements Querys {
     }
 
     public static CRUDIngreso getInstance() {
-        if (crudIngreso == null)
+        if (crudIngreso == null) {
             crudIngreso = new CRUDIngreso();
+        }
         return crudIngreso;
+    }
+
+    @Override
+    public void makeRequest(Ingreso data, String sql) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Ingreso makeResponse(ResultSet rs) throws SQLException {
+        Ingreso ingreso = new Ingreso();
+        ingreso.setId(rs.getInt(1));
+        ingreso.setCantidadIn(rs.getInt(2));
+        return ingreso;
     }
 
 }

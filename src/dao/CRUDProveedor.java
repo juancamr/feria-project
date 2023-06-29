@@ -1,6 +1,7 @@
 package dao;
 
 import interfaces.Querys;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import modelo.Proveedor;
 import modelo.Response;
@@ -12,13 +13,7 @@ public class CRUDProveedor extends BaseCRUD<Proveedor> implements Querys {
     @Override
     public Response add(Proveedor proveedor) {
         try {
-            ps = connection.prepareStatement(ADD_PROVIDER);
-            ps.setInt(1, proveedor.getFeria().getId());
-            ps.setString(2, proveedor.getNombre());
-            ps.setString(3, proveedor.getDescripcion());
-            ps.setDouble(4, proveedor.getCosto());
-            ps.executeUpdate();
-            ps.close();
+            makeRequest(proveedor, ADD_PROVIDER);
             return new Response(true, "Proveedor agregado con exito", proveedor);
         } catch (SQLException e) {
             System.out.println(e);
@@ -56,6 +51,22 @@ public class CRUDProveedor extends BaseCRUD<Proveedor> implements Querys {
             crudProveedor = new CRUDProveedor();
         }
         return crudProveedor;
+    }
+
+    @Override
+    public void makeRequest(Proveedor proveedor, String sql) throws SQLException {
+        ps = connection.prepareStatement(ADD_PROVIDER);
+        ps.setInt(1, proveedor.getFeria().getId());
+        ps.setString(2, proveedor.getNombre());
+        ps.setString(3, proveedor.getDescripcion());
+        ps.setDouble(4, proveedor.getCosto());
+        ps.executeUpdate();
+        ps.close();
+    }
+
+    @Override
+    public Proveedor makeResponse(ResultSet rs) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

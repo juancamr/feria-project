@@ -1,5 +1,7 @@
 package dao;
+
 import interfaces.Querys;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import modelo.Gasto;
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import java.util.List;
 import modelo.Response;
 
 public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
+
     private static CRUDGasto crudGasto;
 
     @Override
@@ -22,15 +25,13 @@ public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
 
     @Override
     public Response getMany(int reporteId) {
-        
+
         List<Gasto> gastoList = new ArrayList<>();
         String sql = GET_MANY_GASTOS + reporteId;
         try {
             rs = st.executeQuery(sql);
             if (rs.next()) {
-                Gasto gasto = new Gasto();
-                gasto.setId(rs.getInt(1));
-                gasto.setCantGast(rs.getInt(2));
+                Gasto gasto = makeResponse(rs);
                 gastoList.add(gasto);
             }
             return new Response(true, gastoList);
@@ -54,7 +55,7 @@ public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
     public Response delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     public double calcularGastos(ArrayList<Gasto> gastoList) {
         double[] listaCantidadGastos = new double[gastoList.size()];
         for (int i = 0; i < gastoList.size(); i++) {
@@ -64,8 +65,22 @@ public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
     }
 
     public static CRUDGasto getInstance() {
-        if (crudGasto == null)
+        if (crudGasto == null) {
             crudGasto = new CRUDGasto();
+        }
         return crudGasto;
+    }
+
+    @Override
+    public void makeRequest(Gasto data, String sql) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Gasto makeResponse(ResultSet rs) throws SQLException {
+        Gasto gasto = new Gasto();
+        gasto.setId(rs.getInt(1));
+        gasto.setCantGast(rs.getInt(2));
+        return gasto;
     }
 }

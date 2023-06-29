@@ -46,6 +46,10 @@ public class Go {
         new ControladorRegistroFinanzas(vista, new PanelFinanzas());
     }
     
+    public static void toMisFerias(WindowMain vista) {
+        new ControladorMisFerias(vista, new PanelMisFerias());
+    }
+    
     public static void startProgram() {
         System.out.println(DbConnection.getInstance().getStatus());
         System.out.println("Program running!");

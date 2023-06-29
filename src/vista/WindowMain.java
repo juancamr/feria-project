@@ -29,6 +29,7 @@ public class WindowMain extends javax.swing.JFrame {
         jbtnPatrocinadores = new javax.swing.JButton();
         jbtnEntradas = new javax.swing.JButton();
         jbtnFinanzas = new javax.swing.JButton();
+        jbtnMisFerias = new javax.swing.JButton();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,6 +80,9 @@ public class WindowMain extends javax.swing.JFrame {
             }
         });
         BarraLateral.add(jbtnFinanzas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, 100, -1));
+
+        jbtnMisFerias.setText("Mis Ferias");
+        BarraLateral.add(jbtnMisFerias, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 550, -1, -1));
 
         getContentPane().add(BarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 850));
 
@@ -156,6 +160,7 @@ public class WindowMain extends javax.swing.JFrame {
     public javax.swing.JButton jbtnEntradas;
     public javax.swing.JButton jbtnFinanzas;
     public javax.swing.JButton jbtnHome;
+    public javax.swing.JButton jbtnMisFerias;
     public javax.swing.JButton jbtnPatrocinadores;
     public javax.swing.JButton jbtnProveedores;
     public javax.swing.JButton jbtnRegistrarFeria;
