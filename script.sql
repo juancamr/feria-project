@@ -1,4 +1,5 @@
-drop database feria;
+DROP database feria;
+
 CREATE DATABASE IF NOT EXISTS feria;
 
 use feria;
@@ -18,7 +19,7 @@ CREATE TABLE
     ) Engine = InnoDB;
 
 CREATE TABLE
-    if NOT EXISTS local (
+    if NOT EXISTS LOCAL (
         id INT NOT NULL auto_increment,
         nombre VARCHAR(30) NOT NULL,
         distrito VARCHAR(30),
@@ -32,13 +33,13 @@ CREATE TABLE
     if NOT EXISTS feria (
         id INT PRIMARY key NOT NULL auto_increment,
         id_local INT NOT NULL,
-        nombre varchar(50),
+        nombre VARCHAR(50),
         aforo INT,
         costo_entrada DECIMAL(10, 2),
         fecha DATE,
         seguridad VARCHAR(40),
         presupuesto DECIMAL(10, 2),
-        CONSTRAINT FOREIGN key (id_local) REFERENCES local (id)
+        CONSTRAINT FOREIGN key (id_local) REFERENCES LOCAL (id)
     ) Engine = InnoDB;
 
 CREATE TABLE
@@ -70,11 +71,11 @@ CREATE TABLE
         CONSTRAINT FOREIGN key (id_feria) REFERENCES feria (id)
     ) Engine = InnoDB;
 
-create table
-    if not exists finanza (
-        id int not primary key not null auto_increment,
-        id_feria int not null,
-        gastos decimal(10, 2),
-        ingresos decimal(10, 2),
-        constraint FOREIGN key (id_feria) references feria (id)
+CREATE TABLE
+    if NOT EXISTS finanza (
+        id INT PRIMARY key NOT NULL auto_increment,
+        id_feria INT NOT NULL,
+        gastos DECIMAL(10, 2),
+        ingresos DECIMAL(10, 2),
+        CONSTRAINT FOREIGN key (id_feria) REFERENCES feria (id)
     ) Engine = Innodb;
