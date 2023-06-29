@@ -19,7 +19,7 @@ CREATE TABLE
     ) Engine = InnoDB;
 
 CREATE TABLE
-    if NOT EXISTS LOCAL (
+    if NOT EXISTS local (
         id INT NOT NULL auto_increment,
         nombre VARCHAR(30) NOT NULL,
         distrito VARCHAR(30),
@@ -39,7 +39,7 @@ CREATE TABLE
         fecha DATE,
         seguridad VARCHAR(40),
         presupuesto DECIMAL(10, 2),
-        CONSTRAINT FOREIGN key (id_local) REFERENCES LOCAL (id)
+        CONSTRAINT FOREIGN key (id_local) REFERENCES local (id)
     ) Engine = InnoDB;
 
 CREATE TABLE
@@ -71,6 +71,31 @@ CREATE TABLE
         CONSTRAINT FOREIGN key (id_feria) REFERENCES feria (id)
     ) Engine = InnoDB;
 
+/* estadistica */
+CREATE TABLE
+    if NOT EXISTS chart (
+        id INT PRIMARY key NOT NULL auto_increment,
+        title VARCHAR(50),
+        x_name VARCHAR(30),
+        y_name VARCHAR(30)
+    ) Engine = InnoDB;
+
+CREATE TABLE
+    if NOT EXISTS data_chart_x (
+        id INT PRIMARY key NOT NULL auto_increment,
+        id_chart INT,
+        dato DECIMAL(10, 2),
+        CONSTRAINT FOREIGN key (id_chart) REFERENCES chart (id)
+    ) Engine = InnoDB;
+
+CREATE TABLE
+    if NOT EXISTS data_chart_y (
+        id INT PRIMARY key NOT NULL auto_increment,
+        id_chart INT,
+        dato DECIMAL(10, 2),
+        CONSTRAINT FOREIGN key (id_chart) REFERENCES chart (id)
+    ) Engine = InnoDB;
+
 /* reporte */
 CREATE TABLE
     if NOT EXISTS reporte (
@@ -97,30 +122,5 @@ CREATE TABLE
         id_reporte INT NOT NULL,
         detalle VARCHAR(50),
         amount DECIMAL(10, 2),
-        CONSTRAINT FOREIGN key (id_feria) REFERENCES reporte (id)
+        CONSTRAINT FOREIGN key (id_reporte) REFERENCES reporte (id)
     ) Engine = Innodb;
-
-/* estadistica */
-CREATE TABLE
-    if NOT exist chart (
-        id INT NOT PRIMARY key NOT NULL auto_increment,
-        title VARCHAR(50),
-        x_name VARCHAR(30),
-        y_name VARCHAR(30)
-    ) Engine = InnoDB;
-
-CREATE TABLE
-    if NOT exist data_chart_x (
-        id INT PRIMARY key NOT NULL auto_increment,
-        id_chart INT,
-        dato DECIMAL(10, 2),
-        CONSTRAINT FOREIGN key (id_chart) REFERENCES chart (id)
-    ) Engine = InnoDB;
-
-CREATE TABLE
-    if NOT exist data_chart_y (
-        id INT PRIMARY key NOT NULL auto_increment,
-        id_chart INT,
-        dato DECIMAL(10, 2),
-        CONSTRAINT FOREIGN key (id_chart) REFERENCES chart (id)
-    ) Engine = InnoDB;
