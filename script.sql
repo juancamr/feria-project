@@ -39,6 +39,7 @@ CREATE TABLE
         fecha DATE,
         seguridad VARCHAR(40),
         presupuesto DECIMAL(10, 2),
+        is_open INT NOT NULL /* 1 = true; 0 = false */,
         CONSTRAINT FOREIGN key (id_local) REFERENCES local (id)
     ) Engine = InnoDB;
 

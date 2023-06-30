@@ -10,12 +10,13 @@ public interface Querys {
     
     //feria
     String ADD_FERIA = """
-                       INSERT INTO feria (id_local, nombre, aforo, costo_entrada, fecha, seguridad, presupuesto)
-                       VALUES(?, ?, ?, ?, ?, ?, ?)
+                       INSERT INTO feria (id_local, nombre, aforo, costo_entrada, fecha, seguridad, presupuesto, is_open)
+                       VALUES(?, ?, ?, ?, ?, ?, ?, 1)
                        """;
     String GET_FERIA_BY_NAME = "SELECT * FROM feria WHERE nombre=\"";
-    String GET_FERIA_TODAY = "SELECT * from feria WHERE fecha=\"";
+    String GET_FERIA_OPEN = "SELECT * from feria WHERE is_open=1";
     String GET_ALL_FERIA = "SELECT * FROM feria";
+    String CLOSE_FERIA = "UPDATE feria SET is_open=0 WHERE id=";
     
     //gasto
     String GET_MANY_GASTOS = "SELECT id, cant_gast, reporte_id FROM gasto WHERE reporte_id=";
@@ -40,4 +41,7 @@ public interface Querys {
     String GET_MANY_REPORTES = "";
     String GET_ALL_REPORTES = "";
     String GET_REPORTE = "";
+    
+    //chart
+    String ADD_CHART = "INSERT INTO chart(title, x_name, y_name) VALUES(?, ?, ?)";
 }

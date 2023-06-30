@@ -3,6 +3,7 @@ package dao;
 import interfaces.Querys;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Statement;
 import modelo.Local;
 import java.sql.ResultSet;
 import java.util.List;
@@ -98,15 +99,21 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
     }
 
     @Override
-    public void makeRequest(Local local, String sql) throws SQLException {
-        ps = connection.prepareStatement(sql);
+    public int makeRequest(Local local, String sql) throws SQLException {
+        ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, local.getNombre());
         ps.setString(2, local.getDistrito());
         ps.setInt(3, local.getAforo());
         ps.setDouble(4, local.getCosto());
         ps.setString(5, Utils.makeSqlDate(local.getFecha()));
         ps.executeUpdate();
+        rs = ps.getGeneratedKeys();
         ps.close();
+        if (rs.next()) {
+            return rs.getInt(1);
+        } else {
+            return 0;
+        }
     }
 
     @Override

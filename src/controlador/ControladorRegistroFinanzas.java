@@ -16,24 +16,32 @@ import vista.WindowMain;
 public class ControladorRegistroFinanzas implements ActionListener {
 
     PanelFinanzas panel;
+    Response<Feria> response;
+    WindowMain vistaa;
+    Feria feria;
 
     public ControladorRegistroFinanzas(WindowMain vista, PanelFinanzas p) {
         panel = p;
+        vistaa = vista;
         panel.jbtnAprobar.addActionListener(this);
-        Response<Feria> response = CRUDFeria.getInstance().getFeriaToday();
+        response = CRUDFeria.getInstance().isFeriaBeingRun();
+        feria = response.getData();
         if (!response.isSuccess()) {
             Go.toRegistroFeria(vista);
             Dialog.message("Por favor, primero registre una feria");
         } else {
             FormatFrame.panel(vista, panel);
-            panel.jlblFeriaActual.setText(response.getData().getNombre());
+            panel.jlblFeriaActual.setText(feria.getNombre());
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == panel.jbtnAprobar) {
-            System.out.println("hola");
+            if (Dialog.confirm("Desea generar el reporte? La feria sera cerrada")) {
+                CRUDFeria.getInstance().setClose(feria.getId());
+                Go.toHome(vistaa);
+            }
         }
     }
 

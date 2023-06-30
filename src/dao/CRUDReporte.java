@@ -4,6 +4,7 @@ import interfaces.Querys;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +19,9 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
     @Override
     public Response add(Reporte reporte) {
         try {
-            makeRequest(reporte, ADD_REPORTE);
-            return new Response(true, reporte);
+            int id = makeRequest(reporte, ADD_REPORTE);
+            reporte.setId(id);
+            return new Response(true,reporte);
         } catch (SQLException e) {
             System.out.println(e);
             return new Response(false);
@@ -105,13 +107,20 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
     }
 
     @Override
-    public void makeRequest(Reporte reporte, String sql) throws SQLException {
-        ps = connection.prepareStatement(sql);
+    public int makeRequest(Reporte reporte, String sql) throws SQLException {
+        ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        System.out.println(reporte.getFeria().getId());
+        System.out.println(reporte.getChart().getId());
         ps.setInt(1, reporte.getFeria().getId());
         ps.setInt(2, reporte.getChart().getId());
         ps.setString(3, Utils.makeSqlDate(new Date()));
         ps.executeUpdate();
+        rs = ps.getGeneratedKeys();
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
         ps.close();
+        return 0;
     }
 
     @Override

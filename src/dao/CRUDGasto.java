@@ -72,7 +72,7 @@ public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
     }
 
     @Override
-    public void makeRequest(Gasto data, String sql) throws SQLException {
+    public int makeRequest(Gasto data, String sql) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

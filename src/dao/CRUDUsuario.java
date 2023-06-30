@@ -2,6 +2,7 @@ package dao;
 
 import interfaces.Querys;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.SQLException;
 import modelo.Response;
 import modelo.Usuario;
@@ -73,8 +74,8 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
     }
 
     @Override
-    public void makeRequest(Usuario user, String sql) throws SQLException {
-        ps = connection.prepareStatement(sql);
+    public int makeRequest(Usuario user, String sql) throws SQLException {
+        ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, user.getNombres());
         ps.setString(2, user.getDni());
         ps.setString(3, user.getTelefono());
@@ -84,7 +85,13 @@ public class CRUDUsuario extends BaseCRUD<Usuario> implements Querys {
         ps.setString(7, user.getTipoUsuario());
         ps.setString(8, Utils.makeSqlDate(user.getFechaRegistro()));
         ps.executeUpdate();
+        rs = ps.getGeneratedKeys();
         ps.close();
+        if (rs.next()) {
+            return rs.getInt(1);
+        } else {
+            return 0;
+        }
     }
 
     @Override

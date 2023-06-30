@@ -47,7 +47,7 @@ public class ControladorWindowMain implements ActionListener {
             Go.toRegistroPatrocinadores(vista);
         }
         if (e.getSource() == vista.jbtnFinanzas) {
-            Go.toRegistroFinanzas(vista);
+            Go.toFinanzas(vista);
         }
         if (e.getSource() == vista.jbtnMisFerias) {
             Go.toMisFerias(vista);

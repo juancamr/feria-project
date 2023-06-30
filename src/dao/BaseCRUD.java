@@ -22,6 +22,6 @@ abstract class BaseCRUD<T> {
     public abstract Response<T> getAll();
     public abstract Response<T> edit(int id);
     public abstract Response<T> delete(int id);
-    public abstract void makeRequest(T data, String sql) throws SQLException;
+    public abstract int makeRequest(T data, String sql) throws SQLException;
     public abstract T makeResponse(ResultSet rs) throws SQLException;
 }

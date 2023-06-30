@@ -74,7 +74,7 @@ public class PanelFinanzas extends javax.swing.JPanel {
         jLabel5.setText("Ingresos");
 
         jbtnAprobar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jbtnAprobar.setText("Verificar");
+        jbtnAprobar.setText("Generar reporte");
         jbtnAprobar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnAprobarActionPerformed(evt);
@@ -157,13 +157,13 @@ public class PanelFinanzas extends javax.swing.JPanel {
                         .addGap(364, 364, 364)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(336, 336, 336)
-                        .addComponent(jbtnAprobar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(187, 187, 187)
                         .addComponent(jbtnAgregarGasto)
                         .addGap(208, 208, 208)
-                        .addComponent(jbtnAgregarIngreso)))
+                        .addComponent(jbtnAgregarIngreso))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(306, 306, 306)
+                        .addComponent(jbtnAprobar, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -210,9 +210,9 @@ public class PanelFinanzas extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnAgregarGasto)
                     .addComponent(jbtnAgregarIngreso))
-                .addGap(129, 129, 129)
+                .addGap(126, 126, 126)
                 .addComponent(jbtnAprobar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(343, Short.MAX_VALUE))
+                .addContainerGap(346, Short.MAX_VALUE))
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 850));

@@ -3,10 +3,9 @@ package dao;
 import interfaces.Querys;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import modelo.Feria;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import modelo.Local;
 import modelo.Response;
@@ -19,7 +18,8 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     @Override
     public Response add(Feria feria) {
         try {
-            makeRequest(feria, ADD_FERIA);
+            int id = makeRequest(feria, ADD_FERIA);
+            feria.setId(id);
             return new Response(
                     true,
                     "Feria " + feria.getNombre() + " agregada con exito!",
@@ -50,10 +50,9 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         }
     }
 
-    public Response getFeriaToday() {
-        String today = Utils.makeSqlDate(new Date());
+    public Response isFeriaBeingRun() {
         try {
-            rs = st.executeQuery(GET_FERIA_TODAY + today + "\"");
+            rs = st.executeQuery(GET_FERIA_OPEN);
             Feria feria = null;
             if (rs.next()) {
                 feria = makeResponse(rs);
@@ -67,6 +66,18 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         } catch (SQLException e) {
             System.out.println(e);
             return new Response(false, "No se pudo obtener la feria creada hoy");
+        }
+    }
+    
+    public Response setClose(int id) {
+        try {
+            ps = connection.prepareStatement(CLOSE_FERIA + id);
+            ps.executeUpdate();
+            ps.close();
+            return new Response(true);
+        } catch (SQLException e) {
+            System.out.println(e);
+            return new Response(false);
         }
     }
 
@@ -120,8 +131,8 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     }
 
     @Override
-    public void makeRequest(Feria feria, String sql) throws SQLException {
-        ps = connection.prepareStatement(sql);
+    public int makeRequest(Feria feria, String sql) throws SQLException {
+        ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ps.setInt(1, feria.getLocal().getIdLocal());
         ps.setString(2, feria.getNombre());
         ps.setInt(3, feria.getAforo());
@@ -130,7 +141,12 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
         ps.setString(6, feria.getSeguridad());
         ps.setDouble(7, feria.getPresupuesto());
         ps.executeUpdate();
+        rs = ps.getGeneratedKeys();
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
         ps.close();
+        return 0;
     }
 
     @Override

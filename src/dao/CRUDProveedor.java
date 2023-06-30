@@ -3,6 +3,7 @@ package dao;
 import interfaces.Querys;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import modelo.Proveedor;
 import modelo.Response;
 
@@ -54,14 +55,20 @@ public class CRUDProveedor extends BaseCRUD<Proveedor> implements Querys {
     }
 
     @Override
-    public void makeRequest(Proveedor proveedor, String sql) throws SQLException {
-        ps = connection.prepareStatement(ADD_PROVIDER);
+    public int makeRequest(Proveedor proveedor, String sql) throws SQLException {
+        ps = connection.prepareStatement(ADD_PROVIDER, Statement.RETURN_GENERATED_KEYS);
         ps.setInt(1, proveedor.getFeria().getId());
         ps.setString(2, proveedor.getNombre());
         ps.setString(3, proveedor.getDescripcion());
         ps.setDouble(4, proveedor.getCosto());
         ps.executeUpdate();
+        rs = ps.getGeneratedKeys();
         ps.close();
+        if (rs.next()) {
+            return rs.getInt(1);
+        } else {
+            return 0;
+        }
     }
 
     @Override
