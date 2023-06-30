@@ -39,7 +39,7 @@ public interface Querys {
     //reporte
     String ADD_REPORTE = "INSERT INTO reporte (id_feria, id_chart, fecha) VALUES(?, ?, ?);";
     String GET_MANY_REPORTES = "";
-    String GET_ALL_REPORTES = "";
+    String GET_ALL_REPORTES = "SELECT * FROM reporte";
     String GET_REPORTE = "";
     
     //chart

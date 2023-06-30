@@ -74,14 +74,14 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
     public Response getAll() {
         try {
             List<Reporte> listaReportes = new ArrayList<>();
-            rs = ps.executeQuery(GET_ALL_REPORTES);
+            rs = st.executeQuery(GET_ALL_REPORTES);
             while (rs.next()) {
                 Reporte reporte = makeResponse(rs);
                 listaReportes.add(reporte);
             }
-            for (Reporte reporte : listaReportes) {
-                reporte = addDataForReporte(reporte);
-            }
+//            for (Reporte reporte : listaReportes) {
+//                reporte = addDataForReporte(reporte);
+//            }
             return new Response(true, listaReportes);
         } catch (SQLException e) {
             System.out.println(e);
