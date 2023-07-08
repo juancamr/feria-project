@@ -109,7 +109,7 @@ CREATE TABLE
     ) Engine = InnoDB;
 
 CREATE TABLE
-    if NOT EXISTS gastos (
+    if NOT EXISTS gasto (
         id INT PRIMARY key NOT NULL auto_increment,
         id_reporte INT NOT NULL,
         detalle VARCHAR(50),

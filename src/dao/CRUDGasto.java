@@ -15,7 +15,13 @@ public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
 
     @Override
     public Response add(Gasto gasto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            makeRequest(gasto, ADD_GASTO);
+            return new Response(true);
+        } catch (SQLException e) {
+            System.out.println(e);
+            return new Response(false, "No se pudo agregar el gasto");
+        }
     }
 
     @Override
@@ -30,7 +36,7 @@ public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
         String sql = GET_MANY_GASTOS + reporteId;
         try {
             rs = st.executeQuery(sql);
-            if (rs.next()) {
+            while (rs.next()) {
                 Gasto gasto = makeResponse(rs);
                 gastoList.add(gasto);
             }
@@ -56,14 +62,6 @@ public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public double calcularGastos(ArrayList<Gasto> gastoList) {
-        double[] listaCantidadGastos = new double[gastoList.size()];
-        for (int i = 0; i < gastoList.size(); i++) {
-            listaCantidadGastos[i] = gastoList.get(i).getCantGast();
-        }
-        return Arrays.stream(listaCantidadGastos).sum();
-    }
-
     public static CRUDGasto getInstance() {
         if (crudGasto == null) {
             crudGasto = new CRUDGasto();
@@ -72,15 +70,23 @@ public class CRUDGasto extends BaseCRUD<Gasto> implements Querys {
     }
 
     @Override
-    public int makeRequest(Gasto data, String sql) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int makeRequest(Gasto gasto, String sql) throws SQLException {
+        ps = connection.prepareStatement(sql);
+        ps.setInt(1, gasto.getIdReporte());
+        ps.setString(2, gasto.getDetalle());
+        ps.setDouble(3, gasto.getAmount());
+        ps.executeUpdate();
+        ps.close();
+        return 0;
     }
 
     @Override
     public Gasto makeResponse(ResultSet rs) throws SQLException {
-        Gasto gasto = new Gasto();
-        gasto.setId(rs.getInt(1));
-        gasto.setCantGast(rs.getInt(2));
-        return gasto;
+        return new Gasto.Builder()
+                .id(rs.getInt(1))
+                .idReporte(rs.getInt(2))
+                .detalle(rs.getString(3))
+                .amount(rs.getDouble(4))
+                .build();
     }
 }

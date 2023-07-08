@@ -43,7 +43,7 @@ public class Go {
     }
     
     public static void toFinanzas(WindowMain vista) {
-        new ControladorRegistroFinanzas(vista, new PanelFinanzas());
+        new ControladorFinanzas(vista, new PanelFinanzas());
     }
     
     public static void toMisFerias(WindowMain vista) {

@@ -31,7 +31,22 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
     @Override
     public Response get(int idReporte) {
         try {
-            rs = st.executeQuery(GET_REPORTE);
+            rs = st.executeQuery(GET_REPORTE + idReporte);
+            Reporte reporte = new Reporte();
+            if (rs.next()) {
+                reporte = makeResponse(rs);
+            }
+            reporte = addDataForReporte(reporte);
+            return new Response(true, reporte);
+        } catch (SQLException e) {
+            System.out.println(e);
+            return new Response(false);
+        }
+    }
+    
+    public Response getByFeria(int idFeria) {
+        try {
+            rs = st.executeQuery(GET_REPORTE_BY_FERIA + idFeria);
             Reporte reporte = new Reporte();
             if (rs.next()) {
                 reporte = makeResponse(rs);
@@ -55,7 +70,7 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
         List<Reporte> listaReportes = new ArrayList<>();
 
         try {
-            rs = st.executeQuery(GET_MANY_REPORTES);
+            rs = st.executeQuery(String.format(GET_MANY_REPORTES, fechaInicial, fechaFinal));
             while (rs.next()) {
                 Reporte reporte = makeResponse(rs);
                 listaReportes.add(reporte);
@@ -79,9 +94,9 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
                 Reporte reporte = makeResponse(rs);
                 listaReportes.add(reporte);
             }
-//            for (Reporte reporte : listaReportes) {
-//                reporte = addDataForReporte(reporte);
-//            }
+            for (Reporte reporte : listaReportes) {
+                reporte = addDataForReporte(reporte);
+            }
             return new Response(true, listaReportes);
         } catch (SQLException e) {
             System.out.println(e);
@@ -136,10 +151,11 @@ public class CRUDReporte extends BaseCRUD<Reporte> implements Querys {
     }
 
     private Reporte addDataForReporte(Reporte reporte) {
-        Response<Feria> rsFeria = CRUDFeria.getInstance().get(reporte.getFeria().getId());
-        Response<Gasto> rsGasto = CRUDGasto.getInstance().getMany(reporte.getId());
         Response<Ingreso> rsIngreso = CRUDIngreso.getInstance().getMany(reporte.getId());
+        Response<Gasto> rsGasto = CRUDGasto.getInstance().getMany(reporte.getId());
+        Response<Feria> rsFeria = CRUDFeria.getInstance().get(reporte.getFeria().getId());
         Response<Chart> rsChart = CRUDChart.getInstance().get(reporte.getChart().getId());
+        
         reporte.setFeria(rsFeria.isSuccess() ? rsFeria.getData() : null);
         reporte.setChart(rsChart.isSuccess() ? rsChart.getData() : null);
         reporte.setListaGastos(rsGasto.isSuccess() ? rsGasto.getDataList() : null);

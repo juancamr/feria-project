@@ -37,7 +37,7 @@ public class CRUDFeria extends BaseCRUD<Feria> implements Querys {
     @Override
     public Response get(int id) {
         try {
-            rs = st.executeQuery("");
+            rs = st.executeQuery(GET_FERIA + id);
             Feria feria = null;
             if (rs.next()) {
                 feria = makeResponse(rs);

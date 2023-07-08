@@ -108,12 +108,11 @@ public class CRUDLocal extends BaseCRUD<Local> implements Querys {
         ps.setString(5, Utils.makeSqlDate(local.getFecha()));
         ps.executeUpdate();
         rs = ps.getGeneratedKeys();
-        ps.close();
         if (rs.next()) {
             return rs.getInt(1);
-        } else {
-            return 0;
         }
+        ps.close();
+        return 0;
     }
 
     @Override

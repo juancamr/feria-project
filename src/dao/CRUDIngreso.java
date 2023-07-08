@@ -15,7 +15,13 @@ public class CRUDIngreso extends BaseCRUD<Ingreso> implements Querys {
 
     @Override
     public Response add(Ingreso object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            makeRequest(object, ADD_INGRESO);
+            return new Response(true);
+        } catch (SQLException e) {
+            System.out.println(e);
+            return new Response(false);
+        }
     }
 
     @Override
@@ -30,9 +36,8 @@ public class CRUDIngreso extends BaseCRUD<Ingreso> implements Querys {
         String sql = GET_MANY_INGRESOS + reporteId;
         try {
             rs = st.executeQuery(sql);
-            if (rs.next()) {
-                Ingreso ingreso = new Ingreso();
-                ingresoList.add(ingreso);
+            while (rs.next()) {
+                ingresoList.add(makeResponse(rs));
             }
             return new Response(true, ingresoList);
         } catch (SQLException e) {
@@ -56,14 +61,6 @@ public class CRUDIngreso extends BaseCRUD<Ingreso> implements Querys {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public double calcularIngresos(ArrayList<Ingreso> ingresoList) {
-        double[] listaCantidadIngresos = new double[ingresoList.size()];
-        for (int i = 0; i < ingresoList.size(); i++) {
-            listaCantidadIngresos[i] = ingresoList.get(i).getCantidadIn();
-        }
-        return Arrays.stream(listaCantidadIngresos).sum();
-    }
-
     public static CRUDIngreso getInstance() {
         if (crudIngreso == null) {
             crudIngreso = new CRUDIngreso();
@@ -72,16 +69,24 @@ public class CRUDIngreso extends BaseCRUD<Ingreso> implements Querys {
     }
 
     @Override
-    public int makeRequest(Ingreso data, String sql) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int makeRequest(Ingreso ingreso, String sql) throws SQLException {
+        ps = connection.prepareStatement(sql);
+        ps.setInt(1, ingreso.getIdReporte());
+        ps.setString(2, ingreso.getDetalle());
+        ps.setDouble(3, ingreso.getAmount());
+        ps.executeUpdate();
+        ps.close();
+        return 0;
     }
 
     @Override
     public Ingreso makeResponse(ResultSet rs) throws SQLException {
-        Ingreso ingreso = new Ingreso();
-        ingreso.setId(rs.getInt(1));
-        ingreso.setCantidadIn(rs.getInt(2));
-        return ingreso;
+        return new Ingreso.Builder()
+                .id(rs.getInt(1))
+                .idReporte(rs.getInt(2))
+                .detalle(rs.getString(3))
+                .amount(rs.getDouble(4))
+                .build();
     }
 
 }

@@ -23,7 +23,7 @@ public class ControladorMisFerias implements ActionListener {
     public ControladorMisFerias(WindowMain vista, PanelMisFerias p) {
         panel = p;
         FormatFrame.panel(vista, panel);
-        modelo = new DefaultTableModel(null, titulos);
+        modelo = new DefaultTableModel(null, titulos);        
         //obtener lista de reportes ordenados de mas reciente
         Response<Reporte> response = CRUDReporte.getInstance().getAll();
         if (response.isSuccess()) {
